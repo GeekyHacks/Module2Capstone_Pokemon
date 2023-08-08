@@ -1,5 +1,5 @@
 import './styles/Sass/main.sass';
-import laughing from './assets/laughing.svg';
+import pokemon from './assets/pokemon.png';
 
-const laughImg = document.getElementById('laughImg');
-laughImg.src = laughing;
+const laughImg = document.getElementById('pokemon');
+laughImg.src = pokemon;

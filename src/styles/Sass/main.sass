@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')
-
+@import global
 $primary-color: #2fa8cc
 $secondary-color: #f4f4f4
 $box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)
@@ -10,40 +10,44 @@ $box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)
 body
     background-color: $primary-color
     font-family: 'Roboto', sans-serif
-    display: flex
-    flex-direction: column
-    align-items: center
-    justify-content: center
-    height: 100vh
-    overflow: hidden
     margin: 0
-    padding: 20px
+    padding: 10px
+    font-size: 12px
+img
+    max-width: 7rem
+    max-height: 4rem
+h1, h2, h3,li, input
+    color: $fontColor
 
-.container
-    background-color: $secondary-color
-    border-radius: 10px
-    box-shadow: $box-shadow
-    padding: 50px 20px
-    text-align: center
-    max-width: 100%
-    width: 800px
+h1
+    font-size: 1.4rem
+h2
+    font-size: 1rem
 
 h3
-    margin: 0
-    opacity: 0.5
-    letter-spacing: 2px
+    font-size: .8rem
 
-img
-    width: 100px
-    margin-bottom: 20px
+li, input, a, .copyRights
+    border-radius: .15rem
+    font-size: .7rem
+nav
+    @include rowFlex
+    align-items: center
+    justify-content: space-evenly
+    gap: .5rem
+    white-space: nowrap
+    img
+        flex: 1
+    h2
+        flex: .5
 
-.joke
-    font-size: 30px
-    letter-spacing: 1px
-    line-height: 40px
-    margin: 50px auto
-    max-width: 600px
-
+footer
+    margin-top: 1rem
+    position: relative
+    margin-top: 2rem
+    padding-bottom: 0.1rem
+    top: auto
+    bottom: 0.1rem
 .btn
     background-color: $primary-color
     color: $secondary-color
