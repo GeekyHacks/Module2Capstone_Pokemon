@@ -1,6 +1,6 @@
 $InterFont: "Inter", sans-serif
-$primary-color: #c2e2ea
-$secondary-color: #72bbce
+$primarycolor: #c2e2ea
+$secondarycolor: #72bbce
 $fontColor: #002d67
 $box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)
 $qrpadding: calc( 12% - 80px )
@@ -19,13 +19,13 @@ $Qlpadding: calc( 25% - 120px )
 @mixin button
     transition: all 0.5s
     border-radius: 4px
-    font-size: .8rem
+    font-size: .6rem
     font-weight: 600
     color: $fontColor
     background-color: $primary-color !important
-    border: 2px
+    border: 1px
     box-shadow: $box-shadow
-    padding: 3px
+    padding: 4px
     cursor: pointer
     text-align: center
 
@@ -45,10 +45,10 @@ $Qlpadding: calc( 25% - 120px )
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr
     grid-auto-rows: 1fr
 
-@mixin twoThreeGrid
+@mixin threeThreeGrid
     display: grid
-    grid-template-columns: 1fr 1fr
-    grid-template-rows: 1fr 1fr 1fr
+    grid-template-columns: 1fr 1fr 1fr
+    grid-auto-rows: 1fr
 
 @mixin globalFont
     font-family: $InterFont

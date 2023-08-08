@@ -75,6 +75,72 @@ nav h2 {
   flex: 0.5;
 }
 
+#pokemonList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  align-items: center;
+  justify-content: space-evenly;
+}
+#pokemonList img {
+  max-width: 7rem;
+  max-height: 4rem;
+}
+
+.pokemonItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: #72bbce;
+  padding: 0.3rem;
+  border-radius: 3px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+.likeDiv, .commentDiv {
+  display: flex;
+  flex-direction: row;
+  align-self: stretch;
+  align-items: stretch;
+  justify-content: space-between;
+}
+.likeDiv div, .likeDiv img, .commentDiv div, .commentDiv img {
+  align-self: flex-end;
+}
+.likeDiv img, .commentDiv img {
+  max-width: 1rem !important;
+  max-height: 1rem !important;
+}
+
+button {
+  transition: all 0.5s;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #002d67;
+  background-color: #2fa8cc !important;
+  border: 2px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+  padding: 3px;
+  cursor: pointer;
+  text-align: center;
+  align-self: flex-start;
+}
+button:active {
+  transform: scale(0.98);
+}
+button:focus {
+  outline: 0;
+}
+button:active {
+  transform: scale(0.98);
+}
+button:focus {
+  outline: 0;
+}
+
 footer {
   margin-top: 1rem;
   position: relative;
@@ -82,24 +148,7 @@ footer {
   padding-bottom: 0.1rem;
   top: auto;
   bottom: 0.1rem;
-}
-
-.btn {
-  background-color: #2fa8cc;
-  color: #f4f4f4;
-  border: 0;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
-  padding: 14px 40px;
-  font-size: 16px;
-  cursor: pointer;
-}
-.btn:active {
-  transform: scale(0.98);
-}
-.btn:focus {
-  outline: 0;
-}`, "",{"version":3,"sources":["webpack://./src/styles/Sass/main.sass","webpack://./src/styles/Sass/global.sass"],"names":[],"mappings":"AAMA;EACI,sBAAA;AAJJ;;AAMA;EACI,yBARY;EASZ,iCAAA;EACA,SAAA;EACA,aAAA;EACA,eAAA;AAHJ;;AAIA;EACI,eAAA;EACA,gBAAA;AADJ;;AAEA;EACI,cChBQ;ADiBZ;;AACA;EACI,iBAAA;AAEJ;;AADA;EACI,eAAA;AAIJ;;AAFA;EACI,iBAAA;AAKJ;;AAHA;EACI,sBAAA;EACA,iBAAA;AAMJ;;AALA;ECjBI,aAAA;EACA,mBAAA;EDkBA,mBAAA;EACA,6BAAA;EACA,WAAA;EACA,mBAAA;AASJ;AARI;EACI,OAAA;AAUR;AATI;EACI,SAAA;AAWR;;AATA;EACI,gBAAA;EACA,kBAAA;EACA,gBAAA;EACA,sBAAA;EACA,SAAA;EACA,cAAA;AAYJ;;AAXA;EACI,yBAjDY;EAkDZ,cAjDc;EAkDd,SAAA;EACA,mBAAA;EACA,uEAAA;EACA,kBAAA;EACA,eAAA;EACA,eAAA;AAcJ;AAZI;EACI,sBAAA;AAcR;AAZI;EACI,UAAA;AAcR","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n$primary-color: #2fa8cc\r\n$secondary-color: #f4f4f4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n\r\n*\r\n    box-sizing: border-box\r\n\r\nbody\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    margin: 0\r\n    padding: 10px\r\n    font-size: 12px\r\nimg\r\n    max-width: 7rem\r\n    max-height: 4rem\r\nh1, h2, h3,li, input\r\n    color: $fontColor\r\n\r\nh1\r\n    font-size: 1.4rem\r\nh2\r\n    font-size: 1rem\r\n\r\nh3\r\n    font-size: .8rem\r\n\r\nli, input, a, .copyRights\r\n    border-radius: .15rem\r\n    font-size: .7rem\r\nnav\r\n    @include rowFlex\r\n    align-items: center\r\n    justify-content: space-evenly\r\n    gap: .5rem\r\n    white-space: nowrap\r\n    img\r\n        flex: 1\r\n    h2\r\n        flex: .5\r\n\r\nfooter\r\n    margin-top: 1rem\r\n    position: relative\r\n    margin-top: 2rem\r\n    padding-bottom: 0.1rem\r\n    top: auto\r\n    bottom: 0.1rem\r\n.btn\r\n    background-color: $primary-color\r\n    color: $secondary-color\r\n    border: 0\r\n    border-radius: 10px\r\n    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n    padding: 14px 40px\r\n    font-size: 16px\r\n    cursor: pointer\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n","$InterFont: \"Inter\", sans-serif\r\n$primary-color: #c2e2ea\r\n$secondary-color: #72bbce\r\n$fontColor: #002d67\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n$qrpadding: calc( 12% - 80px )\r\n$Qrpadding: calc( 25% - 120px )\r\n$qlpadding: calc( 12% - 80px )\r\n$Qlpadding: calc( 25% - 120px )\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 4px\r\n    font-size: .8rem\r\n    font-weight: 600\r\n    color: $fontColor\r\n    background-color: $primary-color !important\r\n    border: 2px\r\n    box-shadow: $box-shadow\r\n    padding: 3px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n@mixin oneFiveGrid\r\n    display: grid\r\n    grid-template-columns: 1fr\r\n    grid-auto-rows: 1fr 1fr 1fr 1fr 1fr\r\n\r\n@mixin fiveOneGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin twoThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr\r\n    grid-template-rows: 1fr 1fr 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .9rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n\r\n@mixin transparentText\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-repeat: no-repeat\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n\r\n@mixin transparentBg\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-blend-mode: color-burn\r\n    background-repeat: no-repeat\r\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/styles/Sass/main.sass","webpack://./src/styles/Sass/global.sass"],"names":[],"mappings":"AAMA;EACI,sBAAA;AAJJ;;AAMA;EACI,yBARY;EASZ,iCAAA;EACA,SAAA;EACA,aAAA;EACA,eAAA;AAHJ;;AAIA;EACI,eAAA;EACA,gBAAA;AADJ;;AAEA;EACI,cChBQ;ADiBZ;;AACA;EACI,iBAAA;AAEJ;;AADA;EACI,eAAA;AAIJ;;AAFA;EACI,iBAAA;AAKJ;;AAHA;EACI,sBAAA;EACA,iBAAA;AAMJ;;AALA;ECjBI,aAAA;EACA,mBAAA;EDkBA,mBAAA;EACA,6BAAA;EACA,WAAA;EACA,mBAAA;AASJ;AARI;EACI,OAAA;AAUR;AATI;EACI,SAAA;AAWR;;AAVA;ECMI,aAAA;EACA,kCAAA;EACA,+BAAA;EDNA,mBAAA;EACA,6BAAA;AAeJ;AAdI;EACI,eAAA;EACA,gBAAA;AAgBR;;AAdA;ECvCI,aAAA;EACA,sBAAA;EDwCA,mBAAA;EACA,uBAAA;EACA,SAAA;EACA,mBCrDa;EDsDb,eAAA;EACA,kBAAA;EACA,wEAtDS;AAwEb;;AAhBA;EC7CI,aAAA;EACA,mBAAA;ED8CA,mBAAA;EACA,oBAAA;EACA,8BAAA;AAoBJ;AAnBI;EACI,oBAAA;AAqBR;AApBI;EACI,0BAAA;EACA,2BAAA;AAsBR;;AApBA;ECpDI,oBAAA;EACA,kBAAA;EACA,iBAAA;EACA,gBAAA;EACA,cApBQ;EAqBR,oCAAA;EACA,WAAA;EACA,wEDtBS;ECuBT,YAAA;EACA,eAAA;EACA,kBAAA;ED4CA,sBAAA;AAiCJ;AC3EI;EACI,sBAAA;AD6ER;AC3EI;EACI,UAAA;AD6ER;AArCI;EACI,sBAAA;AAuCR;AArCI;EACI,UAAA;AAuCR;;AArCA;EACI,gBAAA;EACA,kBAAA;EACA,gBAAA;EACA,sBAAA;EACA,SAAA;EACA,cAAA;AAwCJ","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n$primary-color: #2fa8cc\r\n$secondary-color: #f4f4f4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n\r\n*\r\n    box-sizing: border-box\r\n\r\nbody\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    margin: 0\r\n    padding: 10px\r\n    font-size: 12px\r\nimg\r\n    max-width: 7rem\r\n    max-height: 4rem\r\nh1, h2, h3,li, input\r\n    color: $fontColor\r\n\r\nh1\r\n    font-size: 1.4rem\r\nh2\r\n    font-size: 1rem\r\n\r\nh3\r\n    font-size: .8rem\r\n\r\nli, input, a, .copyRights\r\n    border-radius: .15rem\r\n    font-size: .7rem\r\nnav\r\n    @include rowFlex\r\n    align-items: center\r\n    justify-content: space-evenly\r\n    gap: .5rem\r\n    white-space: nowrap\r\n    img\r\n        flex: 1\r\n    h2\r\n        flex: .5\r\n#pokemonList\r\n    @include threeThreeGrid\r\n    align-items: center\r\n    justify-content: space-evenly\r\n    img\r\n        max-width: 7rem\r\n        max-height: 4rem\r\n\r\n.pokemonItem\r\n    @include columnFlex\r\n    align-items: center\r\n    justify-content: center\r\n    gap: 1rem\r\n    background: $secondarycolor\r\n    padding: .3rem\r\n    border-radius: 3px\r\n    box-shadow: $box-shadow\r\n\r\n.likeDiv, .commentDiv\r\n    @include rowFlex\r\n    align-self: stretch\r\n    align-items: stretch\r\n    justify-content: space-between\r\n    div, img\r\n        align-self: flex-end\r\n    img\r\n        max-width: 1rem !important\r\n        max-height: 1rem !important\r\n\r\nbutton\r\n    @include button\r\n    align-self: flex-start\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\nfooter\r\n    margin-top: 1rem\r\n    position: relative\r\n    margin-top: 2rem\r\n    padding-bottom: 0.1rem\r\n    top: auto\r\n    bottom: 0.1rem\r\n","$InterFont: \"Inter\", sans-serif\r\n$primarycolor: #c2e2ea\r\n$secondarycolor: #72bbce\r\n$fontColor: #002d67\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n$qrpadding: calc( 12% - 80px )\r\n$Qrpadding: calc( 25% - 120px )\r\n$qlpadding: calc( 12% - 80px )\r\n$Qlpadding: calc( 25% - 120px )\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 4px\r\n    font-size: .8rem\r\n    font-weight: 600\r\n    color: $fontColor\r\n    background-color: $primary-color !important\r\n    border: 2px\r\n    box-shadow: $box-shadow\r\n    padding: 3px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n@mixin oneFiveGrid\r\n    display: grid\r\n    grid-template-columns: 1fr\r\n    grid-auto-rows: 1fr 1fr 1fr 1fr 1fr\r\n\r\n@mixin fiveOneGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin threeThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr\r\n    grid-template-rows: 1fr 1fr 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .9rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n\r\n@mixin transparentText\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-repeat: no-repeat\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n\r\n@mixin transparentBg\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-blend-mode: color-burn\r\n    background-repeat: no-repeat\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -546,6 +595,26 @@ module.exports = styleTagTransform;
 
 /***/ }),
 
+/***/ "./src/assets/bikatshoo.svg":
+/*!**********************************!*\
+  !*** ./src/assets/bikatshoo.svg ***!
+  \**********************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "bikatshoo.svg";
+
+/***/ }),
+
+/***/ "./src/assets/like.svg":
+/*!*****************************!*\
+  !*** ./src/assets/like.svg ***!
+  \*****************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "like.svg";
+
+/***/ }),
+
 /***/ "./src/assets/pokemon.png":
 /*!********************************!*\
   !*** ./src/assets/pokemon.png ***!
@@ -673,12 +742,26 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_Sass_main_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/Sass/main.sass */ "./src/styles/Sass/main.sass");
 /* harmony import */ var _assets_pokemon_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/pokemon.png */ "./src/assets/pokemon.png");
+/* harmony import */ var _assets_like_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/like.svg */ "./src/assets/like.svg");
+/* harmony import */ var _assets_bikatshoo_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/bikatshoo.svg */ "./src/assets/bikatshoo.svg");
 
 
-var laughImg = document.getElementById('pokemon');
-laughImg.src = _assets_pokemon_png__WEBPACK_IMPORTED_MODULE_1__;
+
+
+
+// import pokemon from './assets/pokemon.png';
+// import likes from './assets/like.svg';
+// import bikatshoo from './assets/bikatshoo.svg';
+
+// const bikatshooImg = document.querySelector('.bikatshoo');
+// bikatshooImg.src = bikatshoo;
+
+// const likesImg = document.querySelector('.likes');
+// likesImg.src = likes;
+// const pokemonImg = document.getElementById('pokemon');
+// pokemonImg.src = pokemon;
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle3d3f980236b4104ecd86.js.map
+//# sourceMappingURL=bundle320b57dcca6cf5d7452b.js.map
