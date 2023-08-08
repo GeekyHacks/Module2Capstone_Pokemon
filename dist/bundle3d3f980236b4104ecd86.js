@@ -35,7 +35,7 @@ body {
 }
 
 img {
-  max-width: 12rem;
+  max-width: 7rem;
   max-height: 4rem;
 }
 
@@ -60,16 +60,28 @@ li, input, a, .copyRights {
   font-size: 0.7rem;
 }
 
-header {
-  padding: 0.2rem;
-}
-
 nav {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+  gap: 0.5rem;
   white-space: nowrap;
+}
+nav img {
+  flex: 1;
+}
+nav h2 {
+  flex: 0.5;
+}
+
+footer {
+  margin-top: 1rem;
+  position: relative;
+  margin-top: 2rem;
+  padding-bottom: 0.1rem;
+  top: auto;
+  bottom: 0.1rem;
 }
 
 .btn {
@@ -87,7 +99,7 @@ nav {
 }
 .btn:focus {
   outline: 0;
-}`, "",{"version":3,"sources":["webpack://./src/styles/Sass/main.sass","webpack://./src/styles/Sass/global.sass"],"names":[],"mappings":"AAMA;EACI,sBAAA;AAJJ;;AAMA;EACI,yBARY;EASZ,iCAAA;EACA,SAAA;EACA,aAAA;EACA,eAAA;AAHJ;;AAIA;EACI,gBAAA;EACA,gBAAA;AADJ;;AAEA;EACI,cChBQ;ADiBZ;;AACA;EACI,iBAAA;AAEJ;;AADA;EACI,eAAA;AAIJ;;AAFA;EACI,iBAAA;AAKJ;;AAHA;EACI,sBAAA;EACA,iBAAA;AAMJ;;AALA;EACI,eAAA;AAQJ;;AAPA;ECnBI,aAAA;EACA,mBAAA;EDoBA,mBAAA;EACA,6BAAA;EACA,mBAAA;AAWJ;;AATA;EACI,yBAvCY;EAwCZ,cAvCc;EAwCd,SAAA;EACA,mBAAA;EACA,uEAAA;EACA,kBAAA;EACA,eAAA;EACA,eAAA;AAYJ;AAVI;EACI,sBAAA;AAYR;AAVI;EACI,UAAA;AAYR","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n$primary-color: #2fa8cc\r\n$secondary-color: #f4f4f4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n\r\n*\r\n    box-sizing: border-box\r\n\r\nbody\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    margin: 0\r\n    padding: 10px\r\n    font-size: 12px\r\nimg\r\n    max-width: 12rem\r\n    max-height: 4rem\r\nh1, h2, h3,li, input\r\n    color: $fontColor\r\n\r\nh1\r\n    font-size: 1.4rem\r\nh2\r\n    font-size: 1rem\r\n\r\nh3\r\n    font-size: .8rem\r\n\r\nli, input, a, .copyRights\r\n    border-radius: .15rem\r\n    font-size: .7rem\r\nheader\r\n    padding: .2rem\r\nnav\r\n    @include rowFlex\r\n    align-items: center\r\n    justify-content: space-evenly\r\n    white-space: nowrap\r\n\r\n.btn\r\n    background-color: $primary-color\r\n    color: $secondary-color\r\n    border: 0\r\n    border-radius: 10px\r\n    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n    padding: 14px 40px\r\n    font-size: 16px\r\n    cursor: pointer\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n","$InterFont: \"Inter\", sans-serif\r\n$primary-color: #c2e2ea\r\n$secondary-color: #72bbce\r\n$fontColor: #002d67\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n$qrpadding: calc( 12% - 80px )\r\n$Qrpadding: calc( 25% - 120px )\r\n$qlpadding: calc( 12% - 80px )\r\n$Qlpadding: calc( 25% - 120px )\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 4px\r\n    font-size: .8rem\r\n    font-weight: 600\r\n    color: $fontColor\r\n    background-color: $primary-color !important\r\n    border: 2px\r\n    box-shadow: $box-shadow\r\n    padding: 3px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n@mixin oneFiveGrid\r\n    display: grid\r\n    grid-template-columns: 1fr\r\n    grid-auto-rows: 1fr 1fr 1fr 1fr 1fr\r\n\r\n@mixin fiveOneGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin twoThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr\r\n    grid-template-rows: 1fr 1fr 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .9rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n\r\n@mixin transparentText\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-repeat: no-repeat\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n\r\n@mixin transparentBg\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-blend-mode: color-burn\r\n    background-repeat: no-repeat\r\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/styles/Sass/main.sass","webpack://./src/styles/Sass/global.sass"],"names":[],"mappings":"AAMA;EACI,sBAAA;AAJJ;;AAMA;EACI,yBARY;EASZ,iCAAA;EACA,SAAA;EACA,aAAA;EACA,eAAA;AAHJ;;AAIA;EACI,eAAA;EACA,gBAAA;AADJ;;AAEA;EACI,cChBQ;ADiBZ;;AACA;EACI,iBAAA;AAEJ;;AADA;EACI,eAAA;AAIJ;;AAFA;EACI,iBAAA;AAKJ;;AAHA;EACI,sBAAA;EACA,iBAAA;AAMJ;;AALA;ECjBI,aAAA;EACA,mBAAA;EDkBA,mBAAA;EACA,6BAAA;EACA,WAAA;EACA,mBAAA;AASJ;AARI;EACI,OAAA;AAUR;AATI;EACI,SAAA;AAWR;;AATA;EACI,gBAAA;EACA,kBAAA;EACA,gBAAA;EACA,sBAAA;EACA,SAAA;EACA,cAAA;AAYJ;;AAXA;EACI,yBAjDY;EAkDZ,cAjDc;EAkDd,SAAA;EACA,mBAAA;EACA,uEAAA;EACA,kBAAA;EACA,eAAA;EACA,eAAA;AAcJ;AAZI;EACI,sBAAA;AAcR;AAZI;EACI,UAAA;AAcR","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n$primary-color: #2fa8cc\r\n$secondary-color: #f4f4f4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n\r\n*\r\n    box-sizing: border-box\r\n\r\nbody\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    margin: 0\r\n    padding: 10px\r\n    font-size: 12px\r\nimg\r\n    max-width: 7rem\r\n    max-height: 4rem\r\nh1, h2, h3,li, input\r\n    color: $fontColor\r\n\r\nh1\r\n    font-size: 1.4rem\r\nh2\r\n    font-size: 1rem\r\n\r\nh3\r\n    font-size: .8rem\r\n\r\nli, input, a, .copyRights\r\n    border-radius: .15rem\r\n    font-size: .7rem\r\nnav\r\n    @include rowFlex\r\n    align-items: center\r\n    justify-content: space-evenly\r\n    gap: .5rem\r\n    white-space: nowrap\r\n    img\r\n        flex: 1\r\n    h2\r\n        flex: .5\r\n\r\nfooter\r\n    margin-top: 1rem\r\n    position: relative\r\n    margin-top: 2rem\r\n    padding-bottom: 0.1rem\r\n    top: auto\r\n    bottom: 0.1rem\r\n.btn\r\n    background-color: $primary-color\r\n    color: $secondary-color\r\n    border: 0\r\n    border-radius: 10px\r\n    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n    padding: 14px 40px\r\n    font-size: 16px\r\n    cursor: pointer\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n","$InterFont: \"Inter\", sans-serif\r\n$primary-color: #c2e2ea\r\n$secondary-color: #72bbce\r\n$fontColor: #002d67\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n$qrpadding: calc( 12% - 80px )\r\n$Qrpadding: calc( 25% - 120px )\r\n$qlpadding: calc( 12% - 80px )\r\n$Qlpadding: calc( 25% - 120px )\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 4px\r\n    font-size: .8rem\r\n    font-weight: 600\r\n    color: $fontColor\r\n    background-color: $primary-color !important\r\n    border: 2px\r\n    box-shadow: $box-shadow\r\n    padding: 3px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n@mixin oneFiveGrid\r\n    display: grid\r\n    grid-template-columns: 1fr\r\n    grid-auto-rows: 1fr 1fr 1fr 1fr 1fr\r\n\r\n@mixin fiveOneGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin twoThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr\r\n    grid-template-rows: 1fr 1fr 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .9rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n\r\n@mixin transparentText\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-repeat: no-repeat\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n\r\n@mixin transparentBg\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-blend-mode: color-burn\r\n    background-repeat: no-repeat\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -669,4 +681,4 @@ laughImg.src = _assets_pokemon_png__WEBPACK_IMPORTED_MODULE_1__;
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle45c872eda01bbb98f59f.js.map
+//# sourceMappingURL=bundle3d3f980236b4104ecd86.js.map
