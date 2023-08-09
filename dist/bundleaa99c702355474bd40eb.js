@@ -134,76 +134,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-
-// export const renderList = async (listData) => {
-//   const pokemonList = document.getElementById('pokemonList');
-//   pokemonList.innerHTML = '';
-//   // to get the pokemon main object that has name & url
-//   let response = await fetch(pokemonAPI);
-//   listData = await response.json();
-//   listData = listData.results;
-
-// //   console.log(listData);
-
-//   // to sort the array elements
-//   const sortedDataList = [...listData];
-//   sortedDataList.sort((a, b) => b.score - a.score);
-//   console.log(sortedDataList);
-//   const objects = sortedDataList;
-//   console.log(objects[0]);
-//   // to loop through 18 elements of the array
-//   for (let i = 0; i < 18; i++) {
-//     const li = document.createElement('li');
-
-//     const object = objects[i];
-
-//     const objectUrl = object.url;
-//     console.log(objectUrl);
-//     // to fetch the pokemon Image
-//     let response = await fetch(objectUrl);
-//     const pokeObject = await response.json();
-//     console.log(pokeObject.id);
-
-//     //   getItemById();
-
-//     // to get the image of pokemon
-//     console.log(pokeObject.sprites.other.dream_world.front_default);
-
-//     li.innerHTML = `
-//     <li class="pokemonItem">
-//     <img src="${pokeObject.sprites.other.dream_world.front_default}" alt="${object.name}" />
-//     <div class="likeDiv">
-//       <h3>${object.name}</h3>
-//       <img src="./assets/like.svg" alt="like" />
-//     </div>
-//     <div class="commentDiv">
-//       <button class="commentPopup">Comment</button>
-//       <div>
-//         <h4>
-//           likes<span>1</span>
-//         </h4>
-//       </div>
-//     </div>
-//   </li>
-//          `;
-
-//     pokemonList.appendChild(li);
-//   }
-//   const commentBtn = document.querySelectorAll('.commentPopup');
-//   commentBtn.forEach((btn) => {
-//     btn.addEventListener('click', async () => {
-//       pokemonList.innerHTML = '';
-//       popupPage();
-//       const closeBtn = document.querySelector('.pageX');
-//       closeBtn.addEventListener('click', () => {
-
-//         location.reload();
-//       });
-//     });
-//   });
-
-// };
-
 var renderList = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(listData) {
     var pokemonList, response, sortedDataList, objects, _loop, i;
@@ -234,27 +164,27 @@ var renderList = /*#__PURE__*/function () {
           console.log(objects[0]);
           // to loop through 18 elements of the array
           _loop = /*#__PURE__*/_regeneratorRuntime().mark(function _loop() {
-            var li, pokemonPopup, commentBtn, object, response, pokeObject;
+            var li, object, response, pokeObject, pokemonPopup, commentBtn;
             return _regeneratorRuntime().wrap(function _loop$(_context2) {
               while (1) switch (_context2.prev = _context2.next) {
                 case 0:
                   li = document.createElement('li');
-                  pokemonPopup = document.querySelector('.popup');
-                  commentBtn = document.querySelectorAll('.commentPopup');
                   object = objects[i]; // to fetch the pokemon Image
-                  _context2.next = 6;
+                  _context2.next = 4;
                   return fetch(object.url);
-                case 6:
+                case 4:
                   response = _context2.sent;
-                  _context2.next = 9;
+                  _context2.next = 7;
                   return response.json();
-                case 9:
+                case 7:
                   pokeObject = _context2.sent;
                   console.log(pokeObject);
 
                   // to get the image of pokemon
                   console.log(pokeObject.sprites.other.dream_world.front_default);
                   li.innerHTML = "\n      <li class=\"pokemonItem\">\n      <img src=\"".concat(pokeObject.sprites.other.dream_world.front_default, "\" alt=\"").concat(object.name, "\" />\n      <div class=\"likeDiv\">\n        <h3>").concat(object.name, "</h3>\n        <img src=\"./assets/like.svg\" alt=\"like\" />\n      </div>\n      <div class=\"commentDiv\">\n        <button class=\"commentPopup\" data-url=\"").concat(object.url, "\">Comment</button>\n        <div>\n          <h4>\n            likes<span>1</span>\n          </h4>\n        </div>\n      </div>\n    </li>\n           ");
+                  pokemonPopup = document.querySelector('.popup');
+                  commentBtn = document.querySelectorAll('.commentPopup');
                   commentBtn.forEach(function (btn) {
                     btn.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
                       var clickedUrl, pokeResponse, pokeObject, closeBtn;
@@ -271,7 +201,7 @@ var renderList = /*#__PURE__*/function () {
                           case 6:
                             pokeObject = _context.sent;
                             pokemonList.innerHTML = '';
-                            pokemonPopup.innerHTML = "\n          <div class=\"pokemonImg\">\n          <img class=\"pageX\" src=\"./assets/x.svg\" alt=\"close\" />\n          <img src=\"".concat(pokeObject.sprites.other.dream_world.front_default, "\" alt=\"").concat(object.name, "\" />\n          <h3>").concat(object.name, "</h3>\n          </div>\n\n        <div class=\"comments\">\n          <h3>Recent Comments</h3>\n          <ul class=\"recentComments\"></ul>\n        </div>\n        <form autocomplete=\"off\" class=\"AddComment\">\n          <label>Add a Comment</label>\n          <input type=\"text\" id=\"name\" placeholder=\"Your Name\" required maxLength=\"20\" />\n          <textarea rows=\"7\"></textarea>\n\n          <button id=\"submit\" class=\"btn\" type=\"submit\">Comment</button>\n        </form>\n          ");
+                            pokemonPopup.innerHTML = "\n                 <div class=\"pokemonImg\">\n                 <img class=\"pageX\" src=\"./assets/x.svg\" alt=\"close\" />\n                 <img src=\"".concat(pokeObject.sprites.other.dream_world.front_default, "\" alt=\"").concat(object.name, "\" />\n                 <h3>").concat(object.name, "</h3>\n                 </div>\n               <div class=\"comments\">\n                 <h3>Recent Comments</h3>\n                 <ul class=\"recentComments\"></ul>\n               </div>\n               <form autocomplete=\"off\" class=\"AddComment\">\n                 <label>Add a Comment</label>\n                 <input type=\"text\" id=\"name\" placeholder=\"Your Name\" required maxLength=\"20\" />\n                 <textarea rows=\"7\"></textarea>\n                 <button id=\"submit\" class=\"btn\" type=\"submit\">Comment</button>\n               </form>\n                 ");
                             closeBtn = document.querySelector('.pageX');
                             closeBtn.addEventListener('click', function () {
                               pokemonPopup.innerHTML = '';
@@ -293,7 +223,7 @@ var renderList = /*#__PURE__*/function () {
           });
           i = 0;
         case 17:
-          if (!(i < objects.length)) {
+          if (!(i < 18)) {
             _context3.next = 22;
             break;
           }
@@ -531,7 +461,23 @@ footer {
   padding-bottom: 0.3rem;
   top: auto;
   bottom: 0.1rem;
-}`, "",{"version":3,"sources":["webpack://./src/styles/Sass/main.sass","webpack://./src/styles/Sass/global.sass"],"names":[],"mappings":"AAMA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;AAJJ;;AAMA;ECAI,aAAA;EACA,sBAAA;EDCA,yBAXY;EAYZ,iCAAA;EAEA,uBAAA;EACA,YAAA;EACA,eAAA;AAHJ;;AAIA;EACI,eAAA;EACA,gBAAA;EACA,eAAA;AADJ;AAEI;EACI,sBAAA;AAAR;AAEI;EACI,UAAA;AAAR;;AAEA;EACI,cC3BQ;AD4BZ;;AACA;EACI,iBAAA;AAEJ;;AADA;EACI,iBAAA;AAIJ;;AAFA;EACI,iBAAA;AAKJ;;AAHA;EACI,sBAAA;EACA,iBAAA;AAMJ;;AALA;EACI,eAAA;ECjCA,aAAA;EACA,sBAAA;EDkCA,oBAAA;EACA,uBAAA;AASJ;;AARA;ECjCI,aAAA;EACA,mBAAA;EDkCA,mBAAA;EACA,8BAAA;EACA,SAAA;EACA,mBAAA;AAYJ;AAXI;EACI,SAAA;EACA,sBAAA;AAaR;AAZI;EACI,SAAA;AAcR;;AAbA;ECXI,aAAA;EACA,kCAAA;EACA,mBAAA;EDWA,mBAAA;EACA,eAAA;EAEA,WAAA;AAiBJ;AAhBI;EACI,eAAA;EACA,gBAAA;AAkBR;;AAhBA;EC1DI,aAAA;EACA,sBAAA;ED2DA,mBAAA;EAEA,WAAA;EACA,mBCxEa;ED0Eb,kBAAA;EACA,wEAzES;AA2Fb;;AAhBA;EChEI,aAAA;EACA,mBAAA;EDiEA,mBAAA;EACA,oBAAA;EACA,8BAAA;EACA,eAAA;AAoBJ;AAnBI;EACI,oBAAA;AAqBR;AApBI;EACI,0BAAA;EACA,2BAAA;AAsBR;;AApBA;ECxEI,oBAAA;EACA,kBAAA;EACA,iBAAA;EACA,gBAAA;EACA,yBAAA;EACA,oCAAA;EACA,WAAA;EACA,wEDtBS;ECuBT,YAAA;EACA,eAAA;EACA,kBAAA;EDgEA,sBAAA;AAiCJ;AC/FI;EACI,sBAAA;ADiGR;AC/FI;EACI,UAAA;ADiGR;AArCI;EACI,sBAAA;AAuCR;AArCI;EACI,UAAA;AAuCR;;AArCA;EACI,oBAAA;AAwCJ;AAvCI;EACI,eAAA;EC7FJ,aAAA;EACA,sBAAA;ADuIJ;AAvCQ;EACI,kBAAA;EACA,gBAAA;EACA,iBAAA;AAyCZ;AAxCQ;EACI,oBAAA;EACA,eAAA;EACA,gBAAA;AA0CZ;AAzCQ;EACI,kBAAA;EACA,gBAAA;AA2CZ;AAzCI;EACI,kBAAA;AA2CR;AA1CI;EC/GA,aAAA;EACA,sBAAA;EDgHI,mBAAA;EACA,mBAAA;EACA,uBAAA;EACA,sBAAA;EACA,WAAA;AA6CR;AA5CQ;EACI,kBAAA;EACA,qBAAA;EACA,eAAA;EACA,oCAAA;AA8CZ;AA7CQ;EACI,mBAAA;EACA,kBAAA;EACA,eAAA;EACA,mBCzIG;ED0IH,wEAvIC;AAsLb;AA9CI;EACI,eAAA;AAgDR;;AA9CA;EACI,kBAAA;EACA,gBAAA;EACA,sBAAA;EACA,SAAA;EACA,cAAA;AAiDJ","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n$primary-color: #2fa8cc\r\n$secondary-color: #f4f4f4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\nbody\r\n    @include columnFlex\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    // align-items: center\r\n    justify-content: center\r\n    padding: 5px\r\n    font-size: 12px\r\nimg\r\n    max-width: 5rem\r\n    max-height: 7rem\r\n    cursor: pointer\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\nh1, h2, h3,li, input,label\r\n    color: $fontColor\r\n\r\nh1\r\n    font-size: 1.2rem\r\nh2\r\n    font-size: .7rem\r\n\r\nh3\r\n    font-size: .5rem\r\n\r\nli, input, a, .copyRights\r\n    border-radius: .15rem\r\n    font-size: .7rem\r\nheader\r\n    padding: .2rem\r\n    @include columnFlex\r\n    align-items: stretch\r\n    justify-content: center\r\nnav\r\n    @include rowFlex\r\n    align-items: center\r\n    justify-content: space-between\r\n    gap: 5rem\r\n    white-space: nowrap\r\n    img\r\n        flex: .8\r\n        align-self: flex-start\r\n    h2\r\n        flex: .4\r\n#pokemonList\r\n    @include threeThreeGrid\r\n    align-items: center\r\n    padding: .2rem\r\n    // justify-content: space-evenly\r\n    gap: .7rem\r\n    img\r\n        max-width: 6rem\r\n        max-height: 4rem\r\n\r\n.pokemonItem, .popup\r\n    @include columnFlex\r\n    align-items: center\r\n    // justify-content: center\r\n    gap: .4rem\r\n    background: $secondarycolor\r\n    // padding: .2rem\r\n    border-radius: 3px\r\n    box-shadow: $box-shadow\r\n\r\n.likeDiv, .commentDiv\r\n    @include rowFlex\r\n    align-self: stretch\r\n    align-items: stretch\r\n    justify-content: space-between\r\n    padding: .2rem\r\n    div, img\r\n        align-self: flex-end\r\n    img\r\n        max-width: 1rem !important\r\n        max-height: 1rem !important\r\n\r\nbutton\r\n    @include button\r\n    align-self: flex-start\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n.popup\r\n    align-items: stretch\r\n    .pokemonImg\r\n        padding: .3rem\r\n        @include columnFlex\r\n        // align-items: stretch !important\r\n        // justify-content: center !important\r\n        img\r\n            align-self: center\r\n            max-width: 15rem\r\n            max-height: 10rem\r\n        .pageX\r\n            align-self: flex-end\r\n            max-width: 1rem\r\n            max-height: 1rem\r\n        h3\r\n            align-self: center\r\n            margin-top: 1rem\r\n\r\n    .recentComments\r\n        overflow-y: scroll\r\n    .AddComment, .comments\r\n        @include columnFlex\r\n        align-self: stretch\r\n        align-items: center\r\n        justify-content: center\r\n        padding: .3rem .5rem\r\n        gap: .3rem\r\n        button\r\n            align-self: center\r\n            margin-bottom: .5rem\r\n            padding: .4rem\r\n            background-color: $primarycolor !important\r\n        textarea, input\r\n            align-self: stretch\r\n            border-radius: 3px\r\n            padding: .3rem\r\n            background: $primarycolor\r\n            box-shadow: $box-shadow\r\n    label, h3\r\n        font-size: 1rem\r\n\r\nfooter\r\n    position: relative\r\n    margin-top: 2rem\r\n    padding-bottom: 0.3rem\r\n    top: auto\r\n    bottom: 0.1rem\r\n    // width: 50%\r\n","$InterFont: \"Inter\", sans-serif\r\n$primarycolor: #c2e2ea\r\n$secondarycolor: #72bbce\r\n$fontColor: #002d67\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n$qrpadding: calc( 12% - 80px )\r\n$Qrpadding: calc( 25% - 120px )\r\n$qlpadding: calc( 12% - 80px )\r\n$Qlpadding: calc( 25% - 120px )\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 4px\r\n    font-size: .6rem\r\n    font-weight: 600\r\n    color: $fontColor !important\r\n    background-color: $primary-color !important\r\n    border: 1px\r\n    box-shadow: $box-shadow\r\n    padding: 4px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n@mixin oneFiveGrid\r\n    display: grid\r\n    grid-template-columns: 1fr\r\n    grid-auto-rows: 1fr 1fr 1fr 1fr 1fr\r\n\r\n@mixin fiveOneGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin threeThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .9rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n\r\n@mixin transparentText\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-repeat: no-repeat\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n\r\n@mixin transparentBg\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-blend-mode: color-burn\r\n    background-repeat: no-repeat\r\n"],"sourceRoot":""}]);
+}
+
+@media (min-width: 768px) {
+  main {
+    font-size: 18px;
+    padding-left: calc(25% - 120px);
+    padding-right: calc(25% - 120px);
+  }
+  section, .popup {
+    gap: 2rem;
+  }
+}
+@media (min-width: 999px) {
+  body {
+    font-size: 23px;
+  }
+}`, "",{"version":3,"sources":["webpack://./src/styles/Sass/main.sass","webpack://./src/styles/Sass/global.sass"],"names":[],"mappings":"AAMA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;AAJJ;;AAMA;ECAI,aAAA;EACA,sBAAA;EDCA,yBAXY;EAYZ,iCAAA;EAEA,uBAAA;EACA,YAAA;EACA,eAAA;AAHJ;;AAIA;EACI,eAAA;EACA,gBAAA;EACA,eAAA;AADJ;AAEI;EACI,sBAAA;AAAR;AAEI;EACI,UAAA;AAAR;;AAEA;EACI,cC3BQ;AD4BZ;;AACA;EACI,iBAAA;AAEJ;;AADA;EACI,iBAAA;AAIJ;;AAFA;EACI,iBAAA;AAKJ;;AAHA;EACI,sBAAA;EACA,iBAAA;AAMJ;;AALA;EACI,eAAA;ECjCA,aAAA;EACA,sBAAA;EDkCA,oBAAA;EACA,uBAAA;AASJ;;AARA;ECjCI,aAAA;EACA,mBAAA;EDkCA,mBAAA;EACA,8BAAA;EACA,SAAA;EACA,mBAAA;AAYJ;AAXI;EACI,SAAA;EACA,sBAAA;AAaR;AAZI;EACI,SAAA;AAcR;;AAbA;ECXI,aAAA;EACA,kCAAA;EACA,mBAAA;EDWA,mBAAA;EACA,eAAA;EAEA,WAAA;AAiBJ;AAhBI;EACI,eAAA;EACA,gBAAA;AAkBR;;AAhBA;EC1DI,aAAA;EACA,sBAAA;ED2DA,mBAAA;EAEA,WAAA;EACA,mBCxEa;ED0Eb,kBAAA;EACA,wEAzES;AA2Fb;;AAhBA;EChEI,aAAA;EACA,mBAAA;EDiEA,mBAAA;EACA,oBAAA;EACA,8BAAA;EACA,eAAA;AAoBJ;AAnBI;EACI,oBAAA;AAqBR;AApBI;EACI,0BAAA;EACA,2BAAA;AAsBR;;AApBA;ECxEI,oBAAA;EACA,kBAAA;EACA,iBAAA;EACA,gBAAA;EACA,yBAAA;EACA,oCAAA;EACA,WAAA;EACA,wEDtBS;ECuBT,YAAA;EACA,eAAA;EACA,kBAAA;EDgEA,sBAAA;AAiCJ;AC/FI;EACI,sBAAA;ADiGR;AC/FI;EACI,UAAA;ADiGR;AArCI;EACI,sBAAA;AAuCR;AArCI;EACI,UAAA;AAuCR;;AArCA;EACI,oBAAA;AAwCJ;AAvCI;EACI,eAAA;EC7FJ,aAAA;EACA,sBAAA;ADuIJ;AAvCQ;EACI,kBAAA;EACA,gBAAA;EACA,iBAAA;AAyCZ;AAxCQ;EACI,oBAAA;EACA,eAAA;EACA,gBAAA;AA0CZ;AAzCQ;EACI,kBAAA;EACA,gBAAA;AA2CZ;AAzCI;EACI,kBAAA;AA2CR;AA1CI;EC/GA,aAAA;EACA,sBAAA;EDgHI,mBAAA;EACA,mBAAA;EACA,uBAAA;EACA,sBAAA;EACA,WAAA;AA6CR;AA5CQ;EACI,kBAAA;EACA,qBAAA;EACA,eAAA;EACA,oCAAA;AA8CZ;AA7CQ;EACI,mBAAA;EACA,kBAAA;EACA,eAAA;EACA,mBCzIG;ED0IH,wEAvIC;AAsLb;AA9CI;EACI,eAAA;AAgDR;;AA9CA;EACI,kBAAA;EACA,gBAAA;EACA,sBAAA;EACA,SAAA;EACA,cAAA;AAiDJ;;AA/CA;EACI;IACI,eAAA;IACA,+BCjJI;IDkJJ,gCCpJI;EDsMV;EAhDE;IACI,SAAA;EAkDN;AACF;AAjDA;EACI;IACI,eAAA;EAmDN;AACF","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n$primary-color: #2fa8cc\r\n$secondary-color: #f4f4f4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\nbody\r\n    @include columnFlex\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    // align-items: center\r\n    justify-content: center\r\n    padding: 5px\r\n    font-size: 12px\r\nimg\r\n    max-width: 5rem\r\n    max-height: 7rem\r\n    cursor: pointer\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\nh1, h2, h3,li, input,label\r\n    color: $fontColor\r\n\r\nh1\r\n    font-size: 1.2rem\r\nh2\r\n    font-size: .7rem\r\n\r\nh3\r\n    font-size: .5rem\r\n\r\nli, input, a, .copyRights\r\n    border-radius: .15rem\r\n    font-size: .7rem\r\nheader\r\n    padding: .2rem\r\n    @include columnFlex\r\n    align-items: stretch\r\n    justify-content: center\r\nnav\r\n    @include rowFlex\r\n    align-items: center\r\n    justify-content: space-between\r\n    gap: 5rem\r\n    white-space: nowrap\r\n    img\r\n        flex: .8\r\n        align-self: flex-start\r\n    h2\r\n        flex: .4\r\n#pokemonList\r\n    @include threeThreeGrid\r\n    align-items: center\r\n    padding: .2rem\r\n    // justify-content: space-evenly\r\n    gap: .7rem\r\n    img\r\n        max-width: 6rem\r\n        max-height: 4rem\r\n\r\n.pokemonItem, .popup\r\n    @include columnFlex\r\n    align-items: center\r\n    // justify-content: center\r\n    gap: .4rem\r\n    background: $secondarycolor\r\n    // padding: .2rem\r\n    border-radius: 3px\r\n    box-shadow: $box-shadow\r\n\r\n.likeDiv, .commentDiv\r\n    @include rowFlex\r\n    align-self: stretch\r\n    align-items: stretch\r\n    justify-content: space-between\r\n    padding: .2rem\r\n    div, img\r\n        align-self: flex-end\r\n    img\r\n        max-width: 1rem !important\r\n        max-height: 1rem !important\r\n\r\nbutton\r\n    @include button\r\n    align-self: flex-start\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n.popup\r\n    align-items: stretch\r\n    .pokemonImg\r\n        padding: .3rem\r\n        @include columnFlex\r\n        // align-items: stretch !important\r\n        // justify-content: center !important\r\n        img\r\n            align-self: center\r\n            max-width: 15rem\r\n            max-height: 10rem\r\n        .pageX\r\n            align-self: flex-end\r\n            max-width: 1rem\r\n            max-height: 1rem\r\n        h3\r\n            align-self: center\r\n            margin-top: 1rem\r\n\r\n    .recentComments\r\n        overflow-y: scroll\r\n    .AddComment, .comments\r\n        @include columnFlex\r\n        align-self: stretch\r\n        align-items: center\r\n        justify-content: center\r\n        padding: .3rem .5rem\r\n        gap: .3rem\r\n        button\r\n            align-self: center\r\n            margin-bottom: .5rem\r\n            padding: .4rem\r\n            background-color: $primarycolor !important\r\n        textarea, input\r\n            align-self: stretch\r\n            border-radius: 3px\r\n            padding: .3rem\r\n            background: $primarycolor\r\n            box-shadow: $box-shadow\r\n    label, h3\r\n        font-size: 1rem\r\n\r\nfooter\r\n    position: relative\r\n    margin-top: 2rem\r\n    padding-bottom: 0.3rem\r\n    top: auto\r\n    bottom: 0.1rem\r\n    // width: 50%\r\n@media ( min-width: 768px  )\r\n    main\r\n        font-size: 18px\r\n        padding-left: $Qlpadding\r\n        padding-right: $Qrpadding\r\n\r\n    section, .popup\r\n        gap: 2rem\r\n\r\n@media ( min-width: 999px  )\r\n    body\r\n        font-size: 23px\r\n","$InterFont: \"Inter\", sans-serif\r\n$primarycolor: #c2e2ea\r\n$secondarycolor: #72bbce\r\n$fontColor: #002d67\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n$qrpadding: calc( 12% - 80px )\r\n$Qrpadding: calc( 25% - 120px )\r\n$qlpadding: calc( 12% - 80px )\r\n$Qlpadding: calc( 25% - 120px )\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 4px\r\n    font-size: .6rem\r\n    font-weight: 600\r\n    color: $fontColor !important\r\n    background-color: $primary-color !important\r\n    border: 1px\r\n    box-shadow: $box-shadow\r\n    padding: 4px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n@mixin oneFiveGrid\r\n    display: grid\r\n    grid-template-columns: 1fr\r\n    grid-auto-rows: 1fr 1fr 1fr 1fr 1fr\r\n\r\n@mixin fiveOneGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin threeThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .9rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n\r\n@mixin transparentText\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-repeat: no-repeat\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n\r\n@mixin transparentBg\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-blend-mode: color-burn\r\n    background-repeat: no-repeat\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1157,4 +1103,4 @@ window.addEventListener('load', function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle330e0c065324d760cde5.js.map
+//# sourceMappingURL=bundleaa99c702355474bd40eb.js.map

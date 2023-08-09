@@ -46,7 +46,38 @@ export const renderList = async (listData) => {
       </div>
     </li>
            `;
-   
+           const pokemonPopup = document.querySelector('.popup');
+           const commentBtn = document.querySelectorAll('.commentPopup');
+           commentBtn.forEach((btn) => {
+             btn.addEventListener('click', async () => {
+               const clickedUrl = btn.getAttribute('data-url');
+               const pokeResponse = await fetch(clickedUrl);
+               const pokeObject = await pokeResponse.json();
+               pokemonList.innerHTML = '';
+               pokemonPopup.innerHTML = `
+                 <div class="pokemonImg">
+                 <img class="pageX" src="./assets/x.svg" alt="close" />
+                 <img src="${pokeObject.sprites.other.dream_world.front_default}" alt="${object.name}" />
+                 <h3>${object.name}</h3>
+                 </div>
+               <div class="comments">
+                 <h3>Recent Comments</h3>
+                 <ul class="recentComments"></ul>
+               </div>
+               <form autocomplete="off" class="AddComment">
+                 <label>Add a Comment</label>
+                 <input type="text" id="name" placeholder="Your Name" required maxLength="20" />
+                 <textarea rows="7"></textarea>
+                 <button id="submit" class="btn" type="submit">Comment</button>
+               </form>
+                 `;
+               const closeBtn = document.querySelector('.pageX');
+               closeBtn.addEventListener('click', () => {
+                 pokemonPopup.innerHTML = '';
+                 location.reload();
+               });
+             });
+           });
     pokemonList.appendChild(li);
   }
 };
