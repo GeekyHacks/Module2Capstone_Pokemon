@@ -1,16 +1,25 @@
-const pokemonPopup = document.querySelector('.popup');
-const commentBtn = document.querySelectorAll('.commentPopup');
+import { GetDataObject, pokemonAPI } from './APIs.js';
 
-commentBtn.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    
-    // const cardIndex = btnIndex;
-    pokemonPopup.innerHTML = `
+const pokemonPopup = document.querySelector('.popup');
+
+const getItemById = async (id) => {
+  const response = await fetch(`${pokemonAPI}`);
+  const data = await response.json();
+  console.log(data.results);
+  return data.results;
+};
+
+export const popupPage = async () => {
+  //   let response = await fetch(objectUrl);
+  //   const pokeObject = await response.json();
+  //   console.log(pokeObject.id);
+  getItemById();
+  pokemonPopup.innerHTML = `
     <div class="pokemonImg">
     <img class="pageX" src="./assets/x.svg" alt="close" />
-    <img src="./assets/1.svg" alt="" />
-    <h3></h3>
-  </div>
+    <img src="${pokeObject.sprites.other.dream_world.front_default}" alt="${object.name}" />
+    <h3>${object.name}</h3>
+    </div>
 
   <div class="comments">
     <h3>Recent Comments</h3>
@@ -24,10 +33,4 @@ commentBtn.forEach((btn) => {
     <button id="submit" class="btn" type="submit">Comment</button>
   </form>
     `;
-
-    const closeBtn = document.querySelector('.pageX');
-    closeBtn.addEventListener('click', () => {
-      pokemonPopup.innerHTML = '';
-    });
-  });
-});
+};

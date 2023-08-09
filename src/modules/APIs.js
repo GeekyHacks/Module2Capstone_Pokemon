@@ -16,11 +16,11 @@
 // const ID = 'woTq8RsLkSavLaCMQAAP';
 
 // APIs list
-const pokemonsAPI = 'https://pokeapi.co/api/v2/pokemon/';
+const pokemonAPI = 'https://pokeapi.co/api/v2/pokemon/';
 const commentsAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/woTq8RsLkSavLaCMQAAP/comments/';
 const likesAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/woTq8RsLkSavLaCMQAAP/likes/';
 
-const pokemonsList = document.getElementById('pokemonList');
+const pokemonList = document.getElementById('pokemonList');
 
 // this will get an api array
 
@@ -38,9 +38,9 @@ const GetDataObject = async (APIUrl) => {
 };
 
 // to get the pokemon Data
-GetDataList(pokemonsAPI);
+GetDataList(pokemonAPI);
 
-export { pokemonsAPI, commentsAPI, likesAPI, GetDataList, GetDataObject };
+export { pokemonAPI, commentsAPI, likesAPI, GetDataList, GetDataObject };
 
 // const image = 'https://pokeapi.co/api/v2/pokemon/sprites/';
 
