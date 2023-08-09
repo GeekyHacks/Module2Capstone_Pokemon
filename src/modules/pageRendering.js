@@ -19,6 +19,8 @@ export const renderList = async (listData) => {
   // to loop through 18 elements of the array
   for (let i = 0; i < 18; i++) {
     const li = document.createElement('li');
+    const pokemonPopup = document.querySelector('.popup');
+    const commentBtn = document.querySelectorAll('.commentPopup');
 
     const object = objects[i];
     // to fetch the pokemon Image
@@ -46,15 +48,14 @@ export const renderList = async (listData) => {
       </div>
     </li>
            `;
-           const pokemonPopup = document.querySelector('.popup');
-           const commentBtn = document.querySelectorAll('.commentPopup');
-           commentBtn.forEach((btn) => {
-             btn.addEventListener('click', async () => {
-               const clickedUrl = btn.getAttribute('data-url');
-               const pokeResponse = await fetch(clickedUrl);
-               const pokeObject = await pokeResponse.json();
-               pokemonList.innerHTML = '';
-               pokemonPopup.innerHTML = `
+
+    commentBtn.forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const clickedUrl = btn.getAttribute('data-url');
+        const pokeResponse = await fetch(clickedUrl);
+        const pokeObject = await pokeResponse.json();
+        pokemonList.innerHTML = '';
+        pokemonPopup.innerHTML = `
                  <div class="pokemonImg">
                  <img class="pageX" src="./assets/x.svg" alt="close" />
                  <img src="${pokeObject.sprites.other.dream_world.front_default}" alt="${object.name}" />
@@ -71,13 +72,13 @@ export const renderList = async (listData) => {
                  <button id="submit" class="btn" type="submit">Comment</button>
                </form>
                  `;
-               const closeBtn = document.querySelector('.pageX');
-               closeBtn.addEventListener('click', () => {
-                 pokemonPopup.innerHTML = '';
-                 location.reload();
-               });
-             });
-           });
+        const closeBtn = document.querySelector('.pageX');
+        closeBtn.addEventListener('click', () => {
+          pokemonPopup.innerHTML = '';
+          location.reload();
+        });
+      });
+    });
     pokemonList.appendChild(li);
   }
 };
