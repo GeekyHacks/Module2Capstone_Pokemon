@@ -6,60 +6,97 @@ $box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)
 
 *
     box-sizing: border-box
+    margin: 0
+    padding: 0
 
 body
+    @include columnFlex
     background-color: $primary-color
     font-family: 'Roboto', sans-serif
-    margin: 0
-    padding: 10px
+    // align-items: center
+    justify-content: center
+    padding: 5px
     font-size: 12px
 img
-    max-width: 7rem
-    max-height: 4rem
+    max-width: 5rem
+    max-height: 7rem
+
 h1, h2, h3,li, input
     color: $fontColor
 
 h1
-    font-size: 1.4rem
+    font-size: 1.2rem
 h2
-    font-size: 1rem
+    font-size: .7rem
 
 h3
-    font-size: .8rem
+    font-size: .5rem
 
 li, input, a, .copyRights
     border-radius: .15rem
     font-size: .7rem
+header
+    padding: .2rem
+    @include columnFlex
+    align-items: stretch
+    justify-content: center
 nav
     @include rowFlex
     align-items: center
-    justify-content: space-evenly
-    gap: .5rem
+    justify-content: space-between
+    gap: 5rem
     white-space: nowrap
     img
-        flex: 1
+        flex: .8
+        align-self: flex-start
     h2
-        flex: .5
+        flex: .4
+#pokemonList
+    @include threeThreeGrid
+    align-items: center
+    padding: .2rem
+    // justify-content: space-evenly
+    gap: .7rem
+    img
+        max-width: 6rem
+        max-height: 4rem
 
-footer
-    margin-top: 1rem
-    position: relative
-    margin-top: 2rem
-    padding-bottom: 0.1rem
-    top: auto
-    bottom: 0.1rem
-.btn
-    background-color: $primary-color
-    color: $secondary-color
-    border: 0
-    border-radius: 10px
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)
-    padding: 14px 40px
-    font-size: 16px
-    cursor: pointer
+.pokemonItem
+    @include columnFlex
+    align-items: center
+    // justify-content: center
+    gap: .4rem
+    background: $secondarycolor
+    // padding: .2rem
+    border-radius: 3px
+    box-shadow: $box-shadow
+
+.likeDiv, .commentDiv
+    @include rowFlex
+    align-self: stretch
+    align-items: stretch
+    justify-content: space-between
+    padding: .2rem
+    div, img
+        align-self: flex-end
+    img
+        max-width: 1rem !important
+        max-height: 1rem !important
+
+button
+    @include button
+    align-self: flex-start
 
     &:active
         transform: scale(0.98)
 
     &:focus
         outline: 0
+
+footer
+    position: relative
+    margin-top: 2rem
+    padding-bottom: 0.3rem
+    top: auto
+    bottom: 0.1rem
+    // width: 50%
