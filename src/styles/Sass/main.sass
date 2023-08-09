@@ -20,8 +20,14 @@ body
 img
     max-width: 5rem
     max-height: 7rem
+    cursor: pointer
+    &:active
+        transform: scale(0.98)
 
-h1, h2, h3,li, input
+    &:focus
+        outline: 0
+
+h1, h2, h3,li, input,label
     color: $fontColor
 
 h1
@@ -61,7 +67,7 @@ nav
         max-width: 6rem
         max-height: 4rem
 
-.pokemonItem
+.pokemonItem, .popup
     @include columnFlex
     align-items: center
     // justify-content: center
@@ -93,6 +99,48 @@ button
     &:focus
         outline: 0
 
+.popup
+    align-items: stretch
+    .pokemonImg
+        padding: .3rem
+        @include columnFlex
+        // align-items: stretch !important
+        // justify-content: center !important
+        img
+            align-self: center
+            max-width: 15rem
+            max-height: 10rem
+        .pageX
+            align-self: flex-end
+            max-width: 1rem
+            max-height: 1rem
+        h3
+            align-self: center
+            margin-top: 1rem
+
+    .recentComments
+        overflow-y: scroll
+    .AddComment, .comments
+        @include columnFlex
+        align-self: stretch
+        align-items: center
+        justify-content: center
+        padding: .3rem .5rem
+        gap: .3rem
+        button
+            align-self: center
+            margin-bottom: .5rem
+            padding: .4rem
+            background-color: $primarycolor !important
+        textarea, input
+            align-self: stretch
+            border-radius: 3px
+            padding: .3rem
+            background: $primarycolor
+            box-shadow: $box-shadow
+    label, h3
+        font-size: 1rem
+
 footer
     position: relative
     margin-top: 2rem
@@ -100,3 +148,15 @@ footer
     top: auto
     bottom: 0.1rem
     // width: 50%
+@media ( min-width: 768px  )
+    main
+        font-size: 18px
+        padding-left: $Qlpadding
+        padding-right: $Qrpadding
+
+    section, .popup
+        gap: 2rem
+
+@media ( min-width: 999px  )
+    body
+        font-size: 23px

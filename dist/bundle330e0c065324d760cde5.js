@@ -11,9 +11,10 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   GetDataList: () => (/* binding */ GetDataList),
+/* harmony export */   GetDataObject: () => (/* binding */ GetDataObject),
 /* harmony export */   commentsAPI: () => (/* binding */ commentsAPI),
 /* harmony export */   likesAPI: () => (/* binding */ likesAPI),
-/* harmony export */   pokemonsAPI: () => (/* binding */ pokemonsAPI)
+/* harmony export */   pokemonAPI: () => (/* binding */ pokemonAPI)
 /* harmony export */ });
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
@@ -37,10 +38,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 // const ID = 'woTq8RsLkSavLaCMQAAP';
 
 // APIs list
-var pokemonsAPI = 'https://pokeapi.co/api/v2/pokemon/';
+var pokemonAPI = 'https://pokeapi.co/api/v2/pokemon/';
 var commentsAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/woTq8RsLkSavLaCMQAAP/comments/';
 var likesAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/woTq8RsLkSavLaCMQAAP/likes/';
-var pokemonsList = document.getElementById('pokemonList');
+var pokemonList = document.getElementById('pokemonList');
 
 // this will get an api array
 
@@ -70,10 +71,44 @@ var GetDataList = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
+var GetDataObject = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(APIUrl) {
+    var response, dataList;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
+        case 0:
+          _context2.next = 2;
+          return fetch(APIUrl);
+        case 2:
+          response = _context2.sent;
+          _context2.next = 5;
+          return response.json();
+        case 5:
+          dataList = _context2.sent;
+          return _context2.abrupt("return", dataList);
+        case 7:
+        case "end":
+          return _context2.stop();
+      }
+    }, _callee2);
+  }));
+  return function GetDataObject(_x2) {
+    return _ref2.apply(this, arguments);
+  };
+}();
 
 // to get the pokemon Data
-GetDataList(pokemonsAPI);
+GetDataList(pokemonAPI);
 
+
+// const image = 'https://pokeapi.co/api/v2/pokemon/sprites/';
+
+// const GetDataObject = async (APIUrl) => {
+//     const response = await fetch(APIUrl);
+//     const dataList = await response.json();
+//     return dataList;
+//   };
+//  GetDataObject(image)
 
 /***/ }),
 
@@ -99,44 +134,179 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+
+// export const renderList = async (listData) => {
+//   const pokemonList = document.getElementById('pokemonList');
+//   pokemonList.innerHTML = '';
+//   // to get the pokemon main object that has name & url
+//   let response = await fetch(pokemonAPI);
+//   listData = await response.json();
+//   listData = listData.results;
+
+// //   console.log(listData);
+
+//   // to sort the array elements
+//   const sortedDataList = [...listData];
+//   sortedDataList.sort((a, b) => b.score - a.score);
+//   console.log(sortedDataList);
+//   const objects = sortedDataList;
+//   console.log(objects[0]);
+//   // to loop through 18 elements of the array
+//   for (let i = 0; i < 18; i++) {
+//     const li = document.createElement('li');
+
+//     const object = objects[i];
+
+//     const objectUrl = object.url;
+//     console.log(objectUrl);
+//     // to fetch the pokemon Image
+//     let response = await fetch(objectUrl);
+//     const pokeObject = await response.json();
+//     console.log(pokeObject.id);
+
+//     //   getItemById();
+
+//     // to get the image of pokemon
+//     console.log(pokeObject.sprites.other.dream_world.front_default);
+
+//     li.innerHTML = `
+//     <li class="pokemonItem">
+//     <img src="${pokeObject.sprites.other.dream_world.front_default}" alt="${object.name}" />
+//     <div class="likeDiv">
+//       <h3>${object.name}</h3>
+//       <img src="./assets/like.svg" alt="like" />
+//     </div>
+//     <div class="commentDiv">
+//       <button class="commentPopup">Comment</button>
+//       <div>
+//         <h4>
+//           likes<span>1</span>
+//         </h4>
+//       </div>
+//     </div>
+//   </li>
+//          `;
+
+//     pokemonList.appendChild(li);
+//   }
+//   const commentBtn = document.querySelectorAll('.commentPopup');
+//   commentBtn.forEach((btn) => {
+//     btn.addEventListener('click', async () => {
+//       pokemonList.innerHTML = '';
+//       popupPage();
+//       const closeBtn = document.querySelector('.pageX');
+//       closeBtn.addEventListener('click', () => {
+
+//         location.reload();
+//       });
+//     });
+//   });
+
+// };
+
 var renderList = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(listData) {
-    var pokemonList, response, sortedDataList, objects, i, li, object;
-    return _regeneratorRuntime().wrap(function _callee$(_context) {
-      while (1) switch (_context.prev = _context.next) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(listData) {
+    var pokemonList, response, sortedDataList, objects, _loop, i;
+    return _regeneratorRuntime().wrap(function _callee2$(_context3) {
+      while (1) switch (_context3.prev = _context3.next) {
         case 0:
           pokemonList = document.getElementById('pokemonList');
           pokemonList.innerHTML = '';
-          _context.next = 4;
-          return fetch(_APIs_js__WEBPACK_IMPORTED_MODULE_0__.pokemonsAPI);
+          // to get the pokemon main object that has name & url
+          _context3.next = 4;
+          return fetch(_APIs_js__WEBPACK_IMPORTED_MODULE_0__.pokemonAPI);
         case 4:
-          response = _context.sent;
-          _context.next = 7;
+          response = _context3.sent;
+          _context3.next = 7;
           return response.json();
         case 7:
-          listData = _context.sent;
+          listData = _context3.sent;
           listData = listData.results;
           console.log(listData);
+
+          // to sort the array elements
           sortedDataList = _toConsumableArray(listData);
           sortedDataList.sort(function (a, b) {
             return b.score - a.score;
           });
           console.log(sortedDataList);
           objects = sortedDataList;
-          console.log(objects);
-          for (i = 0; i < 9; i++) {
-            li = document.createElement('li');
-            object = objects[i]; // console.log(object.url);
-            // console.log(object.name);
-            // console.log(object.url);
-            li.innerHTML = "\n    <li class=\"pokemonItem\">\n    <img src=\"".concat(object.url, "\" alt=\"").concat(object.name, "\" />\n    <div class=\"likeDiv\">\n      <h3>").concat(object.name, "</h3>\n      <img src=\"./assets/like.svg\" alt=\"like\" />\n    </div>\n    <div class=\"commentDiv\">\n      <button>Comment</button>\n      <div>\n        <h4>\n          likes<span>1</span>\n        </h4>\n      </div>\n    </div>\n  </li>\n         ");
-            pokemonList.appendChild(li);
+          console.log(objects[0]);
+          // to loop through 18 elements of the array
+          _loop = /*#__PURE__*/_regeneratorRuntime().mark(function _loop() {
+            var li, pokemonPopup, commentBtn, object, response, pokeObject;
+            return _regeneratorRuntime().wrap(function _loop$(_context2) {
+              while (1) switch (_context2.prev = _context2.next) {
+                case 0:
+                  li = document.createElement('li');
+                  pokemonPopup = document.querySelector('.popup');
+                  commentBtn = document.querySelectorAll('.commentPopup');
+                  object = objects[i]; // to fetch the pokemon Image
+                  _context2.next = 6;
+                  return fetch(object.url);
+                case 6:
+                  response = _context2.sent;
+                  _context2.next = 9;
+                  return response.json();
+                case 9:
+                  pokeObject = _context2.sent;
+                  console.log(pokeObject);
+
+                  // to get the image of pokemon
+                  console.log(pokeObject.sprites.other.dream_world.front_default);
+                  li.innerHTML = "\n      <li class=\"pokemonItem\">\n      <img src=\"".concat(pokeObject.sprites.other.dream_world.front_default, "\" alt=\"").concat(object.name, "\" />\n      <div class=\"likeDiv\">\n        <h3>").concat(object.name, "</h3>\n        <img src=\"./assets/like.svg\" alt=\"like\" />\n      </div>\n      <div class=\"commentDiv\">\n        <button class=\"commentPopup\" data-url=\"").concat(object.url, "\">Comment</button>\n        <div>\n          <h4>\n            likes<span>1</span>\n          </h4>\n        </div>\n      </div>\n    </li>\n           ");
+                  commentBtn.forEach(function (btn) {
+                    btn.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+                      var clickedUrl, pokeResponse, pokeObject, closeBtn;
+                      return _regeneratorRuntime().wrap(function _callee$(_context) {
+                        while (1) switch (_context.prev = _context.next) {
+                          case 0:
+                            clickedUrl = btn.getAttribute('data-url');
+                            _context.next = 3;
+                            return fetch(clickedUrl);
+                          case 3:
+                            pokeResponse = _context.sent;
+                            _context.next = 6;
+                            return pokeResponse.json();
+                          case 6:
+                            pokeObject = _context.sent;
+                            pokemonList.innerHTML = '';
+                            pokemonPopup.innerHTML = "\n          <div class=\"pokemonImg\">\n          <img class=\"pageX\" src=\"./assets/x.svg\" alt=\"close\" />\n          <img src=\"".concat(pokeObject.sprites.other.dream_world.front_default, "\" alt=\"").concat(object.name, "\" />\n          <h3>").concat(object.name, "</h3>\n          </div>\n\n        <div class=\"comments\">\n          <h3>Recent Comments</h3>\n          <ul class=\"recentComments\"></ul>\n        </div>\n        <form autocomplete=\"off\" class=\"AddComment\">\n          <label>Add a Comment</label>\n          <input type=\"text\" id=\"name\" placeholder=\"Your Name\" required maxLength=\"20\" />\n          <textarea rows=\"7\"></textarea>\n\n          <button id=\"submit\" class=\"btn\" type=\"submit\">Comment</button>\n        </form>\n          ");
+                            closeBtn = document.querySelector('.pageX');
+                            closeBtn.addEventListener('click', function () {
+                              pokemonPopup.innerHTML = '';
+                              location.reload();
+                            });
+                          case 11:
+                          case "end":
+                            return _context.stop();
+                        }
+                      }, _callee);
+                    })));
+                  });
+                  pokemonList.appendChild(li);
+                case 15:
+                case "end":
+                  return _context2.stop();
+              }
+            }, _loop);
+          });
+          i = 0;
+        case 17:
+          if (!(i < objects.length)) {
+            _context3.next = 22;
+            break;
           }
-        case 16:
+          return _context3.delegateYield(_loop(), "t0", 19);
+        case 19:
+          i++;
+          _context3.next = 17;
+          break;
+        case 22:
         case "end":
-          return _context.stop();
+          return _context3.stop();
       }
-    }, _callee);
+    }, _callee2);
   }));
   return function renderList(_x) {
     return _ref.apply(this, arguments);
@@ -184,9 +354,16 @@ body {
 img {
   max-width: 5rem;
   max-height: 7rem;
+  cursor: pointer;
+}
+img:active {
+  transform: scale(0.98);
+}
+img:focus {
+  outline: 0;
 }
 
-h1, h2, h3, li, input {
+h1, h2, h3, li, input, label {
   color: #002d67;
 }
 
@@ -244,7 +421,7 @@ nav h2 {
   max-height: 4rem;
 }
 
-.pokemonItem {
+.pokemonItem, .popup {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -275,7 +452,7 @@ button {
   border-radius: 4px;
   font-size: 0.6rem;
   font-weight: 600;
-  color: #002d67;
+  color: #002d67 !important;
   background-color: #2fa8cc !important;
   border: 1px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
@@ -297,13 +474,64 @@ button:focus {
   outline: 0;
 }
 
+.popup {
+  align-items: stretch;
+}
+.popup .pokemonImg {
+  padding: 0.3rem;
+  display: flex;
+  flex-direction: column;
+}
+.popup .pokemonImg img {
+  align-self: center;
+  max-width: 15rem;
+  max-height: 10rem;
+}
+.popup .pokemonImg .pageX {
+  align-self: flex-end;
+  max-width: 1rem;
+  max-height: 1rem;
+}
+.popup .pokemonImg h3 {
+  align-self: center;
+  margin-top: 1rem;
+}
+.popup .recentComments {
+  overflow-y: scroll;
+}
+.popup .AddComment, .popup .comments {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem 0.5rem;
+  gap: 0.3rem;
+}
+.popup .AddComment button, .popup .comments button {
+  align-self: center;
+  margin-bottom: 0.5rem;
+  padding: 0.4rem;
+  background-color: #c2e2ea !important;
+}
+.popup .AddComment textarea, .popup .AddComment input, .popup .comments textarea, .popup .comments input {
+  align-self: stretch;
+  border-radius: 3px;
+  padding: 0.3rem;
+  background: #c2e2ea;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+}
+.popup label, .popup h3 {
+  font-size: 1rem;
+}
+
 footer {
   position: relative;
   margin-top: 2rem;
   padding-bottom: 0.3rem;
   top: auto;
   bottom: 0.1rem;
-}`, "",{"version":3,"sources":["webpack://./src/styles/Sass/main.sass","webpack://./src/styles/Sass/global.sass"],"names":[],"mappings":"AAMA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;AAJJ;;AAMA;ECAI,aAAA;EACA,sBAAA;EDCA,yBAXY;EAYZ,iCAAA;EAEA,uBAAA;EACA,YAAA;EACA,eAAA;AAHJ;;AAIA;EACI,eAAA;EACA,gBAAA;AADJ;;AAGA;EACI,cCrBQ;ADqBZ;;AAEA;EACI,iBAAA;AACJ;;AAAA;EACI,iBAAA;AAGJ;;AADA;EACI,iBAAA;AAIJ;;AAFA;EACI,sBAAA;EACA,iBAAA;AAKJ;;AAJA;EACI,eAAA;EC3BA,aAAA;EACA,sBAAA;ED4BA,oBAAA;EACA,uBAAA;AAQJ;;AAPA;EC3BI,aAAA;EACA,mBAAA;ED4BA,mBAAA;EACA,8BAAA;EACA,SAAA;EACA,mBAAA;AAWJ;AAVI;EACI,SAAA;EACA,sBAAA;AAYR;AAXI;EACI,SAAA;AAaR;;AAZA;ECLI,aAAA;EACA,kCAAA;EACA,mBAAA;EDKA,mBAAA;EACA,eAAA;EAEA,WAAA;AAgBJ;AAfI;EACI,eAAA;EACA,gBAAA;AAiBR;;AAfA;ECpDI,aAAA;EACA,sBAAA;EDqDA,mBAAA;EAEA,WAAA;EACA,mBClEa;EDoEb,kBAAA;EACA,wEAnES;AAoFb;;AAfA;EC1DI,aAAA;EACA,mBAAA;ED2DA,mBAAA;EACA,oBAAA;EACA,8BAAA;EACA,eAAA;AAmBJ;AAlBI;EACI,oBAAA;AAoBR;AAnBI;EACI,0BAAA;EACA,2BAAA;AAqBR;;AAnBA;EClEI,oBAAA;EACA,kBAAA;EACA,iBAAA;EACA,gBAAA;EACA,cApBQ;EAqBR,oCAAA;EACA,WAAA;EACA,wEDtBS;ECuBT,YAAA;EACA,eAAA;EACA,kBAAA;ED0DA,sBAAA;AAgCJ;ACxFI;EACI,sBAAA;AD0FR;ACxFI;EACI,UAAA;AD0FR;AApCI;EACI,sBAAA;AAsCR;AApCI;EACI,UAAA;AAsCR;;AApCA;EACI,kBAAA;EACA,gBAAA;EACA,sBAAA;EACA,SAAA;EACA,cAAA;AAuCJ","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n$primary-color: #2fa8cc\r\n$secondary-color: #f4f4f4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\nbody\r\n    @include columnFlex\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    // align-items: center\r\n    justify-content: center\r\n    padding: 5px\r\n    font-size: 12px\r\nimg\r\n    max-width: 5rem\r\n    max-height: 7rem\r\n\r\nh1, h2, h3,li, input\r\n    color: $fontColor\r\n\r\nh1\r\n    font-size: 1.2rem\r\nh2\r\n    font-size: .7rem\r\n\r\nh3\r\n    font-size: .5rem\r\n\r\nli, input, a, .copyRights\r\n    border-radius: .15rem\r\n    font-size: .7rem\r\nheader\r\n    padding: .2rem\r\n    @include columnFlex\r\n    align-items: stretch\r\n    justify-content: center\r\nnav\r\n    @include rowFlex\r\n    align-items: center\r\n    justify-content: space-between\r\n    gap: 5rem\r\n    white-space: nowrap\r\n    img\r\n        flex: .8\r\n        align-self: flex-start\r\n    h2\r\n        flex: .4\r\n#pokemonList\r\n    @include threeThreeGrid\r\n    align-items: center\r\n    padding: .2rem\r\n    // justify-content: space-evenly\r\n    gap: .7rem\r\n    img\r\n        max-width: 6rem\r\n        max-height: 4rem\r\n\r\n.pokemonItem\r\n    @include columnFlex\r\n    align-items: center\r\n    // justify-content: center\r\n    gap: .4rem\r\n    background: $secondarycolor\r\n    // padding: .2rem\r\n    border-radius: 3px\r\n    box-shadow: $box-shadow\r\n\r\n.likeDiv, .commentDiv\r\n    @include rowFlex\r\n    align-self: stretch\r\n    align-items: stretch\r\n    justify-content: space-between\r\n    padding: .2rem\r\n    div, img\r\n        align-self: flex-end\r\n    img\r\n        max-width: 1rem !important\r\n        max-height: 1rem !important\r\n\r\nbutton\r\n    @include button\r\n    align-self: flex-start\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\nfooter\r\n    position: relative\r\n    margin-top: 2rem\r\n    padding-bottom: 0.3rem\r\n    top: auto\r\n    bottom: 0.1rem\r\n    // width: 50%\r\n","$InterFont: \"Inter\", sans-serif\r\n$primarycolor: #c2e2ea\r\n$secondarycolor: #72bbce\r\n$fontColor: #002d67\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n$qrpadding: calc( 12% - 80px )\r\n$Qrpadding: calc( 25% - 120px )\r\n$qlpadding: calc( 12% - 80px )\r\n$Qlpadding: calc( 25% - 120px )\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 4px\r\n    font-size: .6rem\r\n    font-weight: 600\r\n    color: $fontColor\r\n    background-color: $primary-color !important\r\n    border: 1px\r\n    box-shadow: $box-shadow\r\n    padding: 4px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n@mixin oneFiveGrid\r\n    display: grid\r\n    grid-template-columns: 1fr\r\n    grid-auto-rows: 1fr 1fr 1fr 1fr 1fr\r\n\r\n@mixin fiveOneGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin threeThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .9rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n\r\n@mixin transparentText\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-repeat: no-repeat\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n\r\n@mixin transparentBg\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-blend-mode: color-burn\r\n    background-repeat: no-repeat\r\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/styles/Sass/main.sass","webpack://./src/styles/Sass/global.sass"],"names":[],"mappings":"AAMA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;AAJJ;;AAMA;ECAI,aAAA;EACA,sBAAA;EDCA,yBAXY;EAYZ,iCAAA;EAEA,uBAAA;EACA,YAAA;EACA,eAAA;AAHJ;;AAIA;EACI,eAAA;EACA,gBAAA;EACA,eAAA;AADJ;AAEI;EACI,sBAAA;AAAR;AAEI;EACI,UAAA;AAAR;;AAEA;EACI,cC3BQ;AD4BZ;;AACA;EACI,iBAAA;AAEJ;;AADA;EACI,iBAAA;AAIJ;;AAFA;EACI,iBAAA;AAKJ;;AAHA;EACI,sBAAA;EACA,iBAAA;AAMJ;;AALA;EACI,eAAA;ECjCA,aAAA;EACA,sBAAA;EDkCA,oBAAA;EACA,uBAAA;AASJ;;AARA;ECjCI,aAAA;EACA,mBAAA;EDkCA,mBAAA;EACA,8BAAA;EACA,SAAA;EACA,mBAAA;AAYJ;AAXI;EACI,SAAA;EACA,sBAAA;AAaR;AAZI;EACI,SAAA;AAcR;;AAbA;ECXI,aAAA;EACA,kCAAA;EACA,mBAAA;EDWA,mBAAA;EACA,eAAA;EAEA,WAAA;AAiBJ;AAhBI;EACI,eAAA;EACA,gBAAA;AAkBR;;AAhBA;EC1DI,aAAA;EACA,sBAAA;ED2DA,mBAAA;EAEA,WAAA;EACA,mBCxEa;ED0Eb,kBAAA;EACA,wEAzES;AA2Fb;;AAhBA;EChEI,aAAA;EACA,mBAAA;EDiEA,mBAAA;EACA,oBAAA;EACA,8BAAA;EACA,eAAA;AAoBJ;AAnBI;EACI,oBAAA;AAqBR;AApBI;EACI,0BAAA;EACA,2BAAA;AAsBR;;AApBA;ECxEI,oBAAA;EACA,kBAAA;EACA,iBAAA;EACA,gBAAA;EACA,yBAAA;EACA,oCAAA;EACA,WAAA;EACA,wEDtBS;ECuBT,YAAA;EACA,eAAA;EACA,kBAAA;EDgEA,sBAAA;AAiCJ;AC/FI;EACI,sBAAA;ADiGR;AC/FI;EACI,UAAA;ADiGR;AArCI;EACI,sBAAA;AAuCR;AArCI;EACI,UAAA;AAuCR;;AArCA;EACI,oBAAA;AAwCJ;AAvCI;EACI,eAAA;EC7FJ,aAAA;EACA,sBAAA;ADuIJ;AAvCQ;EACI,kBAAA;EACA,gBAAA;EACA,iBAAA;AAyCZ;AAxCQ;EACI,oBAAA;EACA,eAAA;EACA,gBAAA;AA0CZ;AAzCQ;EACI,kBAAA;EACA,gBAAA;AA2CZ;AAzCI;EACI,kBAAA;AA2CR;AA1CI;EC/GA,aAAA;EACA,sBAAA;EDgHI,mBAAA;EACA,mBAAA;EACA,uBAAA;EACA,sBAAA;EACA,WAAA;AA6CR;AA5CQ;EACI,kBAAA;EACA,qBAAA;EACA,eAAA;EACA,oCAAA;AA8CZ;AA7CQ;EACI,mBAAA;EACA,kBAAA;EACA,eAAA;EACA,mBCzIG;ED0IH,wEAvIC;AAsLb;AA9CI;EACI,eAAA;AAgDR;;AA9CA;EACI,kBAAA;EACA,gBAAA;EACA,sBAAA;EACA,SAAA;EACA,cAAA;AAiDJ","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n$primary-color: #2fa8cc\r\n$secondary-color: #f4f4f4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\nbody\r\n    @include columnFlex\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    // align-items: center\r\n    justify-content: center\r\n    padding: 5px\r\n    font-size: 12px\r\nimg\r\n    max-width: 5rem\r\n    max-height: 7rem\r\n    cursor: pointer\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\nh1, h2, h3,li, input,label\r\n    color: $fontColor\r\n\r\nh1\r\n    font-size: 1.2rem\r\nh2\r\n    font-size: .7rem\r\n\r\nh3\r\n    font-size: .5rem\r\n\r\nli, input, a, .copyRights\r\n    border-radius: .15rem\r\n    font-size: .7rem\r\nheader\r\n    padding: .2rem\r\n    @include columnFlex\r\n    align-items: stretch\r\n    justify-content: center\r\nnav\r\n    @include rowFlex\r\n    align-items: center\r\n    justify-content: space-between\r\n    gap: 5rem\r\n    white-space: nowrap\r\n    img\r\n        flex: .8\r\n        align-self: flex-start\r\n    h2\r\n        flex: .4\r\n#pokemonList\r\n    @include threeThreeGrid\r\n    align-items: center\r\n    padding: .2rem\r\n    // justify-content: space-evenly\r\n    gap: .7rem\r\n    img\r\n        max-width: 6rem\r\n        max-height: 4rem\r\n\r\n.pokemonItem, .popup\r\n    @include columnFlex\r\n    align-items: center\r\n    // justify-content: center\r\n    gap: .4rem\r\n    background: $secondarycolor\r\n    // padding: .2rem\r\n    border-radius: 3px\r\n    box-shadow: $box-shadow\r\n\r\n.likeDiv, .commentDiv\r\n    @include rowFlex\r\n    align-self: stretch\r\n    align-items: stretch\r\n    justify-content: space-between\r\n    padding: .2rem\r\n    div, img\r\n        align-self: flex-end\r\n    img\r\n        max-width: 1rem !important\r\n        max-height: 1rem !important\r\n\r\nbutton\r\n    @include button\r\n    align-self: flex-start\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n.popup\r\n    align-items: stretch\r\n    .pokemonImg\r\n        padding: .3rem\r\n        @include columnFlex\r\n        // align-items: stretch !important\r\n        // justify-content: center !important\r\n        img\r\n            align-self: center\r\n            max-width: 15rem\r\n            max-height: 10rem\r\n        .pageX\r\n            align-self: flex-end\r\n            max-width: 1rem\r\n            max-height: 1rem\r\n        h3\r\n            align-self: center\r\n            margin-top: 1rem\r\n\r\n    .recentComments\r\n        overflow-y: scroll\r\n    .AddComment, .comments\r\n        @include columnFlex\r\n        align-self: stretch\r\n        align-items: center\r\n        justify-content: center\r\n        padding: .3rem .5rem\r\n        gap: .3rem\r\n        button\r\n            align-self: center\r\n            margin-bottom: .5rem\r\n            padding: .4rem\r\n            background-color: $primarycolor !important\r\n        textarea, input\r\n            align-self: stretch\r\n            border-radius: 3px\r\n            padding: .3rem\r\n            background: $primarycolor\r\n            box-shadow: $box-shadow\r\n    label, h3\r\n        font-size: 1rem\r\n\r\nfooter\r\n    position: relative\r\n    margin-top: 2rem\r\n    padding-bottom: 0.3rem\r\n    top: auto\r\n    bottom: 0.1rem\r\n    // width: 50%\r\n","$InterFont: \"Inter\", sans-serif\r\n$primarycolor: #c2e2ea\r\n$secondarycolor: #72bbce\r\n$fontColor: #002d67\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n$qrpadding: calc( 12% - 80px )\r\n$Qrpadding: calc( 25% - 120px )\r\n$qlpadding: calc( 12% - 80px )\r\n$Qlpadding: calc( 25% - 120px )\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 4px\r\n    font-size: .6rem\r\n    font-weight: 600\r\n    color: $fontColor !important\r\n    background-color: $primary-color !important\r\n    border: 1px\r\n    box-shadow: $box-shadow\r\n    padding: 4px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n@mixin oneFiveGrid\r\n    display: grid\r\n    grid-template-columns: 1fr\r\n    grid-auto-rows: 1fr 1fr 1fr 1fr 1fr\r\n\r\n@mixin fiveOneGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin threeThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .9rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n\r\n@mixin transparentText\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-repeat: no-repeat\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n\r\n@mixin transparentBg\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-blend-mode: color-burn\r\n    background-repeat: no-repeat\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -429,6 +657,20 @@ module.exports = function (item) {
 
 /***/ }),
 
+/***/ "./src/assets/1.svg":
+/*!**************************!*\
+  !*** ./src/assets/1.svg ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/1.svg");
+
+/***/ }),
+
 /***/ "./src/assets/bikatshoo.svg":
 /*!**********************************!*\
   !*** ./src/assets/bikatshoo.svg ***!
@@ -468,6 +710,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/pokemon.png");
+
+/***/ }),
+
+/***/ "./src/assets/x.svg":
+/*!**************************!*\
+  !*** ./src/assets/x.svg ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/x.svg");
 
 /***/ }),
 
@@ -876,12 +1132,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_pokemon_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/pokemon.png */ "./src/assets/pokemon.png");
 /* harmony import */ var _assets_like_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/like.svg */ "./src/assets/like.svg");
 /* harmony import */ var _assets_bikatshoo_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/bikatshoo.svg */ "./src/assets/bikatshoo.svg");
-/* harmony import */ var _modules_pageRendering__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/pageRendering */ "./src/modules/pageRendering.js");
+/* harmony import */ var _assets_1_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/1.svg */ "./src/assets/1.svg");
+/* harmony import */ var _assets_x_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./assets/x.svg */ "./src/assets/x.svg");
+/* harmony import */ var _modules_pageRendering__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/pageRendering */ "./src/modules/pageRendering.js");
 
 
 
 
-// import './assets/1.svg';
+
 // import './assets/2.svg';
 // import './assets/3.svg';
 // import './assets/4.svg';
@@ -893,10 +1151,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 window.addEventListener('load', function () {
-  (0,_modules_pageRendering__WEBPACK_IMPORTED_MODULE_4__.renderList)();
+  (0,_modules_pageRendering__WEBPACK_IMPORTED_MODULE_6__.renderList)();
 });
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundleed3c6b4e9ce025d7e11a.js.map
+//# sourceMappingURL=bundle330e0c065324d760cde5.js.map
