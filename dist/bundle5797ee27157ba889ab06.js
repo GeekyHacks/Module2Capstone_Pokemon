@@ -11,6 +11,7 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   GetDataList: () => (/* binding */ GetDataList),
+/* harmony export */   GetDataObject: () => (/* binding */ GetDataObject),
 /* harmony export */   commentsAPI: () => (/* binding */ commentsAPI),
 /* harmony export */   likesAPI: () => (/* binding */ likesAPI),
 /* harmony export */   pokemonsAPI: () => (/* binding */ pokemonsAPI)
@@ -70,10 +71,44 @@ var GetDataList = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
+var GetDataObject = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(APIUrl) {
+    var response, dataList;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
+        case 0:
+          _context2.next = 2;
+          return fetch(APIUrl);
+        case 2:
+          response = _context2.sent;
+          _context2.next = 5;
+          return response.json();
+        case 5:
+          dataList = _context2.sent;
+          return _context2.abrupt("return", dataList);
+        case 7:
+        case "end":
+          return _context2.stop();
+      }
+    }, _callee2);
+  }));
+  return function GetDataObject(_x2) {
+    return _ref2.apply(this, arguments);
+  };
+}();
 
 // to get the pokemon Data
 GetDataList(pokemonsAPI);
 
+
+// const image = 'https://pokeapi.co/api/v2/pokemon/sprites/';
+
+// const GetDataObject = async (APIUrl) => {
+//     const response = await fetch(APIUrl);
+//     const dataList = await response.json();
+//     return dataList;
+//   };
+//  GetDataObject(image)
 
 /***/ }),
 
@@ -101,12 +136,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var renderList = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(listData) {
-    var pokemonList, response, sortedDataList, objects, i, li, object;
+    var pokemonList, response, sortedDataList, objects, i, li, object, objectUrl, _response, pokeObject;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           pokemonList = document.getElementById('pokemonList');
           pokemonList.innerHTML = '';
+          // to get the pokemon main object that has name & url
           _context.next = 4;
           return fetch(_APIs_js__WEBPACK_IMPORTED_MODULE_0__.pokemonsAPI);
         case 4:
@@ -117,22 +153,78 @@ var renderList = /*#__PURE__*/function () {
           listData = _context.sent;
           listData = listData.results;
           console.log(listData);
+
+          // to sort the array elements
           sortedDataList = _toConsumableArray(listData);
           sortedDataList.sort(function (a, b) {
             return b.score - a.score;
           });
           console.log(sortedDataList);
           objects = sortedDataList;
-          console.log(objects);
-          for (i = 0; i < 9; i++) {
-            li = document.createElement('li');
-            object = objects[i]; // console.log(object.url);
-            // console.log(object.name);
-            // console.log(object.url);
-            li.innerHTML = "\n    <li class=\"pokemonItem\">\n    <img src=\"".concat(object.url, "\" alt=\"").concat(object.name, "\" />\n    <div class=\"likeDiv\">\n      <h3>").concat(object.name, "</h3>\n      <img src=\"./assets/like.svg\" alt=\"like\" />\n    </div>\n    <div class=\"commentDiv\">\n      <button>Comment</button>\n      <div>\n        <h4>\n          likes<span>1</span>\n        </h4>\n      </div>\n    </div>\n  </li>\n         ");
-            pokemonList.appendChild(li);
-          }
+          console.log(objects[0]);
+          // to loop through 18 elements of the array
+          i = 0;
         case 16:
+          if (!(i < 18)) {
+            _context.next = 34;
+            break;
+          }
+          li = document.createElement('li');
+          object = objects[i];
+          objectUrl = object.url;
+          console.log(objectUrl);
+          // to fetch the pokemon Image
+          _context.next = 23;
+          return fetch(objectUrl);
+        case 23:
+          _response = _context.sent;
+          _context.next = 26;
+          return _response.json();
+        case 26:
+          pokeObject = _context.sent;
+          console.log(pokeObject);
+
+          // to get the image of pokemon
+          console.log(pokeObject.sprites.other.dream_world.front_default);
+          li.innerHTML = "\n    <li class=\"pokemonItem\">\n    <img src=\"".concat(pokeObject.sprites.other.dream_world.front_default, "\" alt=\"").concat(object.name, "\" />\n    <div class=\"likeDiv\">\n      <h3>").concat(object.name, "</h3>\n      <img src=\"./assets/like.svg\" alt=\"like\" />\n    </div>\n    <div class=\"commentDiv\">\n      <button class=\"commentPopup\">Comment</button>\n      <div>\n        <h4>\n          likes<span>1</span>\n        </h4>\n      </div>\n    </div>\n  </li>\n         ");
+
+          // const pokemonPopup = document.querySelector('.popup');
+          // const commentBtn = document.querySelectorAll('.commentPopup');
+
+          // commentBtn.forEach((btn, btnIndex) => {
+          //   btn.addEventListener('click', () => {
+          //     pokemonPopup.innerHTML = `
+          //     <div class="pokemonImg">
+          //     <img class="pageX" src="./assets/x.svg" alt="close" />
+          //     <img src="${pokeObject.sprites.other.dream_world.front_default}" alt="${object.name}" />
+          //     <h3>${object.name}</h3>
+          //     </div>
+
+          //   <div class="comments">
+          //     <h3>Recent Comments</h3>
+          //     <ul class="recentComments"></ul>
+          //   </div>
+          //   <form autocomplete="off" class="AddComment">
+          //     <label>Add a Comment</label>
+          //     <input type="text" id="name" placeholder="Your Name" required maxLength="20" />
+          //     <textarea rows="7"></textarea>
+
+          //     <button id="submit" class="btn" type="submit">Comment</button>
+          //   </form>
+          //     `;
+
+          //     const closeBtn = document.querySelector('.pageX');
+          //     closeBtn.addEventListener('click', () => {
+          //       pokemonPopup.innerHTML = '';
+          //     });
+          //   });
+          // });
+          pokemonList.appendChild(li);
+        case 31:
+          i++;
+          _context.next = 16;
+          break;
+        case 34:
         case "end":
           return _context.stop();
       }
@@ -184,9 +276,16 @@ body {
 img {
   max-width: 5rem;
   max-height: 7rem;
+  cursor: pointer;
+}
+img:active {
+  transform: scale(0.98);
+}
+img:focus {
+  outline: 0;
 }
 
-h1, h2, h3, li, input {
+h1, h2, h3, li, input, label {
   color: #002d67;
 }
 
@@ -244,7 +343,7 @@ nav h2 {
   max-height: 4rem;
 }
 
-.pokemonItem {
+.pokemonItem, .popup {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -275,7 +374,7 @@ button {
   border-radius: 4px;
   font-size: 0.6rem;
   font-weight: 600;
-  color: #002d67;
+  color: #002d67 !important;
   background-color: #2fa8cc !important;
   border: 1px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
@@ -297,13 +396,60 @@ button:focus {
   outline: 0;
 }
 
+.popup {
+  align-items: stretch;
+}
+.popup .pokemonImg {
+  padding: 0.3rem;
+  display: flex;
+  flex-direction: column;
+}
+.popup .pokemonImg img {
+  align-self: center;
+  max-width: 15rem;
+  max-height: 10rem;
+}
+.popup .pokemonImg .pageX {
+  align-self: flex-end;
+  max-width: 1rem;
+  max-height: 1rem;
+}
+.popup .recentComments {
+  overflow-y: scroll;
+}
+.popup .AddComment, .popup .comments {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem 0.5rem;
+  gap: 0.3rem;
+}
+.popup .AddComment button, .popup .comments button {
+  align-self: center;
+  margin-bottom: 0.5rem;
+  padding: 0.4rem;
+  background-color: #c2e2ea !important;
+}
+.popup .AddComment textarea, .popup .AddComment input, .popup .comments textarea, .popup .comments input {
+  align-self: stretch;
+  border-radius: 3px;
+  padding: 0.3rem;
+  background: #c2e2ea;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+}
+.popup .AddComment label, .popup .AddComment h3, .popup .comments label, .popup .comments h3 {
+  font-size: 1rem;
+}
+
 footer {
   position: relative;
   margin-top: 2rem;
   padding-bottom: 0.3rem;
   top: auto;
   bottom: 0.1rem;
-}`, "",{"version":3,"sources":["webpack://./src/styles/Sass/main.sass","webpack://./src/styles/Sass/global.sass"],"names":[],"mappings":"AAMA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;AAJJ;;AAMA;ECAI,aAAA;EACA,sBAAA;EDCA,yBAXY;EAYZ,iCAAA;EAEA,uBAAA;EACA,YAAA;EACA,eAAA;AAHJ;;AAIA;EACI,eAAA;EACA,gBAAA;AADJ;;AAGA;EACI,cCrBQ;ADqBZ;;AAEA;EACI,iBAAA;AACJ;;AAAA;EACI,iBAAA;AAGJ;;AADA;EACI,iBAAA;AAIJ;;AAFA;EACI,sBAAA;EACA,iBAAA;AAKJ;;AAJA;EACI,eAAA;EC3BA,aAAA;EACA,sBAAA;ED4BA,oBAAA;EACA,uBAAA;AAQJ;;AAPA;EC3BI,aAAA;EACA,mBAAA;ED4BA,mBAAA;EACA,8BAAA;EACA,SAAA;EACA,mBAAA;AAWJ;AAVI;EACI,SAAA;EACA,sBAAA;AAYR;AAXI;EACI,SAAA;AAaR;;AAZA;ECLI,aAAA;EACA,kCAAA;EACA,mBAAA;EDKA,mBAAA;EACA,eAAA;EAEA,WAAA;AAgBJ;AAfI;EACI,eAAA;EACA,gBAAA;AAiBR;;AAfA;ECpDI,aAAA;EACA,sBAAA;EDqDA,mBAAA;EAEA,WAAA;EACA,mBClEa;EDoEb,kBAAA;EACA,wEAnES;AAoFb;;AAfA;EC1DI,aAAA;EACA,mBAAA;ED2DA,mBAAA;EACA,oBAAA;EACA,8BAAA;EACA,eAAA;AAmBJ;AAlBI;EACI,oBAAA;AAoBR;AAnBI;EACI,0BAAA;EACA,2BAAA;AAqBR;;AAnBA;EClEI,oBAAA;EACA,kBAAA;EACA,iBAAA;EACA,gBAAA;EACA,cApBQ;EAqBR,oCAAA;EACA,WAAA;EACA,wEDtBS;ECuBT,YAAA;EACA,eAAA;EACA,kBAAA;ED0DA,sBAAA;AAgCJ;ACxFI;EACI,sBAAA;AD0FR;ACxFI;EACI,UAAA;AD0FR;AApCI;EACI,sBAAA;AAsCR;AApCI;EACI,UAAA;AAsCR;;AApCA;EACI,kBAAA;EACA,gBAAA;EACA,sBAAA;EACA,SAAA;EACA,cAAA;AAuCJ","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n$primary-color: #2fa8cc\r\n$secondary-color: #f4f4f4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\nbody\r\n    @include columnFlex\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    // align-items: center\r\n    justify-content: center\r\n    padding: 5px\r\n    font-size: 12px\r\nimg\r\n    max-width: 5rem\r\n    max-height: 7rem\r\n\r\nh1, h2, h3,li, input\r\n    color: $fontColor\r\n\r\nh1\r\n    font-size: 1.2rem\r\nh2\r\n    font-size: .7rem\r\n\r\nh3\r\n    font-size: .5rem\r\n\r\nli, input, a, .copyRights\r\n    border-radius: .15rem\r\n    font-size: .7rem\r\nheader\r\n    padding: .2rem\r\n    @include columnFlex\r\n    align-items: stretch\r\n    justify-content: center\r\nnav\r\n    @include rowFlex\r\n    align-items: center\r\n    justify-content: space-between\r\n    gap: 5rem\r\n    white-space: nowrap\r\n    img\r\n        flex: .8\r\n        align-self: flex-start\r\n    h2\r\n        flex: .4\r\n#pokemonList\r\n    @include threeThreeGrid\r\n    align-items: center\r\n    padding: .2rem\r\n    // justify-content: space-evenly\r\n    gap: .7rem\r\n    img\r\n        max-width: 6rem\r\n        max-height: 4rem\r\n\r\n.pokemonItem\r\n    @include columnFlex\r\n    align-items: center\r\n    // justify-content: center\r\n    gap: .4rem\r\n    background: $secondarycolor\r\n    // padding: .2rem\r\n    border-radius: 3px\r\n    box-shadow: $box-shadow\r\n\r\n.likeDiv, .commentDiv\r\n    @include rowFlex\r\n    align-self: stretch\r\n    align-items: stretch\r\n    justify-content: space-between\r\n    padding: .2rem\r\n    div, img\r\n        align-self: flex-end\r\n    img\r\n        max-width: 1rem !important\r\n        max-height: 1rem !important\r\n\r\nbutton\r\n    @include button\r\n    align-self: flex-start\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\nfooter\r\n    position: relative\r\n    margin-top: 2rem\r\n    padding-bottom: 0.3rem\r\n    top: auto\r\n    bottom: 0.1rem\r\n    // width: 50%\r\n","$InterFont: \"Inter\", sans-serif\r\n$primarycolor: #c2e2ea\r\n$secondarycolor: #72bbce\r\n$fontColor: #002d67\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n$qrpadding: calc( 12% - 80px )\r\n$Qrpadding: calc( 25% - 120px )\r\n$qlpadding: calc( 12% - 80px )\r\n$Qlpadding: calc( 25% - 120px )\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 4px\r\n    font-size: .6rem\r\n    font-weight: 600\r\n    color: $fontColor\r\n    background-color: $primary-color !important\r\n    border: 1px\r\n    box-shadow: $box-shadow\r\n    padding: 4px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n@mixin oneFiveGrid\r\n    display: grid\r\n    grid-template-columns: 1fr\r\n    grid-auto-rows: 1fr 1fr 1fr 1fr 1fr\r\n\r\n@mixin fiveOneGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin threeThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .9rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n\r\n@mixin transparentText\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-repeat: no-repeat\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n\r\n@mixin transparentBg\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-blend-mode: color-burn\r\n    background-repeat: no-repeat\r\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/styles/Sass/main.sass","webpack://./src/styles/Sass/global.sass"],"names":[],"mappings":"AAMA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;AAJJ;;AAMA;ECAI,aAAA;EACA,sBAAA;EDCA,yBAXY;EAYZ,iCAAA;EAEA,uBAAA;EACA,YAAA;EACA,eAAA;AAHJ;;AAIA;EACI,eAAA;EACA,gBAAA;EACA,eAAA;AADJ;AAEI;EACI,sBAAA;AAAR;AAEI;EACI,UAAA;AAAR;;AAEA;EACI,cC3BQ;AD4BZ;;AACA;EACI,iBAAA;AAEJ;;AADA;EACI,iBAAA;AAIJ;;AAFA;EACI,iBAAA;AAKJ;;AAHA;EACI,sBAAA;EACA,iBAAA;AAMJ;;AALA;EACI,eAAA;ECjCA,aAAA;EACA,sBAAA;EDkCA,oBAAA;EACA,uBAAA;AASJ;;AARA;ECjCI,aAAA;EACA,mBAAA;EDkCA,mBAAA;EACA,8BAAA;EACA,SAAA;EACA,mBAAA;AAYJ;AAXI;EACI,SAAA;EACA,sBAAA;AAaR;AAZI;EACI,SAAA;AAcR;;AAbA;ECXI,aAAA;EACA,kCAAA;EACA,mBAAA;EDWA,mBAAA;EACA,eAAA;EAEA,WAAA;AAiBJ;AAhBI;EACI,eAAA;EACA,gBAAA;AAkBR;;AAhBA;EC1DI,aAAA;EACA,sBAAA;ED2DA,mBAAA;EAEA,WAAA;EACA,mBCxEa;ED0Eb,kBAAA;EACA,wEAzES;AA2Fb;;AAhBA;EChEI,aAAA;EACA,mBAAA;EDiEA,mBAAA;EACA,oBAAA;EACA,8BAAA;EACA,eAAA;AAoBJ;AAnBI;EACI,oBAAA;AAqBR;AApBI;EACI,0BAAA;EACA,2BAAA;AAsBR;;AApBA;ECxEI,oBAAA;EACA,kBAAA;EACA,iBAAA;EACA,gBAAA;EACA,yBAAA;EACA,oCAAA;EACA,WAAA;EACA,wEDtBS;ECuBT,YAAA;EACA,eAAA;EACA,kBAAA;EDgEA,sBAAA;AAiCJ;AC/FI;EACI,sBAAA;ADiGR;AC/FI;EACI,UAAA;ADiGR;AArCI;EACI,sBAAA;AAuCR;AArCI;EACI,UAAA;AAuCR;;AArCA;EACI,oBAAA;AAwCJ;AAvCI;EACI,eAAA;EC7FJ,aAAA;EACA,sBAAA;ADuIJ;AAvCQ;EACI,kBAAA;EACA,gBAAA;EACA,iBAAA;AAyCZ;AAxCQ;EACI,oBAAA;EACA,eAAA;EACA,gBAAA;AA0CZ;AAzCI;EACI,kBAAA;AA2CR;AA1CI;EC3GA,aAAA;EACA,sBAAA;ED4GI,mBAAA;EACA,mBAAA;EACA,uBAAA;EACA,sBAAA;EACA,WAAA;AA6CR;AA5CQ;EACI,kBAAA;EACA,qBAAA;EACA,eAAA;EACA,oCAAA;AA8CZ;AA7CQ;EACI,mBAAA;EACA,kBAAA;EACA,eAAA;EACA,mBCrIG;EDsIH,wEAnIC;AAkLb;AA9CQ;EACI,eAAA;AAgDZ;;AA9CA;EACI,kBAAA;EACA,gBAAA;EACA,sBAAA;EACA,SAAA;EACA,cAAA;AAiDJ","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n$primary-color: #2fa8cc\r\n$secondary-color: #f4f4f4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\nbody\r\n    @include columnFlex\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    // align-items: center\r\n    justify-content: center\r\n    padding: 5px\r\n    font-size: 12px\r\nimg\r\n    max-width: 5rem\r\n    max-height: 7rem\r\n    cursor: pointer\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\nh1, h2, h3,li, input,label\r\n    color: $fontColor\r\n\r\nh1\r\n    font-size: 1.2rem\r\nh2\r\n    font-size: .7rem\r\n\r\nh3\r\n    font-size: .5rem\r\n\r\nli, input, a, .copyRights\r\n    border-radius: .15rem\r\n    font-size: .7rem\r\nheader\r\n    padding: .2rem\r\n    @include columnFlex\r\n    align-items: stretch\r\n    justify-content: center\r\nnav\r\n    @include rowFlex\r\n    align-items: center\r\n    justify-content: space-between\r\n    gap: 5rem\r\n    white-space: nowrap\r\n    img\r\n        flex: .8\r\n        align-self: flex-start\r\n    h2\r\n        flex: .4\r\n#pokemonList\r\n    @include threeThreeGrid\r\n    align-items: center\r\n    padding: .2rem\r\n    // justify-content: space-evenly\r\n    gap: .7rem\r\n    img\r\n        max-width: 6rem\r\n        max-height: 4rem\r\n\r\n.pokemonItem, .popup\r\n    @include columnFlex\r\n    align-items: center\r\n    // justify-content: center\r\n    gap: .4rem\r\n    background: $secondarycolor\r\n    // padding: .2rem\r\n    border-radius: 3px\r\n    box-shadow: $box-shadow\r\n\r\n.likeDiv, .commentDiv\r\n    @include rowFlex\r\n    align-self: stretch\r\n    align-items: stretch\r\n    justify-content: space-between\r\n    padding: .2rem\r\n    div, img\r\n        align-self: flex-end\r\n    img\r\n        max-width: 1rem !important\r\n        max-height: 1rem !important\r\n\r\nbutton\r\n    @include button\r\n    align-self: flex-start\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n.popup\r\n    align-items: stretch\r\n    .pokemonImg\r\n        padding: .3rem\r\n        @include columnFlex\r\n        // align-items: stretch !important\r\n        // justify-content: center !important\r\n        img\r\n            align-self: center\r\n            max-width: 15rem\r\n            max-height: 10rem\r\n        .pageX\r\n            align-self: flex-end\r\n            max-width: 1rem\r\n            max-height: 1rem\r\n    .recentComments\r\n        overflow-y: scroll\r\n    .AddComment, .comments\r\n        @include columnFlex\r\n        align-self: stretch\r\n        align-items: center\r\n        justify-content: center\r\n        padding: .3rem .5rem\r\n        gap: .3rem\r\n        button\r\n            align-self: center\r\n            margin-bottom: .5rem\r\n            padding: .4rem\r\n            background-color: $primarycolor !important\r\n        textarea, input\r\n            align-self: stretch\r\n            border-radius: 3px\r\n            padding: .3rem\r\n            background: $primarycolor\r\n            box-shadow: $box-shadow\r\n        label, h3\r\n            font-size: 1rem\r\n\r\nfooter\r\n    position: relative\r\n    margin-top: 2rem\r\n    padding-bottom: 0.3rem\r\n    top: auto\r\n    bottom: 0.1rem\r\n    // width: 50%\r\n","$InterFont: \"Inter\", sans-serif\r\n$primarycolor: #c2e2ea\r\n$secondarycolor: #72bbce\r\n$fontColor: #002d67\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n$qrpadding: calc( 12% - 80px )\r\n$Qrpadding: calc( 25% - 120px )\r\n$qlpadding: calc( 12% - 80px )\r\n$Qlpadding: calc( 25% - 120px )\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 4px\r\n    font-size: .6rem\r\n    font-weight: 600\r\n    color: $fontColor !important\r\n    background-color: $primary-color !important\r\n    border: 1px\r\n    box-shadow: $box-shadow\r\n    padding: 4px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n@mixin oneFiveGrid\r\n    display: grid\r\n    grid-template-columns: 1fr\r\n    grid-auto-rows: 1fr 1fr 1fr 1fr 1fr\r\n\r\n@mixin fiveOneGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin threeThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .9rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n\r\n@mixin transparentText\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-repeat: no-repeat\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n\r\n@mixin transparentBg\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-blend-mode: color-burn\r\n    background-repeat: no-repeat\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -429,6 +575,20 @@ module.exports = function (item) {
 
 /***/ }),
 
+/***/ "./src/assets/1.svg":
+/*!**************************!*\
+  !*** ./src/assets/1.svg ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/1.svg");
+
+/***/ }),
+
 /***/ "./src/assets/bikatshoo.svg":
 /*!**********************************!*\
   !*** ./src/assets/bikatshoo.svg ***!
@@ -468,6 +628,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/pokemon.png");
+
+/***/ }),
+
+/***/ "./src/assets/x.svg":
+/*!**************************!*\
+  !*** ./src/assets/x.svg ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/x.svg");
 
 /***/ }),
 
@@ -876,12 +1050,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_pokemon_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/pokemon.png */ "./src/assets/pokemon.png");
 /* harmony import */ var _assets_like_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/like.svg */ "./src/assets/like.svg");
 /* harmony import */ var _assets_bikatshoo_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/bikatshoo.svg */ "./src/assets/bikatshoo.svg");
-/* harmony import */ var _modules_pageRendering__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/pageRendering */ "./src/modules/pageRendering.js");
+/* harmony import */ var _assets_1_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/1.svg */ "./src/assets/1.svg");
+/* harmony import */ var _assets_x_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./assets/x.svg */ "./src/assets/x.svg");
+/* harmony import */ var _modules_pageRendering__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/pageRendering */ "./src/modules/pageRendering.js");
 
 
 
 
-// import './assets/1.svg';
+
 // import './assets/2.svg';
 // import './assets/3.svg';
 // import './assets/4.svg';
@@ -893,10 +1069,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 window.addEventListener('load', function () {
-  (0,_modules_pageRendering__WEBPACK_IMPORTED_MODULE_4__.renderList)();
+  (0,_modules_pageRendering__WEBPACK_IMPORTED_MODULE_6__.renderList)();
 });
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundleed3c6b4e9ce025d7e11a.js.map
+//# sourceMappingURL=bundle5797ee27157ba889ab06.js.map
