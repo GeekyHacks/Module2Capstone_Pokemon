@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')
+@import global
+$primary-color: #2fa8cc
+$secondary-color: #f4f4f4
+$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)
+
+*
+    box-sizing: border-box
+    margin: 0
+    padding: 0
+
+body
+    @include columnFlex
+    background-color: $primary-color
+    font-family: 'Roboto', sans-serif
+    // align-items: center
+    justify-content: center
+    padding: 5px
+    font-size: 12px
+img
+    max-width: 5rem
+    max-height: 7rem
+    cursor: pointer
+    &:active
+        transform: scale(0.98)
+
+    &:focus
+        outline: 0
+
+h1, h2, h3,li, input,label
+    color: $fontColor
+
+h1
+    font-size: 1.2rem
+h2
+    font-size: .7rem
+
+h3
+    font-size: .5rem
+
+li, input, a, .copyRights
+    border-radius: .15rem
+    font-size: .7rem
+header
+    padding: .2rem
+    @include columnFlex
+    align-items: stretch
+    justify-content: center
+nav
+    @include rowFlex
+    align-items: center
+    justify-content: space-between
+    gap: 5rem
+    white-space: nowrap
+    img
+        flex: .8
+        align-self: flex-start
+    h2
+        flex: .4
+#pokemonList
+    @include threeThreeGrid
+    align-items: center
+    padding: .2rem
+    // justify-content: space-evenly
+    gap: .7rem
+    img
+        max-width: 6rem
+        max-height: 4rem
+
+.pokemonItem, .popup
+    @include columnFlex
+    align-items: center
+    // justify-content: center
+    gap: .4rem
+    background: $secondarycolor
+    // padding: .2rem
+    border-radius: 3px
+    box-shadow: $box-shadow
+
+.likeDiv, .commentDiv
+    @include rowFlex
+    align-self: stretch
+    align-items: stretch
+    justify-content: space-between
+    padding: .2rem
+    div, img
+        align-self: flex-end
+    img
+        max-width: 1rem !important
+        max-height: 1rem !important
+
+button
+    @include button
+    align-self: flex-start
+
+    &:active
+        transform: scale(0.98)
+
+    &:focus
+        outline: 0
+
+.popup
+    align-items: stretch
+    .pokemonImg
+        padding: .3rem
+        @include columnFlex
+        // align-items: stretch !important
+        // justify-content: center !important
+        img
+            align-self: center
+            max-width: 15rem
+            max-height: 10rem
+        .pageX
+            align-self: flex-end
+            max-width: 1rem
+            max-height: 1rem
+        h3
+            align-self: center
+            margin-top: 1rem
+
+    .recentComments
+        overflow-y: scroll
+    .AddComment, .comments
+        @include columnFlex
+        align-self: stretch
+        align-items: center
+        justify-content: center
+        padding: .3rem .5rem
+        gap: .3rem
+        button
+            align-self: center
+            margin-bottom: .5rem
+            padding: .4rem
+            background-color: $primarycolor !important
+        textarea, input
+            align-self: stretch
+            border-radius: 3px
+            padding: .3rem
+            background: $primarycolor
+            box-shadow: $box-shadow
+    label, h3
+        font-size: 1rem
+
+footer
+    position: relative
+    margin-top: 2rem
+    padding-bottom: 0.3rem
+    top: auto
+    bottom: 0.1rem
+    // width: 50%
+@media ( min-width: 768px  )
+    main
+        font-size: 18px
+        padding-left: $Qlpadding
+        padding-right: $Qrpadding
+
+    section, .popup
+        gap: 2rem
+
+@media ( min-width: 999px  )
+    body
+        font-size: 23px
