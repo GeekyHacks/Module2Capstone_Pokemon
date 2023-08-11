@@ -177,6 +177,8 @@
 
 import { pokemonAPI } from './APIs.js';
 
+const urlNeeded = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments';
+
 // Function to generate a unique ID
 function generateUniqueId() {
   // Generate a random timestamp value
@@ -267,6 +269,7 @@ export const renderList = async () => {
               <button id="submit" class="btn" type="submit">Comment</button>
             </form>
           `;
+
           const commentForm = document.querySelector('.AddComment');
           commentForm.addEventListener('submit', async (event) => {
             event.preventDefault();
@@ -289,7 +292,7 @@ export const renderList = async () => {
         
             try {
               // Make the POST request to the API
-              const postResponse = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments', {
+              const postResponse = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments`, {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -302,16 +305,18 @@ export const renderList = async () => {
                 console.log('Comment posted successfully');
         
                 try {
+                    
                   // Fetch the updated comments after posting
-                  const commentsResponse = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments/');
-                  const responseData = await commentsResponse.json();
-                  const commentsData = responseData.comments;
+                  const commentsResponse = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments?item_id=${item_id}`);
+                  const commentsData = await commentsResponse.json();
+        
+                  console.log('Comments Data:', commentsData);
         
                   // Get the recentComments element
                   const recentComments = document.querySelector('.recentComments');
-        
-                  // Clear the existing list
-                  recentComments.innerHTML = '';
+        // to show the added list
+                //   // Clear the existing list
+                //   recentComments.innerHTML = '';
         
                   if (Array.isArray(commentsData)) {
                     if (commentsData.length === 0) {
