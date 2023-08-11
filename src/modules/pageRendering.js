@@ -24,8 +24,8 @@ export default async (listData) => {
 
     const object = objects[i];
     // to fetch the pokemon Image
-    const response = fetch(object.url);
-    const pokeObject = response.json();
+    const response = await fetch(object.url);
+    const pokeObject = await response.json();
     // console.log(pokeObject);
 
     // to get the image of pokemon
