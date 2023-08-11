@@ -1,49 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>comments</title>
-</head>
-<body>
-  <section class="site-wrapper blur"></section>
-  <div class="modal-popup-wrapper">
-    <span class="cancel-icon">x</span>
-  <div class="img-cancel">
-    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/3.svg" alt="venusaur">
-  </div>
-<div class="modal-title">
-  <h1>pokemon</h1>
-  <div class="modal-info">
-    <div class="left">
-      <span>Ability: overgrown</span>
-      <span>Move: sword-dance</span>
-        <div class="rigt"></div>
-        <span>Height: 20</span>
-        <span>Weight: 1000</span>
-    </div>
-  </div>
-  <div class="comment-wrapper">
-    <div class="comments-count">
-      <span>
-        "comment ("
-          <span class="comment-count">0
-          </span>
-         ")"
-        </span>
-       </div>
-      <ul class="comments"> </ul>
-     <form action="add-comments">
-      <p class="p1"> Add a comment</p>
-      <input type="text" name="username" id="username"
-       placeholder="your name" required>
-      <textarea name="comment" id="comment" cols="30" rows="10"
-       placeholder="your insight" required></textarea>
-      <button type="button" class="post-btn">comment</button>
-     </form>
-    </div>
-   </div>
-  </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>%= htmlWebpackPlugin.options.title %</title>
+  <script defer src="bundleebd1d09f2302098e204d.js"></script></head>
+  <body>
+    <header>
+      <nav>
+        <img src="./assets/pokemon.png" alt="" />
+        <h2>About Project</h2>
+        <h2>credit</h2>
+      </nav>
+    </header>
+    <main>
+      <section class="popup">
+        <!-- <div class="pokemonImg">
+          <img class="pageX" src="./assets/x.svg" alt="close" />
+          <img src="./assets/1.svg" alt="" />
+          <h3></h3>
+        </div>
+
+        <div class="comments">
+          <h3>Recent Comments</h3>
+          <ul class="recentComments"></ul>
+        </div>
+        <form autocomplete="off" class="AddComment">
+          <label>Add a Comment</label>
+          <input type="text" id="name" placeholder="Your Name" required maxlength="15" />
+          <textarea rows="7"></textarea>
+
+          <button id="submit" class="btn" type="submit">Comment</button>
+        </form> -->
+      </section>
+
+      <ul id="pokemonList">
+        <!-- <li class="pokemonItem">
+          <img src="./assets/1.svg" alt="" />
+          <div class="likeDiv">
+            <h3>Bykatshoo</h3>
+            <img src="./assets/like.svg" alt="" />
+          </div>
+          <div class="commentDiv">
+            <button>Comment</button>
+            <div>
+              <h4>likes<span>1</span></h4>
+            </div>
+          </div>
+        </li>
+        <li class="pokemonItem">
+          <img src="./assets/2.svg" alt="" />
+          <div class="likeDiv">
+            <h3>Bykatshoo</h3>
+            <img src="./assets/like.svg" alt="" />
+          </div>
+          <div class="commentDiv">
+            <button>Comment</button>
+            <div>
+              <h4>likes<span>1</span></h4>
+            </div>
+          </div>
+        </li>
+        <li class="pokemonItem">
+          <img src="./assets/3.svg" alt="" />
+          <div class="likeDiv">
+            <h3>Bykatshoo</h3>
+            <img src="./assets/like.svg" alt="" />
+          </div>
+          <div class="commentDiv">
+            <button>Comment</button>
+            <div>
+              <h4>likes<span>1</span></h4>
+            </div>
+          </div>
+        </li>
+        <li class="pokemonItem">
+          <img src="./assets/4.svg" alt="" />
+          <div class="likeDiv">
+            <h3>Bykatshoo</h3>
+            <img src="./assets/like.svg" alt="" />
+          </div>
+          <div class="commentDiv">
+            <button>Comment</button>
+            <div>
+              <h4>likes<span>1</span></h4>
+            </div>
+          </div>
+        </li>
+        <li class="pokemonItem">
+          <img src="./assets/5.svg" alt="" />
+          <div class="likeDiv">
+            <h3>Bykatshoo</h3>
+            <img src="./assets/like.svg" alt="" />
+          </div>
+          <div class="commentDiv">
+            <button>Comment</button>
+            <div>
+              <h4>likes<span>1</span></h4>
+            </div>
+          </div>
+        </li>
+        <li class="pokemonItem">
+          <img src="./assets/6.svg" alt="" />
+          <div class="likeDiv">
+            <h3>Bykatshoo</h3>
+            <img src="./assets/like.svg" alt="" />
+          </div>
+          <div class="commentDiv">
+            <button>Comment</button>
+            <div>
+              <h4>likes<span>1</span></h4>
+            </div>
+          </div>
+        </li>
+        <li class="pokemonItem">
+          <img src="./assets/7.svg" alt="" />
+          <div class="likeDiv">
+            <h3>Bykatshoo</h3>
+            <img src="./assets/like.svg" alt="" />
+          </div>
+          <div class="commentDiv">
+            <button>Comment</button>
+            <div>
+              <h4>likes<span>1</span></h4>
+            </div>
+          </div>
+        </li>
+        <li class="pokemonItem">
+          <img src="./assets/8.svg" alt="" />
+          <div class="likeDiv">
+            <h3>Bykatshoo</h3>
+            <img src="./assets/like.svg" alt="" />
+          </div>
+          <div class="commentDiv">
+            <button>Comment</button>
+            <div>
+              <h4>likes<span>1</span></h4>
+            </div>
+          </div>
+        </li>
+        <li class="pokemonItem">
+          <img src="./assets/9.svg" alt="" />
+          <div class="likeDiv">
+            <h3>Bykatshoo</h3>
+            <img src="./assets/like.svg" alt="" />
+          </div>
+          <div class="commentDiv">
+            <button>Comment</button>
+            <div>
+              <h4>likes<span>1</span></h4>
+            </div>
+          </div>
+        </li> -->
+      </ul>
+    </main>
+
+    <footer>
+      Copyrights reserved to <a href="https://github.com/GeekyHacks">GeekyHacks</a> &
+      <a href="https://github.com/firstpj">Collins Akorda</a>
+    </footer>
+  </body>
 </html>

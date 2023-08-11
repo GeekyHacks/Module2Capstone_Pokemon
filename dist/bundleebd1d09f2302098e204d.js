@@ -134,111 +134,273 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+var urlNeeded = "https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments";
 var renderList = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(listData) {
-    var pokemonList, response, sortedDataList, objects, _loop, i;
-    return _regeneratorRuntime().wrap(function _callee2$(_context3) {
-      while (1) switch (_context3.prev = _context3.next) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+    var pokemonList, pokemonPopup, commentBtn, response, listData, sortedDataList, objects, getComments, _loop, i;
+    return _regeneratorRuntime().wrap(function _callee4$(_context5) {
+      while (1) switch (_context5.prev = _context5.next) {
         case 0:
-          pokemonList = document.getElementById('pokemonList');
-          pokemonList.innerHTML = '';
-          // to get the pokemon main object that has name & url
-          _context3.next = 4;
+          pokemonList = document.getElementById("pokemonList");
+          pokemonList.innerHTML = "";
+          pokemonPopup = document.querySelector(".popup");
+          commentBtn = document.querySelectorAll(".commentPopup");
+          _context5.prev = 4;
+          _context5.next = 7;
           return fetch(_APIs_js__WEBPACK_IMPORTED_MODULE_0__.pokemonAPI);
-        case 4:
-          response = _context3.sent;
-          _context3.next = 7;
-          return response.json();
         case 7:
-          listData = _context3.sent;
+          response = _context5.sent;
+          _context5.next = 10;
+          return response.json();
+        case 10:
+          listData = _context5.sent;
           listData = listData.results;
           console.log(listData);
-
-          // to sort the array elements
+          // Sort the array elements
           sortedDataList = _toConsumableArray(listData);
           sortedDataList.sort(function (a, b) {
             return b.score - a.score;
           });
           console.log(sortedDataList);
-          objects = sortedDataList;
-          console.log(objects[0]);
-          // to loop through 18 elements of the array
+          objects = sortedDataList; // console.log(objects[0]);
+          // Loop through 18 elements of the array
+          getComments = /*#__PURE__*/function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(item_id) {
+              var commentsResponse, commentsData, recentComments;
+              return _regeneratorRuntime().wrap(function _callee$(_context) {
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    _context.prev = 0;
+                    _context.next = 3;
+                    return fetch("https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments?item_id=".concat(item_id));
+                  case 3:
+                    commentsResponse = _context.sent;
+                    _context.next = 6;
+                    return commentsResponse.json();
+                  case 6:
+                    commentsData = _context.sent;
+                    console.log("Comments Data:", commentsData);
+                    // Get the recentComments element
+                    recentComments = document.querySelector(".recentComments");
+                    if (commentsData.error) {
+                      console.log(commentsData.error.message);
+                    } else {
+                      // console.error('Invalid comments data format:', commentsData);
+                      recentComments.innerHTML = "";
+                      commentsData.forEach(function (comment) {
+                        console.log(comment);
+                        var commentLi = document.createElement("li");
+                        commentLi.textContent = "".concat(comment.creation_date, ": ").concat(comment.comment, " by ").concat(comment.username, " ");
+                        recentComments.appendChild(commentLi);
+                      });
+                    }
+                    _context.next = 15;
+                    break;
+                  case 12:
+                    _context.prev = 12;
+                    _context.t0 = _context["catch"](0);
+                    console.error("An error occurred while fetching comments:", _context.t0);
+                  case 15:
+                  case "end":
+                    return _context.stop();
+                }
+              }, _callee, null, [[0, 12]]);
+            }));
+            return function getComments(_x) {
+              return _ref2.apply(this, arguments);
+            };
+          }();
           _loop = /*#__PURE__*/_regeneratorRuntime().mark(function _loop() {
-            var li, object, response, pokeObject, pokemonPopup, commentBtn;
-            return _regeneratorRuntime().wrap(function _loop$(_context2) {
-              while (1) switch (_context2.prev = _context2.next) {
+            var object, pokeObject, showPokemon, li, img, likeDiv, h3, svg, commentDiv, commentPopup, likesDiv, h4;
+            return _regeneratorRuntime().wrap(function _loop$(_context4) {
+              while (1) switch (_context4.prev = _context4.next) {
                 case 0:
-                  li = document.createElement('li');
-                  object = objects[i]; // to fetch the pokemon Image
-                  _context2.next = 4;
+                  object = objects[i];
+                  console.log(object); // Fetch the Pokemon image
+                  _context4.next = 4;
                   return fetch(object.url);
                 case 4:
-                  response = _context2.sent;
-                  _context2.next = 7;
+                  response = _context4.sent;
+                  _context4.next = 7;
                   return response.json();
                 case 7:
-                  pokeObject = _context2.sent;
+                  pokeObject = _context4.sent;
                   console.log(pokeObject);
-
-                  // to get the image of pokemon
+                  // Get the image of the Pokemon
                   console.log(pokeObject.sprites.other.dream_world.front_default);
-                  li.innerHTML = "\n      <li class=\"pokemonItem\">\n      <img src=\"".concat(pokeObject.sprites.other.dream_world.front_default, "\" alt=\"").concat(object.name, "\" />\n      <div class=\"likeDiv\">\n        <h3>").concat(object.name, "</h3>\n        <img src=\"./assets/like.svg\" alt=\"like\" />\n      </div>\n      <div class=\"commentDiv\">\n        <button class=\"commentPopup\" data-url=\"").concat(object.url, "\">Comment</button>\n        <div>\n          <h4>\n            likes<span>1</span>\n          </h4>\n        </div>\n      </div>\n    </li>\n           ");
-                  pokemonPopup = document.querySelector('.popup');
-                  commentBtn = document.querySelectorAll('.commentPopup');
-                  commentBtn.forEach(function (btn) {
-                    btn.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-                      var clickedUrl, pokeResponse, pokeObject, closeBtn;
-                      return _regeneratorRuntime().wrap(function _callee$(_context) {
-                        while (1) switch (_context.prev = _context.next) {
+                  showPokemon = /*#__PURE__*/function () {
+                    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+                      var pokeResponse, pokeObject, item_id, commentForm, closeBtn;
+                      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+                        while (1) switch (_context3.prev = _context3.next) {
                           case 0:
-                            clickedUrl = btn.getAttribute('data-url');
-                            _context.next = 3;
-                            return fetch(clickedUrl);
-                          case 3:
-                            pokeResponse = _context.sent;
-                            _context.next = 6;
+                            _context3.next = 2;
+                            return fetch(object.url);
+                          case 2:
+                            pokeResponse = _context3.sent;
+                            _context3.next = 5;
                             return pokeResponse.json();
-                          case 6:
-                            pokeObject = _context.sent;
-                            pokemonList.innerHTML = '';
-                            pokemonPopup.innerHTML = "\n                 <div class=\"pokemonImg\">\n                 <img class=\"pageX\" src=\"./assets/x.svg\" alt=\"close\" />\n                 <img src=\"".concat(pokeObject.sprites.other.dream_world.front_default, "\" alt=\"").concat(object.name, "\" />\n                 <h3>").concat(object.name, "</h3>\n                 </div>\n               <div class=\"comments\">\n                 <h3>Recent Comments</h3>\n                 <ul class=\"recentComments\"></ul>\n               </div>\n               <form autocomplete=\"off\" class=\"AddComment\">\n                 <label>Add a Comment</label>\n                 <input type=\"text\" id=\"name\" placeholder=\"Your Name\" required maxLength=\"20\" />\n                 <textarea rows=\"7\"></textarea>\n                 <button id=\"submit\" class=\"btn\" type=\"submit\">Comment</button>\n               </form>\n                 ");
-                            closeBtn = document.querySelector('.pageX');
-                            closeBtn.addEventListener('click', function () {
-                              pokemonPopup.innerHTML = '';
+                          case 5:
+                            pokeObject = _context3.sent;
+                            console.log(pokeObject);
+                            item_id = pokeObject.id;
+                            pokemonList.innerHTML = "";
+                            pokemonPopup.innerHTML = "\n            <div class=\"pokemonImg\">\n              <img class=\"pageX\" src=\"./assets/x.svg\" alt=\"close\" />\n              <img src=\"".concat(pokeObject.sprites.other.dream_world.front_default, "\" alt=\"").concat(object.name, "\" />\n              <h3>").concat(object.name, "</h3>\n            </div>\n            <div class=\"comments\">\n              <h3>Recent Comments</h3>\n              <ul class=\"recentComments\"></ul>\n            </div>\n            <form autocomplete=\"off\" class=\"AddComment\">\n              <label>Add a Comment</label>\n              <input type=\"text\" id=\"name\" placeholder=\"Your Name\" required maxLength=\"20\" />\n              <textarea rows=\"7\" id=\"commentText\"></textarea>\n              <button id=\"submit\" class=\"btn\" type=\"submit\">Comment</button>\n            </form>\n          ");
+                            _context3.next = 12;
+                            return getComments(item_id);
+                          case 12:
+                            commentForm = document.querySelector(".AddComment");
+                            commentForm.addEventListener("submit", /*#__PURE__*/function () {
+                              var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(event) {
+                                var nameInput, commentInput, username, comment, data, postResponse;
+                                return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+                                  while (1) switch (_context2.prev = _context2.next) {
+                                    case 0:
+                                      event.preventDefault();
+                                      nameInput = document.getElementById("name");
+                                      commentInput = document.getElementById("commentText");
+                                      username = nameInput.value;
+                                      comment = commentInput.value; // Generate a unique item_id            // Prepare the data to be sent
+                                      data = {
+                                        item_id: item_id,
+                                        username: username,
+                                        comment: comment
+                                      };
+                                      _context2.prev = 6;
+                                      _context2.next = 9;
+                                      return fetch("https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments", {
+                                        method: "POST",
+                                        headers: {
+                                          "Content-Type": "application/json"
+                                        },
+                                        body: JSON.stringify(data)
+                                      });
+                                    case 9:
+                                      postResponse = _context2.sent;
+                                      if (postResponse.ok) {
+                                        // Handle the successful response
+                                        console.log("Comment posted successfully");
+                                        getComments(item_id);
+                                      } else {
+                                        // Handle the error response
+                                        console.error("Failed to post comment");
+                                      }
+                                      _context2.next = 16;
+                                      break;
+                                    case 13:
+                                      _context2.prev = 13;
+                                      _context2.t0 = _context2["catch"](6);
+                                      console.error("An error occurred while posting the comment", _context2.t0);
+                                    case 16:
+                                      // Clear the input fields
+                                      nameInput.value = "";
+                                      commentInput.value = "";
+                                    case 18:
+                                    case "end":
+                                      return _context2.stop();
+                                  }
+                                }, _callee2, null, [[6, 13]]);
+                              }));
+                              return function (_x2) {
+                                return _ref4.apply(this, arguments);
+                              };
+                            }());
+                            closeBtn = document.querySelector(".pageX");
+                            closeBtn.addEventListener("click", function () {
+                              pokemonPopup.innerHTML = "";
                               location.reload();
                             });
-                          case 11:
+                          case 16:
                           case "end":
-                            return _context.stop();
+                            return _context3.stop();
                         }
-                      }, _callee);
-                    })));
+                      }, _callee3);
+                    }));
+                    return function showPokemon() {
+                      return _ref3.apply(this, arguments);
+                    };
+                  }();
+                  li = document.createElement("li");
+                  li.className = "pokemonItem";
+                  img = document.createElement("img");
+                  img.src = pokeObject.sprites.other.dream_world.front_default;
+                  img.alt = object.name;
+                  likeDiv = document.createElement("div");
+                  likeDiv.className = "likeDiv";
+                  h3 = document.createElement("h3");
+                  svg = document.createElement("img");
+                  h3.textContent = object.name;
+                  svg.src = "./assets/like.svg";
+                  svg.alt = "like";
+                  likeDiv.appendChild(h3);
+                  likeDiv.appendChild(svg);
+                  commentDiv = document.createElement("div");
+                  commentDiv.className = "commentDiv";
+                  commentPopup = document.createElement("button");
+                  commentPopup.textContent = "Comment";
+                  commentPopup.addEventListener("click", function () {
+                    showPokemon();
                   });
+                  commentPopup.className = "commentPopup";
+                  likesDiv = document.createElement("div");
+                  h4 = document.createElement("h4");
+                  h4.innerHTML = "likes<span>".concat(1, "</span>");
+                  likesDiv.appendChild(h4);
+                  commentDiv.appendChild(commentPopup);
+                  commentDiv.appendChild(likesDiv);
+                  li.appendChild(img);
+                  li.appendChild(likeDiv);
+                  li.appendChild(commentDiv);
+                  // li.innerHTML = `
+                  //   <li class="pokemonItem">
+                  //     <img src="${pokeObject.sprites.other.dream_world.front_default}" alt="${object.name}" />
+                  //     <div class="likeDiv">
+                  //       <h3>${object.name}</h3>
+                  //       <img src="./assets/like.svg" alt="like" />
+                  //     </div>
+                  //     <div class="commentDiv">
+                  //       <button class="commentPopup" data-url="${object.url}"
+                  //         onclick='${()=>showPokemon()}'>Comment</button>
+                  //       <div>
+                  //         <h4>
+                  //           likes<span>1</span>
+                  //         </h4>
+                  //       </div>
+                  //     </div>
+                  //   </li>
+                  // `;
                   pokemonList.appendChild(li);
-                case 15:
+                case 41:
                 case "end":
-                  return _context2.stop();
+                  return _context4.stop();
               }
             }, _loop);
           });
           i = 0;
-        case 17:
+        case 20:
           if (!(i < 18)) {
-            _context3.next = 22;
+            _context5.next = 25;
             break;
           }
-          return _context3.delegateYield(_loop(), "t0", 19);
-        case 19:
-          i++;
-          _context3.next = 17;
-          break;
+          return _context5.delegateYield(_loop(), "t0", 22);
         case 22:
+          i++;
+          _context5.next = 20;
+          break;
+        case 25:
+          _context5.next = 30;
+          break;
+        case 27:
+          _context5.prev = 27;
+          _context5.t1 = _context5["catch"](4);
+          console.error(_context5.t1);
+        case 30:
         case "end":
-          return _context3.stop();
+          return _context5.stop();
       }
-    }, _callee2);
+    }, _callee4, null, [[4, 27]]);
   }));
-  return function renderList(_x) {
+  return function renderList() {
     return _ref.apply(this, arguments);
   };
 }();
@@ -1103,4 +1265,4 @@ window.addEventListener('load', function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=bundleaa99c702355474bd40eb.js.map
+//# sourceMappingURL=bundleebd1d09f2302098e204d.js.map
