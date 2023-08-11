@@ -1,19 +1,19 @@
 import { pokemonAPI } from './APIs.js';
 
-export const renderList = async (listData) => {
+export default renderList = async (listData) => {
   const pokemonList = document.getElementById('pokemonList');
   pokemonList.innerHTML = '';
   // to get the pokemon main object that has name & url
-  let response = await fetch(pokemonAPI);
+  const response = await fetch(pokemonAPI);
   listData = await response.json();
   listData = listData.results;
 
-  console.log(listData);
+  // console.log(listData);
 
   // to sort the array elements
   const sortedDataList = [...listData];
   sortedDataList.sort((a, b) => b.score - a.score);
-  console.log(sortedDataList);
+  // console.log(sortedDataList);
   const objects = sortedDataList;
   console.log(objects[0]);
   // to loop through 18 elements of the array
@@ -24,12 +24,12 @@ export const renderList = async (listData) => {
 
     const object = objects[i];
     // to fetch the pokemon Image
-    let response = await fetch(object.url);
+    const response = await fetch(object.url);
     const pokeObject = await response.json();
-    console.log(pokeObject);
+    // console.log(pokeObject);
 
     // to get the image of pokemon
-    console.log(pokeObject.sprites.other.dream_world.front_default);
+    //  console.log(pokeObject.sprites.other.dream_world.front_default);
 
     li.innerHTML = `
       <li class="pokemonItem">
@@ -75,7 +75,7 @@ export const renderList = async (listData) => {
         const closeBtn = document.querySelector('.pageX');
         closeBtn.addEventListener('click', () => {
           pokemonPopup.innerHTML = '';
-          location.reload();
+          window.location.reload();
         });
       });
     });

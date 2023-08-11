@@ -12,8 +12,8 @@ import './assets/1.svg';
 // import './assets/8.svg';
 // import './assets/9.svg';
 import './assets/x.svg';
-import { renderList } from "./modules/pageRendering";
+import { renderList } from './modules/pageRendering.js';
 
 window.addEventListener('load', () => {
-    renderList();
-  })
+  renderList();
+});

@@ -1,4 +1,4 @@
-  // I run this code in console when I want to reset the board by creating a id for involvement api
+// I run this code in console when I want to reset the board by creating a id for involvement api
 
 // fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/', {
 //   method: 'POST',
@@ -20,7 +20,7 @@ const pokemonAPI = 'https://pokeapi.co/api/v2/pokemon/';
 const commentsAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/woTq8RsLkSavLaCMQAAP/comments/';
 const likesAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/woTq8RsLkSavLaCMQAAP/likes/';
 
-const pokemonList = document.getElementById('pokemonList');
+// onst pokemonList = document.getElementById('pokemonList');
 
 // this will get an api array
 
@@ -40,7 +40,9 @@ const GetDataObject = async (APIUrl) => {
 // to get the pokemon Data
 GetDataList(pokemonAPI);
 
-export { pokemonAPI, commentsAPI, likesAPI, GetDataList, GetDataObject };
+export {
+  pokemonAPI, commentsAPI, likesAPI, GetDataList, GetDataObject,
+};
 
 // const image = 'https://pokeapi.co/api/v2/pokemon/sprites/';
 
