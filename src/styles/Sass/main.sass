@@ -41,6 +41,9 @@ h3
 li, input, a, .copyRights
     border-radius: .15rem
     font-size: .7rem
+img
+    max-width: 6rem
+    max-height: 4rem
 header
     padding: .2rem
     @include columnFlex
@@ -63,13 +66,10 @@ nav
     padding: .2rem
     // justify-content: space-evenly
     gap: .7rem
-    img
-        max-width: 6rem
-        max-height: 4rem
 
 .pokemonItem, .popup
     @include columnFlex
-    align-items: center
+    // align-items: center
     // justify-content: center
     gap: .4rem
     background: $secondarycolor
@@ -100,7 +100,9 @@ button
         outline: 0
 
 .popup
-    align-items: stretch
+    // align-items: center !important
+    width: 20rem
+    justify-content: stretch
     .pokemonImg
         padding: .3rem
         @include columnFlex
@@ -120,6 +122,19 @@ button
 
     .recentComments
         overflow-y: scroll
+        align-self: stretch
+        background: $primarycolor
+        padding: 0.2rem
+        @include columnFlex
+        justify-content: center
+        gap: .2rem
+        border-radius: 3px
+        li
+            border: .5px solid black
+            padding: 0.1rem
+            background: $secondarycolor
+            color: $fontColor
+
     .AddComment, .comments
         @include columnFlex
         align-self: stretch
@@ -148,7 +163,7 @@ footer
     top: auto
     bottom: 0.1rem
     // width: 50%
-    
+
 @media ( min-width: 768px  )
     main
         font-size: 18px
@@ -157,7 +172,10 @@ footer
 
     section, .popup
         gap: 2rem
-
+    .popup
+        width: 40rem
 @media ( min-width: 999px  )
     body
         font-size: 23px
+    .popup
+        max-width: 70rem

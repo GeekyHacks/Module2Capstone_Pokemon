@@ -47,7 +47,6 @@ const GetDataObject = async (APIUrl) => {
 // to get the pokemon Data
 GetDataList(pokemonAPI);
 
-
-
-
-export { pokemonAPI, commentsAPI, likesAPI, GetDataList, GetDataObject };
+export {
+  pokemonAPI, commentsAPI, likesAPI, GetDataList, GetDataObject,
+};
