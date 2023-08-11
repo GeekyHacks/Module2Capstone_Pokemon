@@ -21,27 +21,35 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 // I run this code in console when I want to reset the board by creating a id for involvement api
+// const comment ={'name':'comment'}
 
-// fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/', {
-//   method: 'POST',
-//   body: JSON.stringify({
-//     name: 'comment',
-//   }),
-//   headers: {
-//     'Content-type': 'application/json; charset=UTF-8',
-//   },
-// })
-//   .then((response) => response.json())
-//   .then((json) => console.log(json));
+// async function addNewComment(itemId, username, comment) {
+//   // const apiKey = 'tnE2k6P5BdZ2HCTjbd0V';
+//   await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments', {
+//     method: 'POST',
+//     body: JSON.stringify({
+//       item_id: itemId,
+//       username,
+//       comment,
+//     }),
+//     headers: {
+//       'Content-type': 'application/json; charset=UTF-8',
+//     },
+//   })
+//     .then((response) => response.json())
+//     .then((json) => console.log(json));
+// }
 
 // the id I get running the previous fetch code
 // const ID = 'woTq8RsLkSavLaCMQAAP';
 
 // APIs list
+// const appID = 'y6YPEOFIRnRk7yGZhKxu';
 var pokemonAPI = 'https://pokeapi.co/api/v2/pokemon/';
-var commentsAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/woTq8RsLkSavLaCMQAAP/comments/';
-var likesAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/woTq8RsLkSavLaCMQAAP/likes/';
-var pokemonList = document.getElementById('pokemonList');
+var commentsAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments';
+var likesAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/likes';
+
+// const pokemonList = document.getElementById('pokemonList');
 
 // this will get an api array
 
@@ -101,15 +109,6 @@ var GetDataObject = /*#__PURE__*/function () {
 GetDataList(pokemonAPI);
 
 
-// const image = 'https://pokeapi.co/api/v2/pokemon/sprites/';
-
-// const GetDataObject = async (APIUrl) => {
-//     const response = await fetch(APIUrl);
-//     const dataList = await response.json();
-//     return dataList;
-//   };
-//  GetDataObject(image)
-
 /***/ }),
 
 /***/ "./src/modules/pageRendering.js":
@@ -133,28 +132,218 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+// import { pokemonAPI } from './APIs.js';
 
+// export const renderList = async (listData) => {
+//   const pokemonList = document.getElementById('pokemonList');
+//   pokemonList.innerHTML = '';
+//   // to get the pokemon main object that has name & url
+//   let response = await fetch(pokemonAPI);
+//   listData = await response.json();
+//   listData = listData.results;
+
+//   console.log(listData);
+
+//   // to sort the array elements
+//   const sortedDataList = [...listData];
+//   sortedDataList.sort((a, b) => b.score - a.score);
+//   console.log(sortedDataList);
+//   const objects = sortedDataList;
+//   console.log(objects[0]);
+//   // to loop through 18 elements of the array
+//   for (let i = 0; i < 18; i++) {
+//     const li = document.createElement('li');
+//     const pokemonPopup = document.querySelector('.popup');
+//     const commentBtn = document.querySelectorAll('.commentPopup');
+
+//     const object = objects[i];
+//     // to fetch the pokemon Image
+//     let response = await fetch(object.url);
+//     const pokeObject = await response.json();
+//     console.log(pokeObject);
+
+//     // to get the image of pokemon
+//     console.log(pokeObject.sprites.other.dream_world.front_default);
+
+//     li.innerHTML = `
+//       <li class="pokemonItem">
+//       <img src="${pokeObject.sprites.other.dream_world.front_default}" alt="${object.name}" />
+//       <div class="likeDiv">
+//         <h3>${object.name}</h3>
+//         <img src="./assets/like.svg" alt="like" />
+//       </div>
+//       <div class="commentDiv">
+//         <button class="commentPopup" data-url="${object.url}">Comment</button>
+//         <div>
+//           <h4>
+//             likes<span>1</span>
+//           </h4>
+//         </div>
+//       </div>
+//     </li>
+//            `;
+
+//     commentBtn.forEach((btn) => {
+//       btn.addEventListener('click', async () => {
+//         const clickedUrl = btn.getAttribute('data-url');
+//         const pokeResponse = await fetch(clickedUrl);
+//         const pokeObject = await pokeResponse.json();
+//         pokemonList.innerHTML = '';
+//         pokemonPopup.innerHTML = `
+//                  <div class="pokemonImg">
+//                  <img class="pageX" src="./assets/x.svg" alt="close" />
+//                  <img src="${pokeObject.sprites.other.dream_world.front_default}" alt="${object.name}" />
+//                  <h3>${object.name}</h3>
+//                  </div>
+//                <div class="comments">
+//                  <h3>Recent Comments</h3>
+//                  <ul class="recentComments"></ul>
+//                </div>
+//                <form autocomplete="off" class="AddComment">
+//                  <label>Add a Comment</label>
+//                  <input type="text" id="name" placeholder="Your Name" required maxLength="20" />
+//                  <textarea rows="7"></textarea>
+//                  <button id="submit" class="btn" type="submit">Comment</button>
+//                </form>
+//                  `;
+//         const closeBtn = document.querySelector('.pageX');
+//         closeBtn.addEventListener('click', () => {
+//           pokemonPopup.innerHTML = '';
+//           location.reload();
+//         });
+//       });
+//     });
+//     pokemonList.appendChild(li);
+//   }
+// };
+
+// import { pokemonAPI } from './APIs.js';
+
+// export const renderList = async () => {
+//   const pokemonList = document.getElementById('pokemonList');
+//   pokemonList.innerHTML = '';
+
+//   try {
+//     // Fetch the list of Pokemon
+//     let response = await fetch(pokemonAPI);
+//     let listData = await response.json();
+//     listData = listData.results;
+
+//     console.log(listData);
+
+//     // Sort the array elements
+//     const sortedDataList = [...listData];
+//     sortedDataList.sort((a, b) => b.score - a.score);
+//     console.log(sortedDataList);
+//     const objects = sortedDataList;
+//     console.log(objects[0]);
+
+//     // Loop through 18 elements of the array
+//     for (let i = 0; i < 18; i++) {
+//       const li = document.createElement('li');
+//       const pokemonPopup = document.querySelector('.popup');
+//       const commentBtn = document.querySelectorAll('.commentPopup');
+
+//       const object = objects[i];
+
+//       // Fetch the Pokemon image
+//       response = await fetch(object.url);
+//       const pokeObject = await response.json();
+//       console.log(pokeObject);
+
+//       // Get the image of the Pokemon
+//       console.log(pokeObject.sprites.other.dream_world.front_default);
+
+//       li.innerHTML = `
+//         <li class="pokemonItem">
+//           <img src="${pokeObject.sprites.other.dream_world.front_default}" alt="${object.name}" />
+//           <div class="likeDiv">
+//             <h3>${object.name}</h3>
+//             <img src="./assets/like.svg" alt="like" />
+//           </div>
+//           <div class="commentDiv">
+//             <button class="commentPopup" data-url="${object.url}">Comment</button>
+//             <div>
+//               <h4>
+//                 likes<span>1</span>
+//               </h4>
+//             </div>
+//           </div>
+//         </li>
+//       `;
+
+//       commentBtn.forEach((btn) => {
+//         btn.addEventListener('click', async () => {
+//           const clickedUrl = btn.getAttribute('data-url');
+//           const pokeResponse = await fetch(clickedUrl);
+//           const pokeObject = await pokeResponse.json();
+//           pokemonList.innerHTML = '';
+//           pokemonPopup.innerHTML = `
+//             <div class="pokemonImg">
+//               <img class="pageX" src="./assets/x.svg" alt="close" />
+//               <img src="${pokeObject.sprites.other.dream_world.front_default}" alt="${object.name}" />
+//               <h3>${object.name}</h3>
+//             </div>
+//             <div class="comments">
+//               <h3>Recent Comments</h3>
+//               <ul class="recentComments"></ul>
+//             </div>
+//             <form autocomplete="off" class="AddComment">
+//               <label>Add a Comment</label>
+//               <input type="text" id="name" placeholder="Your Name" required maxLength="20" />
+//               <textarea rows="7"></textarea>
+//               <button id="submit" class="btn" type="submit">Comment</button>
+//             </form>
+//           `;
+//           const closeBtn = document.querySelector('.pageX');
+//           closeBtn.addEventListener('click', () => {
+//             pokemonPopup.innerHTML = '';
+//             location.reload();
+//           });
+//         });
+//       });
+//       pokemonList.appendChild(li);
+//     }
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
+
+
+// Function to generate a unique ID
+function generateUniqueId() {
+  // Generate a random timestamp value
+  var timestamp = Date.now();
+
+  // Generate a random alphanumeric string
+  var randomString = Math.random().toString(36).substring(2, 8);
+
+  // Concatenate the timestamp and random string to form the unique ID
+  var uniqueId = "item_".concat(timestamp, "_").concat(randomString);
+  return uniqueId;
+}
 var renderList = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(listData) {
-    var pokemonList, response, sortedDataList, objects, _loop, i;
-    return _regeneratorRuntime().wrap(function _callee2$(_context3) {
-      while (1) switch (_context3.prev = _context3.next) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+    var pokemonList, response, listData, sortedDataList, objects, _loop, i;
+    return _regeneratorRuntime().wrap(function _callee3$(_context4) {
+      while (1) switch (_context4.prev = _context4.next) {
         case 0:
           pokemonList = document.getElementById('pokemonList');
           pokemonList.innerHTML = '';
-          // to get the pokemon main object that has name & url
-          _context3.next = 4;
+          _context4.prev = 2;
+          _context4.next = 5;
           return fetch(_APIs_js__WEBPACK_IMPORTED_MODULE_0__.pokemonAPI);
-        case 4:
-          response = _context3.sent;
-          _context3.next = 7;
+        case 5:
+          response = _context4.sent;
+          _context4.next = 8;
           return response.json();
-        case 7:
-          listData = _context3.sent;
+        case 8:
+          listData = _context4.sent;
           listData = listData.results;
           console.log(listData);
 
-          // to sort the array elements
+          // Sort the array elements
           sortedDataList = _toConsumableArray(listData);
           sortedDataList.sort(function (a, b) {
             return b.score - a.score;
@@ -162,83 +351,181 @@ var renderList = /*#__PURE__*/function () {
           console.log(sortedDataList);
           objects = sortedDataList;
           console.log(objects[0]);
-          // to loop through 18 elements of the array
+
+          // Loop through 18 elements of the array
           _loop = /*#__PURE__*/_regeneratorRuntime().mark(function _loop() {
-            var li, object, response, pokeObject, pokemonPopup, commentBtn;
-            return _regeneratorRuntime().wrap(function _loop$(_context2) {
-              while (1) switch (_context2.prev = _context2.next) {
+            var li, pokemonPopup, commentBtn, object, pokeObject;
+            return _regeneratorRuntime().wrap(function _loop$(_context3) {
+              while (1) switch (_context3.prev = _context3.next) {
                 case 0:
                   li = document.createElement('li');
-                  object = objects[i]; // to fetch the pokemon Image
-                  _context2.next = 4;
-                  return fetch(object.url);
-                case 4:
-                  response = _context2.sent;
-                  _context2.next = 7;
-                  return response.json();
-                case 7:
-                  pokeObject = _context2.sent;
-                  console.log(pokeObject);
-
-                  // to get the image of pokemon
-                  console.log(pokeObject.sprites.other.dream_world.front_default);
-                  li.innerHTML = "\n      <li class=\"pokemonItem\">\n      <img src=\"".concat(pokeObject.sprites.other.dream_world.front_default, "\" alt=\"").concat(object.name, "\" />\n      <div class=\"likeDiv\">\n        <h3>").concat(object.name, "</h3>\n        <img src=\"./assets/like.svg\" alt=\"like\" />\n      </div>\n      <div class=\"commentDiv\">\n        <button class=\"commentPopup\" data-url=\"").concat(object.url, "\">Comment</button>\n        <div>\n          <h4>\n            likes<span>1</span>\n          </h4>\n        </div>\n      </div>\n    </li>\n           ");
                   pokemonPopup = document.querySelector('.popup');
                   commentBtn = document.querySelectorAll('.commentPopup');
+                  object = objects[i]; // Fetch the Pokemon image
+                  _context3.next = 6;
+                  return fetch(object.url);
+                case 6:
+                  response = _context3.sent;
+                  _context3.next = 9;
+                  return response.json();
+                case 9:
+                  pokeObject = _context3.sent;
+                  console.log(pokeObject);
+
+                  // Get the image of the Pokemon
+                  console.log(pokeObject.sprites.other.dream_world.front_default);
+                  li.innerHTML = "\n        <li class=\"pokemonItem\">\n          <img src=\"".concat(pokeObject.sprites.other.dream_world.front_default, "\" alt=\"").concat(object.name, "\" />\n          <div class=\"likeDiv\">\n            <h3>").concat(object.name, "</h3>\n            <img src=\"./assets/like.svg\" alt=\"like\" />\n          </div>\n          <div class=\"commentDiv\">\n            <button class=\"commentPopup\" data-url=\"").concat(object.url, "\">Comment</button>\n            <div>\n              <h4>\n                likes<span>1</span>\n              </h4>\n            </div>\n          </div>\n        </li>\n      ");
                   commentBtn.forEach(function (btn) {
-                    btn.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-                      var clickedUrl, pokeResponse, pokeObject, closeBtn;
-                      return _regeneratorRuntime().wrap(function _callee$(_context) {
-                        while (1) switch (_context.prev = _context.next) {
+                    btn.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+                      var clickedUrl, pokeResponse, pokeObject, commentForm, closeBtn;
+                      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+                        while (1) switch (_context2.prev = _context2.next) {
                           case 0:
                             clickedUrl = btn.getAttribute('data-url');
-                            _context.next = 3;
+                            _context2.next = 3;
                             return fetch(clickedUrl);
                           case 3:
-                            pokeResponse = _context.sent;
-                            _context.next = 6;
+                            pokeResponse = _context2.sent;
+                            _context2.next = 6;
                             return pokeResponse.json();
                           case 6:
-                            pokeObject = _context.sent;
+                            pokeObject = _context2.sent;
                             pokemonList.innerHTML = '';
-                            pokemonPopup.innerHTML = "\n                 <div class=\"pokemonImg\">\n                 <img class=\"pageX\" src=\"./assets/x.svg\" alt=\"close\" />\n                 <img src=\"".concat(pokeObject.sprites.other.dream_world.front_default, "\" alt=\"").concat(object.name, "\" />\n                 <h3>").concat(object.name, "</h3>\n                 </div>\n               <div class=\"comments\">\n                 <h3>Recent Comments</h3>\n                 <ul class=\"recentComments\"></ul>\n               </div>\n               <form autocomplete=\"off\" class=\"AddComment\">\n                 <label>Add a Comment</label>\n                 <input type=\"text\" id=\"name\" placeholder=\"Your Name\" required maxLength=\"20\" />\n                 <textarea rows=\"7\"></textarea>\n                 <button id=\"submit\" class=\"btn\" type=\"submit\">Comment</button>\n               </form>\n                 ");
+                            pokemonPopup.innerHTML = "\n            <div class=\"pokemonImg\">\n              <img class=\"pageX\" src=\"./assets/x.svg\" alt=\"close\" />\n              <img src=\"".concat(pokeObject.sprites.other.dream_world.front_default, "\" alt=\"").concat(object.name, "\" />\n              <h3>").concat(object.name, "</h3>\n            </div>\n            <div class=\"comments\">\n              <h3>Recent Comments</h3>\n              <ul class=\"recentComments\"></ul>\n            </div>\n            <form autocomplete=\"off\" class=\"AddComment\">\n              <label>Add a Comment</label>\n              <input type=\"text\" id=\"name\" placeholder=\"Your Name\" required maxLength=\"20\" />\n              <textarea rows=\"7\" id=\"commentText\"></textarea>\n              <button id=\"submit\" class=\"btn\" type=\"submit\">Comment</button>\n            </form>\n          ");
+                            commentForm = document.querySelector('.AddComment');
+                            commentForm.addEventListener('submit', /*#__PURE__*/function () {
+                              var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {
+                                var nameInput, commentInput, username, comment, item_id, data, postResponse, commentsResponse, responseData, commentsData, recentComments;
+                                return _regeneratorRuntime().wrap(function _callee$(_context) {
+                                  while (1) switch (_context.prev = _context.next) {
+                                    case 0:
+                                      event.preventDefault();
+                                      nameInput = document.getElementById('name');
+                                      commentInput = document.getElementById('commentText');
+                                      username = nameInput.value;
+                                      comment = commentInput.value; // Generate a unique item_id
+                                      item_id = generateUniqueId(); // Prepare the data to be sent
+                                      data = {
+                                        item_id: item_id,
+                                        username: username,
+                                        comment: comment
+                                      };
+                                      _context.prev = 7;
+                                      _context.next = 10;
+                                      return fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments', {
+                                        method: 'POST',
+                                        headers: {
+                                          'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify(data)
+                                      });
+                                    case 10:
+                                      postResponse = _context.sent;
+                                      if (!postResponse.ok) {
+                                        _context.next = 31;
+                                        break;
+                                      }
+                                      // Handle the successful response
+                                      console.log('Comment posted successfully');
+                                      _context.prev = 13;
+                                      _context.next = 16;
+                                      return fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments');
+                                    case 16:
+                                      commentsResponse = _context.sent;
+                                      _context.next = 19;
+                                      return commentsResponse.json();
+                                    case 19:
+                                      responseData = _context.sent;
+                                      commentsData = responseData.comments; // Get the recentComments element
+                                      recentComments = document.querySelector('.recentComments'); // Clear the existing list
+                                      recentComments.innerHTML = '';
+                                      if (Array.isArray(commentsData)) {
+                                        // Loop through the comments and create list items
+                                        commentsData.forEach(function (comment) {
+                                          var commentLi = document.createElement('li');
+                                          commentLi.textContent = comment.comment;
+                                          recentComments.appendChild(commentLi);
+                                        });
+                                      } else {
+                                        console.error('Invalid comments data format:', commentsData);
+                                      }
+                                      _context.next = 29;
+                                      break;
+                                    case 26:
+                                      _context.prev = 26;
+                                      _context.t0 = _context["catch"](13);
+                                      console.error('An error occurred while fetching comments:', _context.t0);
+                                    case 29:
+                                      _context.next = 32;
+                                      break;
+                                    case 31:
+                                      // Handle the error response
+                                      console.error('Failed to post comment');
+                                    case 32:
+                                      _context.next = 37;
+                                      break;
+                                    case 34:
+                                      _context.prev = 34;
+                                      _context.t1 = _context["catch"](7);
+                                      console.error('An error occurred while posting the comment', _context.t1);
+                                    case 37:
+                                      // Clear the input fields
+                                      nameInput.value = '';
+                                      commentInput.value = '';
+                                    case 39:
+                                    case "end":
+                                      return _context.stop();
+                                  }
+                                }, _callee, null, [[7, 34], [13, 26]]);
+                              }));
+                              return function (_x) {
+                                return _ref3.apply(this, arguments);
+                              };
+                            }());
                             closeBtn = document.querySelector('.pageX');
                             closeBtn.addEventListener('click', function () {
                               pokemonPopup.innerHTML = '';
                               location.reload();
                             });
-                          case 11:
+                          case 13:
                           case "end":
-                            return _context.stop();
+                            return _context2.stop();
                         }
-                      }, _callee);
+                      }, _callee2);
                     })));
                   });
                   pokemonList.appendChild(li);
                 case 15:
                 case "end":
-                  return _context2.stop();
+                  return _context3.stop();
               }
             }, _loop);
           });
           i = 0;
-        case 17:
+        case 18:
           if (!(i < 18)) {
-            _context3.next = 22;
+            _context4.next = 23;
             break;
           }
-          return _context3.delegateYield(_loop(), "t0", 19);
-        case 19:
+          return _context4.delegateYield(_loop(), "t0", 20);
+        case 20:
           i++;
-          _context3.next = 17;
+          _context4.next = 18;
           break;
-        case 22:
+        case 23:
+          _context4.next = 28;
+          break;
+        case 25:
+          _context4.prev = 25;
+          _context4.t1 = _context4["catch"](2);
+          console.error(_context4.t1);
+        case 28:
         case "end":
-          return _context3.stop();
+          return _context4.stop();
       }
-    }, _callee2);
+    }, _callee3, null, [[2, 25]]);
   }));
-  return function renderList(_x) {
+  return function renderList() {
     return _ref.apply(this, arguments);
   };
 }();
@@ -276,6 +563,7 @@ body {
   flex-direction: column;
   background-color: #2fa8cc;
   font-family: "Roboto", sans-serif;
+  align-items: center;
   justify-content: center;
   padding: 5px;
   font-size: 12px;
@@ -477,7 +765,7 @@ footer {
   body {
     font-size: 23px;
   }
-}`, "",{"version":3,"sources":["webpack://./src/styles/Sass/main.sass","webpack://./src/styles/Sass/global.sass"],"names":[],"mappings":"AAMA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;AAJJ;;AAMA;ECAI,aAAA;EACA,sBAAA;EDCA,yBAXY;EAYZ,iCAAA;EAEA,uBAAA;EACA,YAAA;EACA,eAAA;AAHJ;;AAIA;EACI,eAAA;EACA,gBAAA;EACA,eAAA;AADJ;AAEI;EACI,sBAAA;AAAR;AAEI;EACI,UAAA;AAAR;;AAEA;EACI,cC3BQ;AD4BZ;;AACA;EACI,iBAAA;AAEJ;;AADA;EACI,iBAAA;AAIJ;;AAFA;EACI,iBAAA;AAKJ;;AAHA;EACI,sBAAA;EACA,iBAAA;AAMJ;;AALA;EACI,eAAA;ECjCA,aAAA;EACA,sBAAA;EDkCA,oBAAA;EACA,uBAAA;AASJ;;AARA;ECjCI,aAAA;EACA,mBAAA;EDkCA,mBAAA;EACA,8BAAA;EACA,SAAA;EACA,mBAAA;AAYJ;AAXI;EACI,SAAA;EACA,sBAAA;AAaR;AAZI;EACI,SAAA;AAcR;;AAbA;ECXI,aAAA;EACA,kCAAA;EACA,mBAAA;EDWA,mBAAA;EACA,eAAA;EAEA,WAAA;AAiBJ;AAhBI;EACI,eAAA;EACA,gBAAA;AAkBR;;AAhBA;EC1DI,aAAA;EACA,sBAAA;ED2DA,mBAAA;EAEA,WAAA;EACA,mBCxEa;ED0Eb,kBAAA;EACA,wEAzES;AA2Fb;;AAhBA;EChEI,aAAA;EACA,mBAAA;EDiEA,mBAAA;EACA,oBAAA;EACA,8BAAA;EACA,eAAA;AAoBJ;AAnBI;EACI,oBAAA;AAqBR;AApBI;EACI,0BAAA;EACA,2BAAA;AAsBR;;AApBA;ECxEI,oBAAA;EACA,kBAAA;EACA,iBAAA;EACA,gBAAA;EACA,yBAAA;EACA,oCAAA;EACA,WAAA;EACA,wEDtBS;ECuBT,YAAA;EACA,eAAA;EACA,kBAAA;EDgEA,sBAAA;AAiCJ;AC/FI;EACI,sBAAA;ADiGR;AC/FI;EACI,UAAA;ADiGR;AArCI;EACI,sBAAA;AAuCR;AArCI;EACI,UAAA;AAuCR;;AArCA;EACI,oBAAA;AAwCJ;AAvCI;EACI,eAAA;EC7FJ,aAAA;EACA,sBAAA;ADuIJ;AAvCQ;EACI,kBAAA;EACA,gBAAA;EACA,iBAAA;AAyCZ;AAxCQ;EACI,oBAAA;EACA,eAAA;EACA,gBAAA;AA0CZ;AAzCQ;EACI,kBAAA;EACA,gBAAA;AA2CZ;AAzCI;EACI,kBAAA;AA2CR;AA1CI;EC/GA,aAAA;EACA,sBAAA;EDgHI,mBAAA;EACA,mBAAA;EACA,uBAAA;EACA,sBAAA;EACA,WAAA;AA6CR;AA5CQ;EACI,kBAAA;EACA,qBAAA;EACA,eAAA;EACA,oCAAA;AA8CZ;AA7CQ;EACI,mBAAA;EACA,kBAAA;EACA,eAAA;EACA,mBCzIG;ED0IH,wEAvIC;AAsLb;AA9CI;EACI,eAAA;AAgDR;;AA9CA;EACI,kBAAA;EACA,gBAAA;EACA,sBAAA;EACA,SAAA;EACA,cAAA;AAiDJ;;AA/CA;EACI;IACI,eAAA;IACA,+BCjJI;IDkJJ,gCCpJI;EDsMV;EAhDE;IACI,SAAA;EAkDN;AACF;AAjDA;EACI;IACI,eAAA;EAmDN;AACF","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n$primary-color: #2fa8cc\r\n$secondary-color: #f4f4f4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\nbody\r\n    @include columnFlex\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    // align-items: center\r\n    justify-content: center\r\n    padding: 5px\r\n    font-size: 12px\r\nimg\r\n    max-width: 5rem\r\n    max-height: 7rem\r\n    cursor: pointer\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\nh1, h2, h3,li, input,label\r\n    color: $fontColor\r\n\r\nh1\r\n    font-size: 1.2rem\r\nh2\r\n    font-size: .7rem\r\n\r\nh3\r\n    font-size: .5rem\r\n\r\nli, input, a, .copyRights\r\n    border-radius: .15rem\r\n    font-size: .7rem\r\nheader\r\n    padding: .2rem\r\n    @include columnFlex\r\n    align-items: stretch\r\n    justify-content: center\r\nnav\r\n    @include rowFlex\r\n    align-items: center\r\n    justify-content: space-between\r\n    gap: 5rem\r\n    white-space: nowrap\r\n    img\r\n        flex: .8\r\n        align-self: flex-start\r\n    h2\r\n        flex: .4\r\n#pokemonList\r\n    @include threeThreeGrid\r\n    align-items: center\r\n    padding: .2rem\r\n    // justify-content: space-evenly\r\n    gap: .7rem\r\n    img\r\n        max-width: 6rem\r\n        max-height: 4rem\r\n\r\n.pokemonItem, .popup\r\n    @include columnFlex\r\n    align-items: center\r\n    // justify-content: center\r\n    gap: .4rem\r\n    background: $secondarycolor\r\n    // padding: .2rem\r\n    border-radius: 3px\r\n    box-shadow: $box-shadow\r\n\r\n.likeDiv, .commentDiv\r\n    @include rowFlex\r\n    align-self: stretch\r\n    align-items: stretch\r\n    justify-content: space-between\r\n    padding: .2rem\r\n    div, img\r\n        align-self: flex-end\r\n    img\r\n        max-width: 1rem !important\r\n        max-height: 1rem !important\r\n\r\nbutton\r\n    @include button\r\n    align-self: flex-start\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n.popup\r\n    align-items: stretch\r\n    .pokemonImg\r\n        padding: .3rem\r\n        @include columnFlex\r\n        // align-items: stretch !important\r\n        // justify-content: center !important\r\n        img\r\n            align-self: center\r\n            max-width: 15rem\r\n            max-height: 10rem\r\n        .pageX\r\n            align-self: flex-end\r\n            max-width: 1rem\r\n            max-height: 1rem\r\n        h3\r\n            align-self: center\r\n            margin-top: 1rem\r\n\r\n    .recentComments\r\n        overflow-y: scroll\r\n    .AddComment, .comments\r\n        @include columnFlex\r\n        align-self: stretch\r\n        align-items: center\r\n        justify-content: center\r\n        padding: .3rem .5rem\r\n        gap: .3rem\r\n        button\r\n            align-self: center\r\n            margin-bottom: .5rem\r\n            padding: .4rem\r\n            background-color: $primarycolor !important\r\n        textarea, input\r\n            align-self: stretch\r\n            border-radius: 3px\r\n            padding: .3rem\r\n            background: $primarycolor\r\n            box-shadow: $box-shadow\r\n    label, h3\r\n        font-size: 1rem\r\n\r\nfooter\r\n    position: relative\r\n    margin-top: 2rem\r\n    padding-bottom: 0.3rem\r\n    top: auto\r\n    bottom: 0.1rem\r\n    // width: 50%\r\n@media ( min-width: 768px  )\r\n    main\r\n        font-size: 18px\r\n        padding-left: $Qlpadding\r\n        padding-right: $Qrpadding\r\n\r\n    section, .popup\r\n        gap: 2rem\r\n\r\n@media ( min-width: 999px  )\r\n    body\r\n        font-size: 23px\r\n","$InterFont: \"Inter\", sans-serif\r\n$primarycolor: #c2e2ea\r\n$secondarycolor: #72bbce\r\n$fontColor: #002d67\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n$qrpadding: calc( 12% - 80px )\r\n$Qrpadding: calc( 25% - 120px )\r\n$qlpadding: calc( 12% - 80px )\r\n$Qlpadding: calc( 25% - 120px )\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 4px\r\n    font-size: .6rem\r\n    font-weight: 600\r\n    color: $fontColor !important\r\n    background-color: $primary-color !important\r\n    border: 1px\r\n    box-shadow: $box-shadow\r\n    padding: 4px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n@mixin oneFiveGrid\r\n    display: grid\r\n    grid-template-columns: 1fr\r\n    grid-auto-rows: 1fr 1fr 1fr 1fr 1fr\r\n\r\n@mixin fiveOneGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin threeThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .9rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n\r\n@mixin transparentText\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-repeat: no-repeat\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n\r\n@mixin transparentBg\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-blend-mode: color-burn\r\n    background-repeat: no-repeat\r\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/styles/Sass/main.sass","webpack://./src/styles/Sass/global.sass"],"names":[],"mappings":"AAMA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;AAJJ;;AAMA;ECAI,aAAA;EACA,sBAAA;EDCA,yBAXY;EAYZ,iCAAA;EACA,mBAAA;EACA,uBAAA;EACA,YAAA;EACA,eAAA;AAFJ;;AAGA;EACI,eAAA;EACA,gBAAA;EACA,eAAA;AAAJ;AACI;EACI,sBAAA;AACR;AACI;EACI,UAAA;AACR;;AACA;EACI,cC3BQ;AD6BZ;;AAAA;EACI,iBAAA;AAGJ;;AAFA;EACI,iBAAA;AAKJ;;AAHA;EACI,iBAAA;AAMJ;;AAJA;EACI,sBAAA;EACA,iBAAA;AAOJ;;AANA;EACI,eAAA;ECjCA,aAAA;EACA,sBAAA;EDkCA,oBAAA;EACA,uBAAA;AAUJ;;AATA;ECjCI,aAAA;EACA,mBAAA;EDkCA,mBAAA;EACA,8BAAA;EACA,SAAA;EACA,mBAAA;AAaJ;AAZI;EACI,SAAA;EACA,sBAAA;AAcR;AAbI;EACI,SAAA;AAeR;;AAdA;ECXI,aAAA;EACA,kCAAA;EACA,mBAAA;EDWA,mBAAA;EACA,eAAA;EAEA,WAAA;AAkBJ;AAjBI;EACI,eAAA;EACA,gBAAA;AAmBR;;AAjBA;EC1DI,aAAA;EACA,sBAAA;ED2DA,mBAAA;EAEA,WAAA;EACA,mBCxEa;ED0Eb,kBAAA;EACA,wEAzES;AA4Fb;;AAjBA;EChEI,aAAA;EACA,mBAAA;EDiEA,mBAAA;EACA,oBAAA;EACA,8BAAA;EACA,eAAA;AAqBJ;AApBI;EACI,oBAAA;AAsBR;AArBI;EACI,0BAAA;EACA,2BAAA;AAuBR;;AArBA;ECxEI,oBAAA;EACA,kBAAA;EACA,iBAAA;EACA,gBAAA;EACA,yBAAA;EACA,oCAAA;EACA,WAAA;EACA,wEDtBS;ECuBT,YAAA;EACA,eAAA;EACA,kBAAA;EDgEA,sBAAA;AAkCJ;AChGI;EACI,sBAAA;ADkGR;AChGI;EACI,UAAA;ADkGR;AAtCI;EACI,sBAAA;AAwCR;AAtCI;EACI,UAAA;AAwCR;;AAtCA;EACI,oBAAA;AAyCJ;AAxCI;EACI,eAAA;EC7FJ,aAAA;EACA,sBAAA;ADwIJ;AAxCQ;EACI,kBAAA;EACA,gBAAA;EACA,iBAAA;AA0CZ;AAzCQ;EACI,oBAAA;EACA,eAAA;EACA,gBAAA;AA2CZ;AA1CQ;EACI,kBAAA;EACA,gBAAA;AA4CZ;AA1CI;EACI,kBAAA;AA4CR;AA3CI;EC/GA,aAAA;EACA,sBAAA;EDgHI,mBAAA;EACA,mBAAA;EACA,uBAAA;EACA,sBAAA;EACA,WAAA;AA8CR;AA7CQ;EACI,kBAAA;EACA,qBAAA;EACA,eAAA;EACA,oCAAA;AA+CZ;AA9CQ;EACI,mBAAA;EACA,kBAAA;EACA,eAAA;EACA,mBCzIG;ED0IH,wEAvIC;AAuLb;AA/CI;EACI,eAAA;AAiDR;;AA/CA;EACI,kBAAA;EACA,gBAAA;EACA,sBAAA;EACA,SAAA;EACA,cAAA;AAkDJ;;AA/CA;EACI;IACI,eAAA;IACA,+BClJI;IDmJJ,gCCrJI;EDuMV;EAhDE;IACI,SAAA;EAkDN;AACF;AAjDA;EACI;IACI,eAAA;EAmDN;AACF","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n$primary-color: #2fa8cc\r\n$secondary-color: #f4f4f4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\nbody\r\n    @include columnFlex\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    align-items: center\r\n    justify-content: center\r\n    padding: 5px\r\n    font-size: 12px\r\nimg\r\n    max-width: 5rem\r\n    max-height: 7rem\r\n    cursor: pointer\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\nh1, h2, h3,li, input,label\r\n    color: $fontColor\r\n\r\nh1\r\n    font-size: 1.2rem\r\nh2\r\n    font-size: .7rem\r\n\r\nh3\r\n    font-size: .5rem\r\n\r\nli, input, a, .copyRights\r\n    border-radius: .15rem\r\n    font-size: .7rem\r\nheader\r\n    padding: .2rem\r\n    @include columnFlex\r\n    align-items: stretch\r\n    justify-content: center\r\nnav\r\n    @include rowFlex\r\n    align-items: center\r\n    justify-content: space-between\r\n    gap: 5rem\r\n    white-space: nowrap\r\n    img\r\n        flex: .8\r\n        align-self: flex-start\r\n    h2\r\n        flex: .4\r\n#pokemonList\r\n    @include threeThreeGrid\r\n    align-items: center\r\n    padding: .2rem\r\n    // justify-content: space-evenly\r\n    gap: .7rem\r\n    img\r\n        max-width: 6rem\r\n        max-height: 4rem\r\n\r\n.pokemonItem, .popup\r\n    @include columnFlex\r\n    align-items: center\r\n    // justify-content: center\r\n    gap: .4rem\r\n    background: $secondarycolor\r\n    // padding: .2rem\r\n    border-radius: 3px\r\n    box-shadow: $box-shadow\r\n\r\n.likeDiv, .commentDiv\r\n    @include rowFlex\r\n    align-self: stretch\r\n    align-items: stretch\r\n    justify-content: space-between\r\n    padding: .2rem\r\n    div, img\r\n        align-self: flex-end\r\n    img\r\n        max-width: 1rem !important\r\n        max-height: 1rem !important\r\n\r\nbutton\r\n    @include button\r\n    align-self: flex-start\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n.popup\r\n    align-items: stretch\r\n    .pokemonImg\r\n        padding: .3rem\r\n        @include columnFlex\r\n        // align-items: stretch !important\r\n        // justify-content: center !important\r\n        img\r\n            align-self: center\r\n            max-width: 15rem\r\n            max-height: 10rem\r\n        .pageX\r\n            align-self: flex-end\r\n            max-width: 1rem\r\n            max-height: 1rem\r\n        h3\r\n            align-self: center\r\n            margin-top: 1rem\r\n\r\n    .recentComments\r\n        overflow-y: scroll\r\n    .AddComment, .comments\r\n        @include columnFlex\r\n        align-self: stretch\r\n        align-items: center\r\n        justify-content: center\r\n        padding: .3rem .5rem\r\n        gap: .3rem\r\n        button\r\n            align-self: center\r\n            margin-bottom: .5rem\r\n            padding: .4rem\r\n            background-color: $primarycolor !important\r\n        textarea, input\r\n            align-self: stretch\r\n            border-radius: 3px\r\n            padding: .3rem\r\n            background: $primarycolor\r\n            box-shadow: $box-shadow\r\n    label, h3\r\n        font-size: 1rem\r\n\r\nfooter\r\n    position: relative\r\n    margin-top: 2rem\r\n    padding-bottom: 0.3rem\r\n    top: auto\r\n    bottom: 0.1rem\r\n    // width: 50%\r\n    \r\n@media ( min-width: 768px  )\r\n    main\r\n        font-size: 18px\r\n        padding-left: $Qlpadding\r\n        padding-right: $Qrpadding\r\n\r\n    section, .popup\r\n        gap: 2rem\r\n\r\n@media ( min-width: 999px  )\r\n    body\r\n        font-size: 23px\r\n","$InterFont: \"Inter\", sans-serif\r\n$primarycolor: #c2e2ea\r\n$secondarycolor: #72bbce\r\n$fontColor: #002d67\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n$qrpadding: calc( 12% - 80px )\r\n$Qrpadding: calc( 25% - 120px )\r\n$qlpadding: calc( 12% - 80px )\r\n$Qlpadding: calc( 25% - 120px )\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 4px\r\n    font-size: .6rem\r\n    font-weight: 600\r\n    color: $fontColor !important\r\n    background-color: $primary-color !important\r\n    border: 1px\r\n    box-shadow: $box-shadow\r\n    padding: 4px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n@mixin oneFiveGrid\r\n    display: grid\r\n    grid-template-columns: 1fr\r\n    grid-auto-rows: 1fr 1fr 1fr 1fr 1fr\r\n\r\n@mixin fiveOneGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin threeThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .9rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n\r\n@mixin transparentText\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-repeat: no-repeat\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n\r\n@mixin transparentBg\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-blend-mode: color-burn\r\n    background-repeat: no-repeat\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1103,4 +1391,4 @@ window.addEventListener('load', function () {
 
 /******/ })()
 ;
-//# sourceMappingURL=bundleaa99c702355474bd40eb.js.map
+//# sourceMappingURL=bundle36548dabfde3eb2e7c81.js.map
