@@ -1,6 +1,6 @@
 import { pokemonAPI } from './APIs.js';
 
-export default renderList = async (listData) => {
+export default async (listData) => {
   const pokemonList = document.getElementById('pokemonList');
   pokemonList.innerHTML = '';
   // to get the pokemon main object that has name & url
@@ -15,17 +15,17 @@ export default renderList = async (listData) => {
   sortedDataList.sort((a, b) => b.score - a.score);
   // console.log(sortedDataList);
   const objects = sortedDataList;
-  console.log(objects[0]);
+  //   console.log(objects[0]);
   // to loop through 18 elements of the array
-  for (let i = 0; i < 18; i++) {
+  for (let i = 0; i < 18; i += 1) {
     const li = document.createElement('li');
     const pokemonPopup = document.querySelector('.popup');
     const commentBtn = document.querySelectorAll('.commentPopup');
 
     const object = objects[i];
     // to fetch the pokemon Image
-    const response = await fetch(object.url);
-    const pokeObject = await response.json();
+    const response = fetch(object.url);
+    const pokeObject = response.json();
     // console.log(pokeObject);
 
     // to get the image of pokemon
