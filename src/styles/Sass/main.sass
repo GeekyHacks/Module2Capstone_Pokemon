@@ -1,14 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')
 @import global
-$primary-color: #2fa8cc
-$secondary-color: #f4f4f4
+$primary-color: #2FA8CC
+$secondary-color: #F4F4F4
 $box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)
-
 *
     box-sizing: border-box
     margin: 0
     padding: 0
-
 body
     @include columnFlex
     background-color: $primary-color
@@ -23,21 +21,16 @@ img
     cursor: pointer
     &:active
         transform: scale(0.98)
-
     &:focus
         outline: 0
-
 h1, h2, h3,li, input,label
     color: $fontColor
-
 h1
     font-size: 1.2rem
 h2
     font-size: .7rem
-
 h3
     font-size: .5rem
-
 li, input, a, .copyRights
     border-radius: .15rem
     font-size: .7rem
@@ -76,7 +69,6 @@ nav
     // padding: .2rem
     border-radius: 3px
     box-shadow: $box-shadow
-
 .likeDiv, .commentDiv
     @include rowFlex
     align-self: stretch
@@ -88,26 +80,24 @@ nav
     img
         max-width: 1rem !important
         max-height: 1rem !important
-
 button
     @include button
     align-self: flex-start
-
     &:active
         transform: scale(0.98)
-
     &:focus
         outline: 0
-
 .popup
-    // align-items: center !important
+
+    align-items: stretch !important
+
     width: 20rem
     justify-content: stretch
     .pokemonImg
         padding: .3rem
         @include columnFlex
-        // align-items: stretch !important
-        // justify-content: center !important
+        align-items: stretch !important
+        justify-content: center !important
         img
             align-self: center
             max-width: 15rem
@@ -119,7 +109,6 @@ button
         h3
             align-self: center
             margin-top: 1rem
-
     .recentComments
         overflow-y: scroll
         align-self: stretch
@@ -155,7 +144,6 @@ button
             box-shadow: $box-shadow
     label, h3
         font-size: 1rem
-
 footer
     position: relative
     margin-top: 2rem
@@ -169,7 +157,6 @@ footer
         font-size: 18px
         padding-left: $Qlpadding
         padding-right: $Qrpadding
-
     section, .popup
         gap: 2rem
     .popup
@@ -179,3 +166,4 @@ footer
         font-size: 23px
     .popup
         max-width: 70rem
+
