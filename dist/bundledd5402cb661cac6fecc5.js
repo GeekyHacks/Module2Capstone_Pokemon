@@ -11,7 +11,6 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   GetDataList: () => (/* binding */ GetDataList),
-/* harmony export */   GetDataObject: () => (/* binding */ GetDataObject),
 /* harmony export */   commentsAPI: () => (/* binding */ commentsAPI),
 /* harmony export */   likesAPI: () => (/* binding */ likesAPI),
 /* harmony export */   pokemonAPI: () => (/* binding */ pokemonAPI)
@@ -21,30 +20,10 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 // I run this code in console when I want to reset the board by creating a id for involvement api
-
-// fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/', {
-//   method: 'POST',
-//   body: JSON.stringify({
-//     name: 'comment',
-//   }),
-//   headers: {
-//     'Content-type': 'application/json; charset=UTF-8',
-//   },
-// })
-//   .then((response) => response.json())
-//   .then((json) => console.log(json));
-
-// the id I get running the previous fetch code
-// const ID = 'woTq8RsLkSavLaCMQAAP';
-
-// APIs list
-var pokemonAPI = 'https://pokeapi.co/api/v2/pokemon/';
-var commentsAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/woTq8RsLkSavLaCMQAAP/comments/';
-var likesAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/woTq8RsLkSavLaCMQAAP/likes/';
-var pokemonList = document.getElementById('pokemonList');
-
+var pokemonAPI = "https://pokeapi.co/api/v2/pokemon/";
+var commentsAPI = "https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments";
+var likesAPI = "https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/likes";
 // this will get an api array
-
 var GetDataList = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(APIUrl) {
     var response, dataList, itemsArray;
@@ -71,44 +50,9 @@ var GetDataList = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
-var GetDataObject = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(APIUrl) {
-    var response, dataList;
-    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-      while (1) switch (_context2.prev = _context2.next) {
-        case 0:
-          _context2.next = 2;
-          return fetch(APIUrl);
-        case 2:
-          response = _context2.sent;
-          _context2.next = 5;
-          return response.json();
-        case 5:
-          dataList = _context2.sent;
-          return _context2.abrupt("return", dataList);
-        case 7:
-        case "end":
-          return _context2.stop();
-      }
-    }, _callee2);
-  }));
-  return function GetDataObject(_x2) {
-    return _ref2.apply(this, arguments);
-  };
-}();
-
 // to get the pokemon Data
 GetDataList(pokemonAPI);
 
-
-// const image = 'https://pokeapi.co/api/v2/pokemon/sprites/';
-
-// const GetDataObject = async (APIUrl) => {
-//     const response = await fetch(APIUrl);
-//     const dataList = await response.json();
-//     return dataList;
-//   };
-//  GetDataObject(image)
 
 /***/ }),
 
@@ -121,6 +65,7 @@ GetDataList(pokemonAPI);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   countComments: () => (/* binding */ countComments),
+/* harmony export */   countItems: () => (/* binding */ countItems),
 /* harmony export */   renderList: () => (/* binding */ renderList)
 /* harmony export */ });
 /* harmony import */ var _APIs_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./APIs.js */ "./src/modules/APIs.js");
@@ -135,78 +80,68 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var urlNeeded = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments';
+var countComments = function countComments() {
+  return document.querySelector('.recentComments').childNodes.length;
+};
+var countItems = function countItems() {
+  return document.querySelector('#pokemonList').childNodes.length;
+};
+var itemsList = document.getElementById('countItems');
 var renderList = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
-    var pokemonList, pokemonPopup, commentBtn, response, listData, sortedDataList, objects, getComments, getLikes, saveLike, likes, _loop, i;
+    var pokemonList, pokemonPopup, response, listData, sortedDataList, objects, getComments, getLikes, saveLike, likes, _loop, i;
     return _regeneratorRuntime().wrap(function _callee6$(_context7) {
       while (1) switch (_context7.prev = _context7.next) {
         case 0:
           pokemonList = document.getElementById('pokemonList');
           pokemonList.innerHTML = '';
-          pokemonPopup = document.querySelector('.popup');
-          commentBtn = document.querySelectorAll('.commentPopup');
-          _context7.prev = 4;
-          _context7.next = 7;
+          pokemonPopup = document.querySelector('.popup'); // Fetch the list of Pokemon
+          _context7.next = 5;
           return fetch(_APIs_js__WEBPACK_IMPORTED_MODULE_0__.pokemonAPI);
-        case 7:
+        case 5:
           response = _context7.sent;
-          _context7.next = 10;
+          _context7.next = 8;
           return response.json();
-        case 10:
+        case 8:
           listData = _context7.sent;
           listData = listData.results;
-          console.log(listData);
           // Sort the array elements
           sortedDataList = _toConsumableArray(listData);
           sortedDataList.sort(function (a, b) {
             return b.score - a.score;
           });
-          console.log(sortedDataList);
-          objects = sortedDataList; // console.log(objects[0]);
-          // Loop through 18 elements of the array
+          objects = sortedDataList; // Loop through 18 elements of the array
           getComments = /*#__PURE__*/function () {
-            var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(item_id) {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(itemId) {
               var commentsResponse, commentsData, recentComments;
               return _regeneratorRuntime().wrap(function _callee$(_context) {
                 while (1) switch (_context.prev = _context.next) {
                   case 0:
-                    _context.prev = 0;
-                    _context.next = 3;
-                    return fetch("https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments?item_id=".concat(item_id));
-                  case 3:
+                    _context.next = 2;
+                    return fetch("https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments?item_id=".concat(itemId));
+                  case 2:
                     commentsResponse = _context.sent;
-                    _context.next = 6;
+                    _context.next = 5;
                     return commentsResponse.json();
-                  case 6:
+                  case 5:
                     commentsData = _context.sent;
-                    console.log('Comments Data:', commentsData);
                     // Get the recentComments element
                     recentComments = document.querySelector('.recentComments');
-                    if (commentsData.error) {
-                      console.log(commentsData.error.message);
-                    } else {
+                    if (!commentsData.error) {
                       // console.error('Invalid comments data format:', commentsData);
                       recentComments.innerHTML = '';
                       commentsData.forEach(function (comment) {
-                        console.log(comment);
                         var commentLi = document.createElement('li');
                         commentLi.textContent = "".concat(comment.creation_date, " ").concat(comment.username, ": ").concat(comment.comment);
                         recentComments.appendChild(commentLi);
                       });
                       document.getElementById('commentCount').textContent = countComments();
                     }
-                    _context.next = 15;
-                    break;
-                  case 12:
-                    _context.prev = 12;
-                    _context.t0 = _context["catch"](0);
-                    console.error('An error occurred while fetching comments:', _context.t0);
-                  case 15:
+                  case 8:
                   case "end":
                     return _context.stop();
                 }
-              }, _callee, null, [[0, 12]]);
+              }, _callee);
             }));
             return function getComments(_x) {
               return _ref2.apply(this, arguments);
@@ -214,130 +149,83 @@ var renderList = /*#__PURE__*/function () {
           }();
           getLikes = /*#__PURE__*/function () {
             var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-              var _response, LikesData;
+              var response, LikesData;
               return _regeneratorRuntime().wrap(function _callee2$(_context2) {
                 while (1) switch (_context2.prev = _context2.next) {
                   case 0:
-                    _context2.prev = 0;
-                    _context2.next = 3;
-                    return fetch("https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/likes");
-                  case 3:
-                    _response = _context2.sent;
-                    _context2.next = 6;
-                    return _response.json();
-                  case 6:
+                    _context2.next = 2;
+                    return fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/likes');
+                  case 2:
+                    response = _context2.sent;
+                    _context2.next = 5;
+                    return response.json();
+                  case 5:
                     LikesData = _context2.sent;
-                    console.log('Likes Data:', LikesData);
-                    // Get the recentComments element
                     if (!LikesData.error) {
-                      _context2.next = 12;
+                      _context2.next = 8;
                       break;
                     }
-                    console.log(LikesData.error.message);
-                    _context2.next = 13;
-                    break;
-                  case 12:
+                    return _context2.abrupt("return", LikesData.error.message);
+                  case 8:
                     return _context2.abrupt("return", LikesData);
-                  case 13:
-                    _context2.next = 18;
-                    break;
-                  case 15:
-                    _context2.prev = 15;
-                    _context2.t0 = _context2["catch"](0);
-                    console.error('An error occurred while fetching likes:', _context2.t0);
-                  case 18:
+                  case 9:
                   case "end":
                     return _context2.stop();
                 }
-              }, _callee2, null, [[0, 15]]);
+              }, _callee2);
             }));
             return function getLikes() {
               return _ref3.apply(this, arguments);
             };
           }();
           saveLike = /*#__PURE__*/function () {
-            var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(item_id) {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(itemId) {
               var data, postResponse, likeEl;
               return _regeneratorRuntime().wrap(function _callee3$(_context3) {
                 while (1) switch (_context3.prev = _context3.next) {
                   case 0:
-                    _context3.prev = 0;
                     // Prepare the data to be sent
                     data = {
-                      item_id: item_id
-                    };
-                    _context3.prev = 2;
-                    _context3.next = 5;
-                    return fetch("https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/likes", {
+                      item_id: itemId
+                    }; // Make the POST request to the API
+                    _context3.next = 3;
+                    return fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/likes', {
                       method: 'POST',
                       headers: {
                         'Content-Type': 'application/json'
                       },
                       body: JSON.stringify(data)
                     });
-                  case 5:
+                  case 3:
                     postResponse = _context3.sent;
-                    _context3.t0 = console;
-                    _context3.next = 9;
-                    return postResponse.text();
-                  case 9:
-                    _context3.t1 = _context3.sent;
-                    _context3.t0.log.call(_context3.t0, _context3.t1);
                     if (postResponse.ok) {
-                      likeEl = document.getElementById('likes ' + item_id);
+                      likeEl = document.getElementById("likes ".concat(itemId));
                       likeEl.textContent = Number(likeEl.textContent) + 1;
-                    } else {
-                      // Handle the error response
-                      console.error('Failed to post like');
                     }
-                    _context3.next = 17;
-                    break;
-                  case 14:
-                    _context3.prev = 14;
-                    _context3.t2 = _context3["catch"](2);
-                    console.error('An error occurred while posting the like', _context3.t2);
-                  case 17:
-                    _context3.next = 22;
-                    break;
-                  case 19:
-                    _context3.prev = 19;
-                    _context3.t3 = _context3["catch"](0);
-                    console.error('An error occurred while fetching likes:', _context3.t3);
-                  case 22:
+                  case 5:
                   case "end":
                     return _context3.stop();
                 }
-              }, _callee3, null, [[0, 19], [2, 14]]);
+              }, _callee3);
             }));
             return function saveLike(_x2) {
               return _ref4.apply(this, arguments);
             };
           }();
-          _context7.next = 22;
+          _context7.next = 18;
           return getLikes();
-        case 22:
+        case 18:
           likes = _context7.sent;
           _loop = /*#__PURE__*/_regeneratorRuntime().mark(function _loop(i) {
-            var object, pokeObject, showPokemon, li, img, likeDiv, h3, svg, commentDiv, commentPopup, likesDiv, h4, like;
+            var object, imageSrc, showPokemon, li, img, likeDiv, h3, svg, commentDiv, commentPopup, likesDiv, h4, like;
             return _regeneratorRuntime().wrap(function _loop$(_context6) {
               while (1) switch (_context6.prev = _context6.next) {
                 case 0:
-                  object = objects[i];
-                  console.log(object); // Fetch the Pokemon image
-                  _context6.next = 4;
-                  return fetch(object.url);
-                case 4:
-                  response = _context6.sent;
-                  _context6.next = 7;
-                  return response.json();
-                case 7:
-                  pokeObject = _context6.sent;
-                  console.log(pokeObject);
-                  // Get the image of the Pokemon
-                  console.log(pokeObject.sprites.other.dream_world.front_default);
+                  object = objects[i]; // Fetch the Pokemon image
+                  imageSrc = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/".concat(i + 1, ".svg");
                   showPokemon = /*#__PURE__*/function () {
                     var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
-                      var pokeResponse, pokeObject, item_id, commentForm, closeBtn;
+                      var pokeResponse, pokeObject, itemId, commentForm, closeBtn;
                       return _regeneratorRuntime().wrap(function _callee5$(_context5) {
                         while (1) switch (_context5.prev = _context5.next) {
                           case 0:
@@ -349,13 +237,12 @@ var renderList = /*#__PURE__*/function () {
                             return pokeResponse.json();
                           case 5:
                             pokeObject = _context5.sent;
-                            console.log(pokeObject);
-                            item_id = pokeObject.id;
+                            itemId = pokeObject.id;
                             pokemonList.innerHTML = '';
-                            pokemonPopup.innerHTML = "\n            <div class=\"pokemonImg\">\n              <img class=\"pageX\" src=\"./assets/x.svg\" alt=\"close\" />\n              <img src=\"".concat(pokeObject.sprites.other.dream_world.front_default, "\" alt=\"").concat(object.name, "\" />\n              <h3>").concat(object.name, "</h3>\n            </div>\n            <div class=\"comments\">\n              <h3>Recent Comments (<span id='commentCount'>0</span>)</h3>\n              <ul class=\"recentComments\"></ul>\n            </div>\n            <form autocomplete=\"off\" class=\"AddComment\">\n              <label>Add a Comment</label>\n              <input type=\"text\" id=\"name\" placeholder=\"Your Name\" required maxLength=\"20\" />\n              <textarea rows=\"7\" id=\"commentText\"></textarea>\n              <button id=\"submit\" class=\"btn\" type=\"submit\">Comment</button>\n            </form>\n          ");
-                            _context5.next = 12;
-                            return getComments(item_id);
-                          case 12:
+                            pokemonPopup.innerHTML = "\n          <div class=\"pokemonImg\">\n            <img class=\"pageX\" src=\"./assets/x.svg\" alt=\"close\" />\n            <img src=\"".concat(imageSrc, "\" alt=\"").concat(object.name, "\" />\n            <h3>").concat(object.name, "</h3>\n          </div>\n          <div class=\"comments\">\n            <h3>Recent Comments (<span id='commentCount'>0</span>)</h3>\n            <ul class=\"recentComments\"></ul>\n          </div>\n          <form autocomplete=\"off\" class=\"AddComment\">\n            <label>Add a Comment</label>\n            <input type=\"text\" id=\"name\" placeholder=\"Your Name\" required maxLength=\"20\" />\n            <textarea rows=\"7\" id=\"commentText\"></textarea>\n            <button id=\"submit\" class=\"btn\" type=\"submit\">Comment</button>\n          </form>\n        ");
+                            _context5.next = 11;
+                            return getComments(itemId);
+                          case 11:
                             commentForm = document.querySelector('.AddComment');
                             commentForm.addEventListener('submit', /*#__PURE__*/function () {
                               var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(event) {
@@ -369,44 +256,32 @@ var renderList = /*#__PURE__*/function () {
                                       username = nameInput.value;
                                       comment = commentInput.value; // Generate a unique item_id            // Prepare the data to be sent
                                       data = {
-                                        item_id: item_id,
+                                        item_id: itemId,
                                         username: username,
                                         comment: comment
-                                      };
-                                      _context4.prev = 6;
-                                      _context4.next = 9;
-                                      return fetch("https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments", {
+                                      }; // Make the POST request to the API
+                                      _context4.next = 8;
+                                      return fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments', {
                                         method: 'POST',
                                         headers: {
                                           'Content-Type': 'application/json'
                                         },
                                         body: JSON.stringify(data)
                                       });
-                                    case 9:
+                                    case 8:
                                       postResponse = _context4.sent;
                                       if (postResponse.ok) {
                                         // Handle the successful response
-                                        console.log('Comment posted successfully');
-                                        getComments(item_id);
-                                      } else {
-                                        // Handle the error response
-                                        console.error('Failed to post comment');
+                                        getComments(itemId);
                                       }
-                                      _context4.next = 16;
-                                      break;
-                                    case 13:
-                                      _context4.prev = 13;
-                                      _context4.t0 = _context4["catch"](6);
-                                      console.error('An error occurred while posting the comment', _context4.t0);
-                                    case 16:
                                       // Clear the input fields
                                       nameInput.value = '';
                                       commentInput.value = '';
-                                    case 18:
+                                    case 12:
                                     case "end":
                                       return _context4.stop();
                                   }
-                                }, _callee4, null, [[6, 13]]);
+                                }, _callee4);
                               }));
                               return function (_x3) {
                                 return _ref6.apply(this, arguments);
@@ -415,9 +290,9 @@ var renderList = /*#__PURE__*/function () {
                             closeBtn = document.querySelector('.pageX');
                             closeBtn.addEventListener('click', function () {
                               pokemonPopup.innerHTML = '';
-                              location.reload();
+                              window.location.reload();
                             });
-                          case 16:
+                          case 15:
                           case "end":
                             return _context5.stop();
                         }
@@ -430,7 +305,7 @@ var renderList = /*#__PURE__*/function () {
                   li = document.createElement('li');
                   li.className = 'pokemonItem';
                   img = document.createElement('img');
-                  img.src = pokeObject.sprites.other.dream_world.front_default;
+                  img.src = imageSrc;
                   img.alt = object.name;
                   likeDiv = document.createElement('div');
                   likeDiv.className = 'likeDiv';
@@ -464,62 +339,36 @@ var renderList = /*#__PURE__*/function () {
                   li.appendChild(img);
                   li.appendChild(likeDiv);
                   li.appendChild(commentDiv);
-                  // li.innerHTML = `
-                  //   <li class="pokemonItem">
-                  //     <img src="${pokeObject.sprites.other.dream_world.front_default}" alt="${object.name}" />
-                  //     <div class="likeDiv">
-                  //       <h3>${object.name}</h3>
-                  //       <img src="./assets/like.svg" alt="like" />
-                  //     </div>
-                  //     <div class="commentDiv">
-                  //       <button class="commentPopup" data-url="${object.url}"
-                  //         onclick='${()=>showPokemon()}'>Comment</button>
-                  //       <div>
-                  //         <h4>
-                  //           likes<span>1</span>
-                  //         </h4>
-                  //       </div>
-                  //     </div>
-                  //   </li>
-                  // `;
                   pokemonList.appendChild(li);
-                case 43:
+                case 35:
                 case "end":
                   return _context6.stop();
               }
             }, _loop);
           });
           i = 0;
-        case 25:
+        case 21:
           if (!(i < 18)) {
-            _context7.next = 30;
+            _context7.next = 26;
             break;
           }
-          return _context7.delegateYield(_loop(i), "t0", 27);
+          return _context7.delegateYield(_loop(i), "t0", 23);
+        case 23:
+          i += 1;
+          _context7.next = 21;
+          break;
+        case 26:
+          itemsList.textContent = countItems();
         case 27:
-          i++;
-          _context7.next = 25;
-          break;
-        case 30:
-          _context7.next = 35;
-          break;
-        case 32:
-          _context7.prev = 32;
-          _context7.t1 = _context7["catch"](4);
-          console.error(_context7.t1);
-        case 35:
         case "end":
           return _context7.stop();
       }
-    }, _callee6, null, [[4, 32]]);
+    }, _callee6);
   }));
   return function renderList() {
     return _ref.apply(this, arguments);
   };
 }();
-var countComments = function countComments() {
-  return document.querySelector('.recentComments').childNodes.length;
-};
 
 /***/ }),
 
@@ -552,8 +401,9 @@ ___CSS_LOADER_EXPORT___.push([module.id, `* {
 body {
   display: flex;
   flex-direction: column;
-  background-color: #2fa8cc;
+  background-color: #2FA8CC;
   font-family: "Roboto", sans-serif;
+  align-items: center;
   justify-content: center;
   padding: 5px;
   font-size: 12px;
@@ -592,11 +442,16 @@ li, input, a, .copyRights {
   font-size: 0.7rem;
 }
 
+img {
+  max-width: 6rem;
+  max-height: 4rem;
+}
+
 header {
   padding: 0.2rem;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: stretch !important;
   justify-content: center;
 }
 
@@ -623,10 +478,6 @@ nav h2 {
   align-items: center;
   padding: 0.2rem;
   gap: 0.7rem;
-}
-#pokemonList img {
-  max-width: 6rem;
-  max-height: 4rem;
 }
 
 .pokemonItem, .popup {
@@ -661,7 +512,7 @@ button {
   font-size: 0.6rem;
   font-weight: 600;
   color: #002d67 !important;
-  background-color: #2fa8cc !important;
+  background-color: #2FA8CC !important;
   border: 1px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
   padding: 4px;
@@ -683,7 +534,8 @@ button:focus {
 }
 
 .popup {
-  align-items: stretch;
+  width: 20rem;
+  justify-content: stretch;
 }
 .popup .pokemonImg {
   padding: 0.3rem;
@@ -696,7 +548,7 @@ button:focus {
   max-height: 10rem;
 }
 .popup .pokemonImg .pageX {
-  align-self: flex-end;
+  align-self: flex-end !important;
   max-width: 1rem;
   max-height: 1rem;
 }
@@ -706,6 +558,20 @@ button:focus {
 }
 .popup .recentComments {
   overflow-y: scroll;
+  align-self: stretch;
+  background: #c2e2ea;
+  padding: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+  border-radius: 3px;
+}
+.popup .recentComments li {
+  border: 0.5px solid black;
+  padding: 0.1rem;
+  background: #72bbce;
+  color: #002d67;
 }
 .popup .AddComment, .popup .comments {
   display: flex;
@@ -750,12 +616,18 @@ footer {
   section, .popup {
     gap: 2rem;
   }
+  .popup {
+    width: 40rem;
+  }
 }
 @media (min-width: 999px) {
   body {
     font-size: 23px;
   }
-}`, "",{"version":3,"sources":["webpack://./src/styles/Sass/main.sass","webpack://./src/styles/Sass/global.sass"],"names":[],"mappings":"AAMA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;AAJJ;;AAMA;ECAI,aAAA;EACA,sBAAA;EDCA,yBAXY;EAYZ,iCAAA;EAEA,uBAAA;EACA,YAAA;EACA,eAAA;AAHJ;;AAIA;EACI,eAAA;EACA,gBAAA;EACA,eAAA;AADJ;AAEI;EACI,sBAAA;AAAR;AAEI;EACI,UAAA;AAAR;;AAEA;EACI,cC3BQ;AD4BZ;;AACA;EACI,iBAAA;AAEJ;;AADA;EACI,iBAAA;AAIJ;;AAFA;EACI,iBAAA;AAKJ;;AAHA;EACI,sBAAA;EACA,iBAAA;AAMJ;;AALA;EACI,eAAA;ECjCA,aAAA;EACA,sBAAA;EDkCA,oBAAA;EACA,uBAAA;AASJ;;AARA;ECjCI,aAAA;EACA,mBAAA;EDkCA,mBAAA;EACA,8BAAA;EACA,SAAA;EACA,mBAAA;AAYJ;AAXI;EACI,SAAA;EACA,sBAAA;AAaR;AAZI;EACI,SAAA;AAcR;;AAbA;ECXI,aAAA;EACA,kCAAA;EACA,mBAAA;EDWA,mBAAA;EACA,eAAA;EAEA,WAAA;AAiBJ;AAhBI;EACI,eAAA;EACA,gBAAA;AAkBR;;AAhBA;EC1DI,aAAA;EACA,sBAAA;ED2DA,mBAAA;EAEA,WAAA;EACA,mBCxEa;ED0Eb,kBAAA;EACA,wEAzES;AA2Fb;;AAhBA;EChEI,aAAA;EACA,mBAAA;EDiEA,mBAAA;EACA,oBAAA;EACA,8BAAA;EACA,eAAA;AAoBJ;AAnBI;EACI,oBAAA;AAqBR;AApBI;EACI,0BAAA;EACA,2BAAA;AAsBR;;AApBA;ECxEI,oBAAA;EACA,kBAAA;EACA,iBAAA;EACA,gBAAA;EACA,yBAAA;EACA,oCAAA;EACA,WAAA;EACA,wEDtBS;ECuBT,YAAA;EACA,eAAA;EACA,kBAAA;EDgEA,sBAAA;AAiCJ;AC/FI;EACI,sBAAA;ADiGR;AC/FI;EACI,UAAA;ADiGR;AArCI;EACI,sBAAA;AAuCR;AArCI;EACI,UAAA;AAuCR;;AArCA;EACI,oBAAA;AAwCJ;AAvCI;EACI,eAAA;EC7FJ,aAAA;EACA,sBAAA;ADuIJ;AAvCQ;EACI,kBAAA;EACA,gBAAA;EACA,iBAAA;AAyCZ;AAxCQ;EACI,oBAAA;EACA,eAAA;EACA,gBAAA;AA0CZ;AAzCQ;EACI,kBAAA;EACA,gBAAA;AA2CZ;AAzCI;EACI,kBAAA;AA2CR;AA1CI;EC/GA,aAAA;EACA,sBAAA;EDgHI,mBAAA;EACA,mBAAA;EACA,uBAAA;EACA,sBAAA;EACA,WAAA;AA6CR;AA5CQ;EACI,kBAAA;EACA,qBAAA;EACA,eAAA;EACA,oCAAA;AA8CZ;AA7CQ;EACI,mBAAA;EACA,kBAAA;EACA,eAAA;EACA,mBCzIG;ED0IH,wEAvIC;AAsLb;AA9CI;EACI,eAAA;AAgDR;;AA9CA;EACI,kBAAA;EACA,gBAAA;EACA,sBAAA;EACA,SAAA;EACA,cAAA;AAiDJ;;AA/CA;EACI;IACI,eAAA;IACA,+BCjJI;IDkJJ,gCCpJI;EDsMV;EAhDE;IACI,SAAA;EAkDN;AACF;AAjDA;EACI;IACI,eAAA;EAmDN;AACF","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n$primary-color: #2fa8cc\r\n$secondary-color: #f4f4f4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\n\r\nbody\r\n    @include columnFlex\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    // align-items: center\r\n    justify-content: center\r\n    padding: 5px\r\n    font-size: 12px\r\nimg\r\n    max-width: 5rem\r\n    max-height: 7rem\r\n    cursor: pointer\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\nh1, h2, h3,li, input,label\r\n    color: $fontColor\r\n\r\nh1\r\n    font-size: 1.2rem\r\nh2\r\n    font-size: .7rem\r\n\r\nh3\r\n    font-size: .5rem\r\n\r\nli, input, a, .copyRights\r\n    border-radius: .15rem\r\n    font-size: .7rem\r\nheader\r\n    padding: .2rem\r\n    @include columnFlex\r\n    align-items: stretch\r\n    justify-content: center\r\nnav\r\n    @include rowFlex\r\n    align-items: center\r\n    justify-content: space-between\r\n    gap: 5rem\r\n    white-space: nowrap\r\n    img\r\n        flex: .8\r\n        align-self: flex-start\r\n    h2\r\n        flex: .4\r\n#pokemonList\r\n    @include threeThreeGrid\r\n    align-items: center\r\n    padding: .2rem\r\n    // justify-content: space-evenly\r\n    gap: .7rem\r\n    img\r\n        max-width: 6rem\r\n        max-height: 4rem\r\n\r\n.pokemonItem, .popup\r\n    @include columnFlex\r\n    align-items: center\r\n    // justify-content: center\r\n    gap: .4rem\r\n    background: $secondarycolor\r\n    // padding: .2rem\r\n    border-radius: 3px\r\n    box-shadow: $box-shadow\r\n\r\n.likeDiv, .commentDiv\r\n    @include rowFlex\r\n    align-self: stretch\r\n    align-items: stretch\r\n    justify-content: space-between\r\n    padding: .2rem\r\n    div, img\r\n        align-self: flex-end\r\n    img\r\n        max-width: 1rem !important\r\n        max-height: 1rem !important\r\n\r\nbutton\r\n    @include button\r\n    align-self: flex-start\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n.popup\r\n    align-items: stretch\r\n    .pokemonImg\r\n        padding: .3rem\r\n        @include columnFlex\r\n        // align-items: stretch !important\r\n        // justify-content: center !important\r\n        img\r\n            align-self: center\r\n            max-width: 15rem\r\n            max-height: 10rem\r\n        .pageX\r\n            align-self: flex-end\r\n            max-width: 1rem\r\n            max-height: 1rem\r\n        h3\r\n            align-self: center\r\n            margin-top: 1rem\r\n\r\n    .recentComments\r\n        overflow-y: scroll\r\n    .AddComment, .comments\r\n        @include columnFlex\r\n        align-self: stretch\r\n        align-items: center\r\n        justify-content: center\r\n        padding: .3rem .5rem\r\n        gap: .3rem\r\n        button\r\n            align-self: center\r\n            margin-bottom: .5rem\r\n            padding: .4rem\r\n            background-color: $primarycolor !important\r\n        textarea, input\r\n            align-self: stretch\r\n            border-radius: 3px\r\n            padding: .3rem\r\n            background: $primarycolor\r\n            box-shadow: $box-shadow\r\n    label, h3\r\n        font-size: 1rem\r\n\r\nfooter\r\n    position: relative\r\n    margin-top: 2rem\r\n    padding-bottom: 0.3rem\r\n    top: auto\r\n    bottom: 0.1rem\r\n    // width: 50%\r\n@media ( min-width: 768px  )\r\n    main\r\n        font-size: 18px\r\n        padding-left: $Qlpadding\r\n        padding-right: $Qrpadding\r\n\r\n    section, .popup\r\n        gap: 2rem\r\n\r\n@media ( min-width: 999px  )\r\n    body\r\n        font-size: 23px\r\n","$InterFont: \"Inter\", sans-serif\r\n$primarycolor: #c2e2ea\r\n$secondarycolor: #72bbce\r\n$fontColor: #002d67\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n$qrpadding: calc( 12% - 80px )\r\n$Qrpadding: calc( 25% - 120px )\r\n$qlpadding: calc( 12% - 80px )\r\n$Qlpadding: calc( 25% - 120px )\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 4px\r\n    font-size: .6rem\r\n    font-weight: 600\r\n    color: $fontColor !important\r\n    background-color: $primary-color !important\r\n    border: 1px\r\n    box-shadow: $box-shadow\r\n    padding: 4px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n@mixin oneFiveGrid\r\n    display: grid\r\n    grid-template-columns: 1fr\r\n    grid-auto-rows: 1fr 1fr 1fr 1fr 1fr\r\n\r\n@mixin fiveOneGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin threeThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .9rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n\r\n@mixin transparentText\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-repeat: no-repeat\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n\r\n@mixin transparentBg\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-blend-mode: color-burn\r\n    background-repeat: no-repeat\r\n"],"sourceRoot":""}]);
+  .popup {
+    max-width: 70rem;
+  }
+}`, "",{"version":3,"sources":["webpack://./src/styles/Sass/main.sass","webpack://./src/styles/Sass/global.sass"],"names":[],"mappings":"AAKA;EACI,sBAAA;EACA,SAAA;EACA,UAAA;AAHJ;;AAIA;ECEI,aAAA;EACA,sBAAA;EDDA,yBATY;EAUZ,iCAAA;EACA,mBAAA;EACA,uBAAA;EACA,YAAA;EACA,eAAA;AAAJ;;AACA;EACI,eAAA;EACA,gBAAA;EACA,eAAA;AAEJ;AADI;EACI,sBAAA;AAGR;AAFI;EACI,UAAA;AAIR;;AAHA;EACI,cCvBQ;AD6BZ;;AALA;EACI,iBAAA;AAQJ;;AAPA;EACI,iBAAA;AAUJ;;AATA;EACI,iBAAA;AAYJ;;AAXA;EACI,sBAAA;EACA,iBAAA;AAcJ;;AAbA;EACI,eAAA;EACA,gBAAA;AAgBJ;;AAfA;EACI,eAAA;EC7BA,aAAA;EACA,sBAAA;ED8BA,+BAAA;EACA,uBAAA;AAmBJ;;AAlBA;EC7BI,aAAA;EACA,mBAAA;ED8BA,mBAAA;EACA,8BAAA;EACA,SAAA;EACA,mBAAA;AAsBJ;AArBI;EACI,SAAA;EACA,sBAAA;AAuBR;AAtBI;EACI,SAAA;AAwBR;;AAvBA;ECPI,aAAA;EACA,kCAAA;EACA,mBAAA;EDOA,mBAAA;EACA,eAAA;EAEA,WAAA;AA2BJ;;AA1BA;EClDI,aAAA;EACA,sBAAA;EDmDA,mBAAA;EAEA,WAAA;EACA,mBChEa;EDkEb,kBAAA;EACA,wEAjES;AA6Fb;;AA3BA;ECvDI,aAAA;EACA,mBAAA;EDwDA,mBAAA;EACA,oBAAA;EACA,8BAAA;EACA,eAAA;AA+BJ;AA9BI;EACI,oBAAA;AAgCR;AA/BI;EACI,0BAAA;EACA,2BAAA;AAiCR;;AAhCA;EC9DI,oBAAA;EACA,kBAAA;EACA,iBAAA;EACA,gBAAA;EACA,yBAAA;EACA,oCAAA;EACA,WAAA;EACA,wEDtBS;ECuBT,YAAA;EACA,eAAA;EACA,kBAAA;EDsDA,sBAAA;AA6CJ;ACjGI;EACI,sBAAA;ADmGR;ACjGI;EACI,UAAA;ADmGR;AAlDI;EACI,sBAAA;AAoDR;AAnDI;EACI,UAAA;AAqDR;;AApDA;EAEI,YAAA;EACA,wBAAA;AAsDJ;AArDI;EACI,eAAA;EClFJ,aAAA;EACA,sBAAA;AD0IJ;AArDQ;EACI,kBAAA;EACA,gBAAA;EACA,iBAAA;AAuDZ;AAtDQ;EACI,+BAAA;EACA,eAAA;EACA,gBAAA;AAwDZ;AAvDQ;EACI,kBAAA;EACA,gBAAA;AAyDZ;AAxDI;EACI,kBAAA;EACA,mBAAA;EACA,mBC9GO;ED+GP,eAAA;ECrGJ,aAAA;EACA,sBAAA;EDsGI,uBAAA;EACA,WAAA;EACA,kBAAA;AA2DR;AA1DQ;EACI,yBAAA;EACA,eAAA;EACA,mBCtHK;EDuHL,cCtHA;ADkLZ;AA3DI;EC/GA,aAAA;EACA,sBAAA;EDgHI,mBAAA;EACA,mBAAA;EACA,uBAAA;EACA,sBAAA;EACA,WAAA;AA8DR;AA7DQ;EACI,kBAAA;EACA,qBAAA;EACA,eAAA;EACA,oCAAA;AA+DZ;AA9DQ;EACI,mBAAA;EACA,kBAAA;EACA,eAAA;EACA,mBCzIG;ED0IH,wEAvIC;AAuMb;AA/DI;EACI,eAAA;AAiER;;AAhEA;EACI,kBAAA;EACA,gBAAA;EACA,sBAAA;EACA,SAAA;EACA,cAAA;AAmEJ;;AAjEA;EACI;IACI,eAAA;IACA,+BChJI;IDiJJ,gCCnJI;EDuNV;EAnEE;IACI,SAAA;EAqEN;EApEE;IACI,YAAA;EAsEN;AACF;AAtEA;EACI;IACI,eAAA;EAwEN;EAvEE;IACI,gBAAA;EAyEN;AACF","sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')\r\n@import global\r\n$primary-color: #2FA8CC\r\n$secondary-color: #F4F4F4\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n*\r\n    box-sizing: border-box\r\n    margin: 0\r\n    padding: 0\r\nbody\r\n    @include columnFlex\r\n    background-color: $primary-color\r\n    font-family: 'Roboto', sans-serif\r\n    align-items: center\r\n    justify-content: center\r\n    padding: 5px\r\n    font-size: 12px\r\nimg\r\n    max-width: 5rem\r\n    max-height: 7rem\r\n    cursor: pointer\r\n    &:active\r\n        transform: scale(0.98)\r\n    &:focus\r\n        outline: 0\r\nh1, h2, h3,li, input,label\r\n    color: $fontColor\r\nh1\r\n    font-size: 1.2rem\r\nh2\r\n    font-size: .7rem\r\nh3\r\n    font-size: .5rem\r\nli, input, a, .copyRights\r\n    border-radius: .15rem\r\n    font-size: .7rem\r\nimg\r\n    max-width: 6rem\r\n    max-height: 4rem\r\nheader\r\n    padding: .2rem\r\n    @include columnFlex\r\n    align-items: stretch !important\r\n    justify-content: center\r\nnav\r\n    @include rowFlex\r\n    align-items: center\r\n    justify-content: space-between\r\n    gap: 5rem\r\n    white-space: nowrap\r\n    img\r\n        flex: .8\r\n        align-self: flex-start\r\n    h2\r\n        flex: .4\r\n#pokemonList\r\n    @include threeThreeGrid\r\n    align-items: center\r\n    padding: .2rem\r\n    // justify-content: space-evenly\r\n    gap: .7rem\r\n.pokemonItem, .popup\r\n    @include columnFlex\r\n    align-items: center\r\n    // justify-content: center\r\n    gap: .4rem\r\n    background: $secondarycolor\r\n    // padding: .2rem\r\n    border-radius: 3px\r\n    box-shadow: $box-shadow\r\n.likeDiv, .commentDiv\r\n    @include rowFlex\r\n    align-self: stretch\r\n    align-items: stretch\r\n    justify-content: space-between\r\n    padding: .2rem\r\n    div, img\r\n        align-self: flex-end\r\n    img\r\n        max-width: 1rem !important\r\n        max-height: 1rem !important\r\nbutton\r\n    @include button\r\n    align-self: flex-start\r\n    &:active\r\n        transform: scale(0.98)\r\n    &:focus\r\n        outline: 0\r\n.popup\r\n    // align-items: center !important\r\n    width: 20rem\r\n    justify-content: stretch\r\n    .pokemonImg\r\n        padding: .3rem\r\n        @include columnFlex\r\n        // align-items: stretch !important\r\n        // justify-content: center !important\r\n        img\r\n            align-self: center\r\n            max-width: 15rem\r\n            max-height: 10rem\r\n        .pageX\r\n            align-self: flex-end !important\r\n            max-width: 1rem\r\n            max-height: 1rem\r\n        h3\r\n            align-self: center\r\n            margin-top: 1rem\r\n    .recentComments\r\n        overflow-y: scroll\r\n        align-self: stretch\r\n        background: $primarycolor\r\n        padding: 0.2rem\r\n        @include columnFlex\r\n        justify-content: center\r\n        gap: .2rem\r\n        border-radius: 3px\r\n        li\r\n            border: .5px solid black\r\n            padding: 0.1rem\r\n            background: $secondarycolor\r\n            color: $fontColor\r\n    .AddComment, .comments\r\n        @include columnFlex\r\n        align-self: stretch\r\n        align-items: center\r\n        justify-content: center\r\n        padding: .3rem .5rem\r\n        gap: .3rem\r\n        button\r\n            align-self: center\r\n            margin-bottom: .5rem\r\n            padding: .4rem\r\n            background-color: $primarycolor !important\r\n        textarea, input\r\n            align-self: stretch\r\n            border-radius: 3px\r\n            padding: .3rem\r\n            background: $primarycolor\r\n            box-shadow: $box-shadow\r\n    label, h3\r\n        font-size: 1rem\r\nfooter\r\n    position: relative\r\n    margin-top: 2rem\r\n    padding-bottom: 0.3rem\r\n    top: auto\r\n    bottom: 0.1rem\r\n    // width: 50%\r\n@media ( min-width: 768px  )\r\n    main\r\n        font-size: 18px\r\n        padding-left: $Qlpadding\r\n        padding-right: $Qrpadding\r\n    section, .popup\r\n        gap: 2rem\r\n    .popup\r\n        width: 40rem\r\n@media ( min-width: 999px  )\r\n    body\r\n        font-size: 23px\r\n    .popup\r\n        max-width: 70rem","$InterFont: \"Inter\", sans-serif\r\n$primarycolor: #c2e2ea\r\n$secondarycolor: #72bbce\r\n$fontColor: #002d67\r\n$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)\r\n$qrpadding: calc( 12% - 80px )\r\n$Qrpadding: calc( 25% - 120px )\r\n$qlpadding: calc( 12% - 80px )\r\n$Qlpadding: calc( 25% - 120px )\r\n\r\n@mixin columnFlex\r\n    display: flex\r\n    flex-direction: column\r\n\r\n@mixin rowFlex\r\n    display: flex\r\n    flex-direction: row\r\n\r\n@mixin button\r\n    transition: all 0.5s\r\n    border-radius: 4px\r\n    font-size: .6rem\r\n    font-weight: 600\r\n    color: $fontColor !important\r\n    background-color: $primary-color !important\r\n    border: 1px\r\n    box-shadow: $box-shadow\r\n    padding: 4px\r\n    cursor: pointer\r\n    text-align: center\r\n\r\n    &:active\r\n        transform: scale(0.98)\r\n\r\n    &:focus\r\n        outline: 0\r\n\r\n@mixin oneFiveGrid\r\n    display: grid\r\n    grid-template-columns: 1fr\r\n    grid-auto-rows: 1fr 1fr 1fr 1fr 1fr\r\n\r\n@mixin fiveOneGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin threeThreeGrid\r\n    display: grid\r\n    grid-template-columns: 1fr 1fr 1fr\r\n    grid-auto-rows: 1fr\r\n\r\n@mixin globalFont\r\n    font-family: $InterFont\r\n    font-weight: 500\r\n    font-size: 1.2rem\r\n\r\n@mixin smlInterH1\r\n    color: black\r\n    font-size: 2rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0525rem\r\n\r\n@mixin smlInterH2\r\n    color: black\r\n    font-size: 1.5rem\r\n    font-family: $InterFont\r\n    font-weight: 800\r\n    letter-spacing: -0.0225rem\r\n\r\n@mixin smlInterH3\r\n    color: black\r\n    font-size: 1.2rem\r\n    font-family: $InterFont\r\n    font-weight: 600\r\n    letter-spacing: 0.0025rem\r\n\r\n@mixin smlInterP\r\n    color: black\r\n    font-size: .9rem\r\n    font-family: $InterFont\r\n    letter-spacing: 0.0125rem\r\n\r\n@mixin transparentText\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-repeat: no-repeat\r\n    -webkit-background-clip: text\r\n    -webkit-text-fill-color: transparent\r\n\r\n@mixin transparentBg\r\n    background-image: url('#{$assetsPath}/Flag-Yemen.webp')\r\n    background-size: 100% 100%\r\n    background-blend-mode: color-burn\r\n    background-repeat: no-repeat\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -878,34 +750,6 @@ module.exports = function (item) {
   }
   return [content].join("\n");
 };
-
-/***/ }),
-
-/***/ "./src/assets/1.svg":
-/*!**************************!*\
-  !*** ./src/assets/1.svg ***!
-  \**************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/1.svg");
-
-/***/ }),
-
-/***/ "./src/assets/bikatshoo.svg":
-/*!**********************************!*\
-  !*** ./src/assets/bikatshoo.svg ***!
-  \**********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/bikatshoo.svg");
 
 /***/ }),
 
@@ -1355,30 +1199,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_Sass_main_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/Sass/main.sass */ "./src/styles/Sass/main.sass");
 /* harmony import */ var _assets_pokemon_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/pokemon.png */ "./src/assets/pokemon.png");
 /* harmony import */ var _assets_like_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/like.svg */ "./src/assets/like.svg");
-/* harmony import */ var _assets_bikatshoo_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/bikatshoo.svg */ "./src/assets/bikatshoo.svg");
-/* harmony import */ var _assets_1_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/1.svg */ "./src/assets/1.svg");
-/* harmony import */ var _assets_x_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./assets/x.svg */ "./src/assets/x.svg");
-/* harmony import */ var _modules_pageRendering__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/pageRendering */ "./src/modules/pageRendering.js");
+/* harmony import */ var _assets_x_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/x.svg */ "./src/assets/x.svg");
+/* harmony import */ var _modules_pageRendering__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/pageRendering */ "./src/modules/pageRendering.js");
 
 
 
-
-
-// import './assets/2.svg';
-// import './assets/3.svg';
-// import './assets/4.svg';
-// import './assets/5.svg';
-// import './assets/6.svg';
-// import './assets/7.svg';
-// import './assets/8.svg';
-// import './assets/9.svg';
 
 
 window.addEventListener('load', function () {
-  (0,_modules_pageRendering__WEBPACK_IMPORTED_MODULE_6__.renderList)();
+  (0,_modules_pageRendering__WEBPACK_IMPORTED_MODULE_4__.renderList)();
 });
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle4ace3a4e9bb6f105f025.js.map
+//# sourceMappingURL=bundledd5402cb661cac6fecc5.js.map

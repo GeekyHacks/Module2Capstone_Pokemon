@@ -1,19 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap')
 @import global
-$primary-color: #2fa8cc
-$secondary-color: #f4f4f4
+$primary-color: #2FA8CC
+$secondary-color: #F4F4F4
 $box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1)
-
 *
     box-sizing: border-box
     margin: 0
     padding: 0
-
 body
     @include columnFlex
     background-color: $primary-color
     font-family: 'Roboto', sans-serif
-    // align-items: center
+    align-items: center
     justify-content: center
     padding: 5px
     font-size: 12px
@@ -23,28 +21,26 @@ img
     cursor: pointer
     &:active
         transform: scale(0.98)
-
     &:focus
         outline: 0
-
 h1, h2, h3,li, input,label
     color: $fontColor
-
 h1
     font-size: 1.2rem
 h2
     font-size: .7rem
-
 h3
     font-size: .5rem
-
 li, input, a, .copyRights
     border-radius: .15rem
     font-size: .7rem
+img
+    max-width: 6rem
+    max-height: 4rem
 header
     padding: .2rem
     @include columnFlex
-    align-items: stretch
+    align-items: stretch !important
     justify-content: center
 nav
     @include rowFlex
@@ -63,10 +59,6 @@ nav
     padding: .2rem
     // justify-content: space-evenly
     gap: .7rem
-    img
-        max-width: 6rem
-        max-height: 4rem
-
 .pokemonItem, .popup
     @include columnFlex
     align-items: center
@@ -76,7 +68,6 @@ nav
     // padding: .2rem
     border-radius: 3px
     box-shadow: $box-shadow
-
 .likeDiv, .commentDiv
     @include rowFlex
     align-self: stretch
@@ -88,19 +79,17 @@ nav
     img
         max-width: 1rem !important
         max-height: 1rem !important
-
 button
     @include button
     align-self: flex-start
-
     &:active
         transform: scale(0.98)
-
     &:focus
         outline: 0
-
 .popup
-    align-items: stretch
+    // align-items: center !important
+    width: 20rem
+    justify-content: stretch
     .pokemonImg
         padding: .3rem
         @include columnFlex
@@ -111,15 +100,26 @@ button
             max-width: 15rem
             max-height: 10rem
         .pageX
-            align-self: flex-end
+            align-self: flex-end !important
             max-width: 1rem
             max-height: 1rem
         h3
             align-self: center
             margin-top: 1rem
-
     .recentComments
         overflow-y: scroll
+        align-self: stretch
+        background: $primarycolor
+        padding: 0.2rem
+        @include columnFlex
+        justify-content: center
+        gap: .2rem
+        border-radius: 3px
+        li
+            border: .5px solid black
+            padding: 0.1rem
+            background: $secondarycolor
+            color: $fontColor
     .AddComment, .comments
         @include columnFlex
         align-self: stretch
@@ -140,7 +140,6 @@ button
             box-shadow: $box-shadow
     label, h3
         font-size: 1rem
-
 footer
     position: relative
     margin-top: 2rem
@@ -153,10 +152,12 @@ footer
         font-size: 18px
         padding-left: $Qlpadding
         padding-right: $Qrpadding
-
     section, .popup
         gap: 2rem
-
+    .popup
+        width: 40rem
 @media ( min-width: 999px  )
     body
         font-size: 23px
+    .popup
+        max-width: 70rem
