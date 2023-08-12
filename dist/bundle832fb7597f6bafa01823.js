@@ -20,9 +20,9 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 // I run this code in console when I want to reset the board by creating a id for involvement api
-var pokemonAPI = "https://pokeapi.co/api/v2/pokemon/";
-var commentsAPI = "https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments";
-var likesAPI = "https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/likes";
+var pokemonAPI = 'https://pokeapi.co/api/v2/pokemon/';
+var commentsAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments';
+var likesAPI = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/likes';
 // this will get an api array
 var GetDataList = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(APIUrl) {
@@ -222,6 +222,8 @@ var renderList = /*#__PURE__*/function () {
               while (1) switch (_context6.prev = _context6.next) {
                 case 0:
                   object = objects[i]; // Fetch the Pokemon image
+                  // const itemCounts = document.getElementById('itemCounts');
+                  // itemCounts.style.display = 'none';
                   imageSrc = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/".concat(i + 1, ".svg");
                   showPokemon = /*#__PURE__*/function () {
                     var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
@@ -290,6 +292,7 @@ var renderList = /*#__PURE__*/function () {
                             closeBtn = document.querySelector('.pageX');
                             closeBtn.addEventListener('click', function () {
                               pokemonPopup.innerHTML = '';
+                              //  itemCounts.style.display = 'block';
                               window.location.reload();
                             });
                           case 15:
@@ -1200,17 +1203,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_pokemon_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/pokemon.png */ "./src/assets/pokemon.png");
 /* harmony import */ var _assets_like_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/like.svg */ "./src/assets/like.svg");
 /* harmony import */ var _assets_x_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/x.svg */ "./src/assets/x.svg");
-/* harmony import */ var _modules_pageRendering__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/pageRendering */ "./src/modules/pageRendering.js");
+/* harmony import */ var _modules_pageRendering_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/pageRendering.js */ "./src/modules/pageRendering.js");
 
 
 
 
 
 window.addEventListener('load', function () {
-  (0,_modules_pageRendering__WEBPACK_IMPORTED_MODULE_4__.renderList)();
+  (0,_modules_pageRendering_js__WEBPACK_IMPORTED_MODULE_4__.renderList)();
 });
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundledd5402cb661cac6fecc5.js.map
+//# sourceMappingURL=bundle832fb7597f6bafa01823.js.map
