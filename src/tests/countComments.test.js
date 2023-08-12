@@ -1,4 +1,4 @@
-import { countComments } from './pageRendering';
+import { countComments } from '../modules/pageRendering.js';
 
 const ul = document.createElement('ul');
 ul.id = 'recentComments';
