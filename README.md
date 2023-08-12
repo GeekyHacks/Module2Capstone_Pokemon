@@ -40,7 +40,7 @@ In this project I will be using webpack to bundle my code, the project is about 
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://geekyhacks.github.io/GeekyLeaderboard/dist/.)
+- [Live Demo Link](https://geekyhacks.github.io/Module2Capstone_Pokemon/dist/.)
 
 # 📖 Module 2 Capstone Pokemon <a name="live-demo"></a>
 

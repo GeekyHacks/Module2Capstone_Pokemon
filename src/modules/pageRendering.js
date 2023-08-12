@@ -1,6 +1,10 @@
 import { pokemonAPI } from './APIs.js';
-// const urlNeeded = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments';
+
 export const countComments = () => document.querySelector('.recentComments').childNodes.length;
+export const countItems = () => document.querySelector('#pokemonList').childNodes.length;
+
+const itemsList = document.getElementById('countItems');
+
 export const renderList = async () => {
   const pokemonList = document.getElementById('pokemonList');
   pokemonList.innerHTML = '';
@@ -67,6 +71,7 @@ export const renderList = async () => {
     }
   };
   const likes = await getLikes();
+
   for (let i = 0; i < 18; i += 1) {
     const object = objects[i];
     // Fetch the Pokemon image
@@ -169,4 +174,5 @@ export const renderList = async () => {
     li.appendChild(commentDiv);
     pokemonList.appendChild(li);
   }
+  itemsList.textContent = countItems();
 };

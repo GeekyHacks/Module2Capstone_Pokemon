@@ -13,14 +13,14 @@ const GetDataList = async (APIUrl) => {
   return itemsArray;
 };
 
-const GetDataObject = async (APIUrl) => {
-  const response = await fetch(APIUrl);
-  const dataList = await response.json();
-  return dataList;
-};
+// const GetDataObject = async (APIUrl) => {
+//   const response = await fetch(APIUrl);
+//   const dataList = await response.json();
+//   return dataList;
+// };
 
 // to get the pokemon Data
 GetDataList(pokemonAPI);
 export {
-  pokemonAPI, commentsAPI, likesAPI, GetDataList, GetDataObject,
+  pokemonAPI, commentsAPI, likesAPI, GetDataList,
 };

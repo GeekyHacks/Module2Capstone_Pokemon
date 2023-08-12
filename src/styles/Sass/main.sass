@@ -47,7 +47,7 @@ img
 header
     padding: .2rem
     @include columnFlex
-    align-items: stretch
+    align-items: stretch !important
     justify-content: center
 nav
     @include rowFlex
@@ -69,7 +69,7 @@ nav
 
 .pokemonItem, .popup
     @include columnFlex
-    // align-items: center
+    align-items: center
     // justify-content: center
     gap: .4rem
     background: $secondarycolor
@@ -113,7 +113,7 @@ button
             max-width: 15rem
             max-height: 10rem
         .pageX
-            align-self: flex-end
+            align-self: flex-end !important
             max-width: 1rem
             max-height: 1rem
         h3
