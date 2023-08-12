@@ -4,10 +4,19 @@
 
 <div align="center">
 
+
+
+
   <br/>
 
   <h3><b>Module 2 Capstone Pokemon</b></h3>
   <p>In this project I will be using webpack to bundle my code, the project is about using multiple APIs to show and manipulate data. Styling is done with sass. Jest testing is used for the project. It will include mainly JS, HTML, Sass, and JSON</p>
+
+<div align="center">
+  <img src="assests/images/Personal-portfolio-with-play.gif"  alt="Personal portfolio video">
+  <br>
+   <a href="https://drive.google.com/drive/folders/15RNUShulsz81NJaaAEcZrEsRADqmHOl7?usp=sharing">Watch full video </a>
+</div>
 
 </div>
 
