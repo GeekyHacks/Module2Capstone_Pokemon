@@ -72,7 +72,6 @@ export const renderList = async () => {
   };
   const likes = await getLikes();
 
-
   for (let i = 0; i < 18; i += 1) {
     const object = objects[i];
     // Fetch the Pokemon image
@@ -131,14 +130,12 @@ export const renderList = async () => {
         // Clear the input fields
         nameInput.value = '';
         commentInput.value = '';
-
       });
       const closeBtn = document.querySelector('.pageX');
       closeBtn.addEventListener('click', () => {
         pokemonPopup.innerHTML = '';
         window.location.reload();
       });
-
     };
     const li = document.createElement('li');
     li.className = 'pokemonItem';
@@ -179,4 +176,3 @@ export const renderList = async () => {
   }
   itemsList.textContent = countItems();
 };
-
