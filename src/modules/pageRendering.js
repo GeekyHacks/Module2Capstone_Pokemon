@@ -2,7 +2,9 @@ import { pokemonAPI } from './APIs.js';
 
 export const countComments = () => document.querySelector('.recentComments').childNodes.length;
 export const countItems = () => document.querySelector('#pokemonList').childNodes.length;
+
 const itemsList = document.getElementById('countItems');
+
 export const renderList = async () => {
   const pokemonList = document.getElementById('pokemonList');
   pokemonList.innerHTML = '';
@@ -69,11 +71,11 @@ export const renderList = async () => {
     }
   };
   const likes = await getLikes();
+
+
   for (let i = 0; i < 18; i += 1) {
     const object = objects[i];
     // Fetch the Pokemon image
-    // const itemCounts = document.getElementById('itemCounts');
-    // itemCounts.style.display = 'none';
     const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${i + 1}.svg`;
     const showPokemon = async () => {
       const pokeResponse = await fetch(object.url);
@@ -129,13 +131,14 @@ export const renderList = async () => {
         // Clear the input fields
         nameInput.value = '';
         commentInput.value = '';
+
       });
       const closeBtn = document.querySelector('.pageX');
       closeBtn.addEventListener('click', () => {
         pokemonPopup.innerHTML = '';
-        //  itemCounts.style.display = 'block';
         window.location.reload();
       });
+
     };
     const li = document.createElement('li');
     li.className = 'pokemonItem';
@@ -176,3 +179,4 @@ export const renderList = async () => {
   }
   itemsList.textContent = countItems();
 };
+

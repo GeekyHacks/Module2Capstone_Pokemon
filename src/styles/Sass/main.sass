@@ -59,6 +59,7 @@ nav
     padding: .2rem
     // justify-content: space-evenly
     gap: .7rem
+
 .pokemonItem, .popup
     @include columnFlex
     align-items: center
@@ -87,7 +88,9 @@ button
     &:focus
         outline: 0
 .popup
+
     align-items: stretch !important
+
     width: 20rem
     justify-content: stretch
     .pokemonImg
@@ -101,7 +104,6 @@ button
             max-height: 10rem
         .pageX
             align-self: flex-end !important
-          
             max-width: 1rem
             max-height: 1rem
         h3
@@ -121,6 +123,7 @@ button
             padding: 0.1rem
             background: $secondarycolor
             color: $fontColor
+
     .AddComment, .comments
         @include columnFlex
         align-self: stretch
@@ -148,6 +151,7 @@ footer
     top: auto
     bottom: 0.1rem
     // width: 50%
+
 @media ( min-width: 768px  )
     main
         font-size: 18px
@@ -162,3 +166,4 @@ footer
         font-size: 23px
     .popup
         max-width: 70rem
+
