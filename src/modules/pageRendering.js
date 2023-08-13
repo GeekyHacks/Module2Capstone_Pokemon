@@ -1,6 +1,5 @@
 import { pokemonAPI } from './APIs.js';
 
-const recentCommentsList = document.querySelector('.recentComments');
 export const countComments = () => document.querySelector('.recentComments').childNodes.length;
 export const countItems = () => document.querySelector('#pokemonList').childNodes.length;
 
