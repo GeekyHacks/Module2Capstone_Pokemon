@@ -4,5 +4,3 @@ node_modules
 src/modules/api.js
 #gitignore
 src/modules/consoleTests.js
-
-
