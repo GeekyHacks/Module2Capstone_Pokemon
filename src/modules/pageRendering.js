@@ -1,5 +1,6 @@
 import { pokemonAPI } from './APIs.js';
 
+const recentCommentsList = document.querySelector('.recentComments');
 export const countComments = () => document.querySelector('.recentComments').childNodes.length;
 export const countItems = () => document.querySelector('#pokemonList').childNodes.length;
 
@@ -9,23 +10,33 @@ export const renderList = async () => {
   const pokemonList = document.getElementById('pokemonList');
   pokemonList.innerHTML = '';
   const pokemonPopup = document.querySelector('.popup');
-  // Fetch the list of Pokemon
+
+  // Fetch the list of Pokemon from API
   const response = await fetch(pokemonAPI);
   let listData = await response.json();
   listData = listData.results;
+
   // Sort the array elements
   const sortedDataList = [...listData];
   sortedDataList.sort((a, b) => b.score - a.score);
   const objects = sortedDataList;
-  // Loop through 18 elements of the array
+  // it will get the comments posted by their default id
   const getComments = async (itemId) => {
+    const recentCommentsList = document.querySelector('.recentComments');
+    if (!recentCommentsList.childNodes.length) {
+      recentCommentsList.style.background = 'none';
+    }
+
+    recentCommentsList.style.background = '$primarycolor';
     // Fetch the updated comments after posting
     const commentsResponse = await fetch(
-      `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments?item_id=${itemId}`,
+      `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments?item_id=${itemId}`
     );
+
     const commentsData = await commentsResponse.json();
     // Get the recentComments element
     const recentComments = document.querySelector('.recentComments');
+
     if (!commentsData.error) {
       // console.error('Invalid comments data format:', commentsData);
       recentComments.innerHTML = '';
@@ -34,23 +45,13 @@ export const renderList = async () => {
         commentLi.textContent = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
         recentComments.appendChild(commentLi);
       });
+
       document.getElementById('commentCount').textContent = countComments();
     }
   };
-  const getLikes = async () => {
-    // Fetch the likes
-    const response = await fetch(
-      'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/likes',
-    );
-    const LikesData = await response.json();
-    // Get the recentComments element
-    if (LikesData.error) {
-      return LikesData.error.message;
-    }
-    return LikesData;
-  };
+
   const saveLike = async (itemId) => {
-    // Prepare the data to be sent
+    // Prepare the data to be sent itemId must be the parameter for save likes
     const data = {
       item_id: itemId,
     };
@@ -63,23 +64,39 @@ export const renderList = async () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
-      },
+      }
     );
+
     if (postResponse.ok) {
       const likeEl = document.getElementById(`likes ${itemId}`);
       likeEl.textContent = Number(likeEl.textContent) + 1;
     }
   };
-  const likes = await getLikes();
 
+  const getLikes = async () => {
+    // Fetch the likes
+    const response = await fetch(
+      'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/likes'
+    );
+    const LikesData = await response.json();
+
+    if (LikesData.error) {
+      return LikesData.error.message;
+    }
+    return LikesData;
+  };
+
+  const likes = await getLikes();
+  // loop through the fetched array of data and display it
   for (let i = 0; i < 18; i += 1) {
     const object = objects[i];
-    // Fetch the Pokemon image
+    // Fetch the Pokemon image the since the id of each pokemon is rom 1 to 20 we can use i+1 as iteamID
     const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${i + 1}.svg`;
     const showPokemon = async () => {
       const pokeResponse = await fetch(object.url);
       const pokeObject = await pokeResponse.json();
       const itemId = pokeObject.id;
+
       pokemonList.innerHTML = '';
       pokemonPopup.innerHTML = `
           <div class="pokemonImg">
@@ -98,7 +115,9 @@ export const renderList = async () => {
             <button id="submit" class="btn" type="submit">Comment</button>
           </form>
         `;
+
       await getComments(itemId);
+      // add comment
       const commentForm = document.querySelector('.AddComment');
       commentForm.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -106,12 +125,14 @@ export const renderList = async () => {
         const commentInput = document.getElementById('commentText');
         const username = nameInput.value;
         const comment = commentInput.value;
-        // Generate a unique item_id            // Prepare the data to be sent
+
+        // Prepare the data to be sent
         const data = {
           item_id: itemId,
           username,
           comment,
         };
+
         // Make the POST request to the API
         const postResponse = await fetch(
           'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/y6YPEOFIRnRk7yGZhKxu/comments',
@@ -121,7 +142,7 @@ export const renderList = async () => {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
-          },
+          }
         );
         if (postResponse.ok) {
           // Handle the successful response
@@ -137,11 +158,16 @@ export const renderList = async () => {
         window.location.reload();
       });
     };
+
+    // generate the pokemon list item this way is better than `` you can manipulate items as you wish
     const li = document.createElement('li');
     li.className = 'pokemonItem';
+    // image and name o pokemon
     const img = document.createElement('img');
     img.src = imageSrc;
     img.alt = object.name;
+
+    // like div
     const likeDiv = document.createElement('div');
     likeDiv.className = 'likeDiv';
     const h3 = document.createElement('h3');
@@ -149,24 +175,34 @@ export const renderList = async () => {
     h3.textContent = object.name;
     svg.src = './assets/like.svg';
     svg.alt = 'like';
+
+    // add like whenever the like img is clicked
     svg.addEventListener('click', () => {
       saveLike(i);
     });
     likeDiv.appendChild(h3);
     likeDiv.appendChild(svg);
+
+    // comment div
     const commentDiv = document.createElement('div');
     commentDiv.className = 'commentDiv';
     const commentPopup = document.createElement('button');
     commentPopup.textContent = 'Comment';
     commentPopup.addEventListener('click', () => {
+      // make items count disappear
+      document.getElementById('listSect').style.display = 'none';
       showPokemon();
     });
+
     commentPopup.className = 'commentPopup';
     const likesDiv = document.createElement('div');
     const h4 = document.createElement('h4');
+
+    // this will match each list item with the its likes
     const like = likes.find((x) => x.item_id === i);
     h4.innerHTML = `likes <span id='likes ${i}'>${like ? like.likes : 0}</span>`;
     likesDiv.appendChild(h4);
+
     commentDiv.appendChild(commentPopup);
     commentDiv.appendChild(likesDiv);
     li.appendChild(img);

@@ -42,6 +42,7 @@ header
     @include columnFlex
     align-items: stretch !important
     justify-content: center
+    align-self: flex-start
 nav
     @include rowFlex
     align-items: center
@@ -121,7 +122,7 @@ button
         li
             border: .5px solid black
             padding: 0.1rem
-            background: $secondarycolor
+            background: $primarycolor
             color: $fontColor
 
     .AddComment, .comments
@@ -145,16 +146,19 @@ button
     label, h3
         font-size: 1rem
 footer
+    // font-size: 1rem !important
     position: relative
     margin-top: 2rem
     padding-bottom: 0.3rem
     top: auto
     bottom: 0.1rem
+    align-self: flex-start
     // width: 50%
 
 @media ( min-width: 768px  )
-    main
+    body
         font-size: 18px
+    main
         padding-left: $Qlpadding
         padding-right: $Qrpadding
     section, .popup
@@ -166,4 +170,3 @@ footer
         font-size: 23px
     .popup
         max-width: 70rem
-
