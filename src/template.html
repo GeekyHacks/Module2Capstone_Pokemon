@@ -7,11 +7,26 @@
     <title>%= htmlWebpackPlugin.options.title %</title>
   </head>
   <body>
-    <div class="container">
-      <img id="laughImg" alt="" />
-      <h3>Don't Laugh Challenge</h3>
-      <div id="joke" class="joke"></div>
-      <button id="jokeBtn" class="btn">Get Another Joke</button>
-    </div>
+    <header>
+      <nav>
+        <img src="./assets/pokemon.png" alt="" />
+        <h2>About Project</h2>
+        <h2>credit</h2>
+      </nav>
+    </header>
+    <main>
+      <section class="popup"></section>
+      <section id="listSect">
+        <h2 id="itemsCount">Pokemon List: <span id="countItems"></span></h2>
+        <ul id="pokemonList"></ul>
+      </section>
+    </main>
+
+    <footer>
+      <h2>
+        Copyrights reserved to <a href="https://github.com/GeekyHacks">GeekyHacks</a> &
+        <a href="https://github.com/firstpj">Collins Akorda</a>
+      </h2>
+    </footer>
   </body>
 </html>

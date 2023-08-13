@@ -1,2 +1,6 @@
 #gitignore
 node_modules
+#gitignore
+src/modules/api.js
+#gitignore
+src/modules/consoleTests.js

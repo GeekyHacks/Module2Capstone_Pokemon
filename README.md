@@ -1,22 +1,32 @@
-# WebPackTemplate
+# Module 2 Capstone Pokemon
 
 <a name="readme-top"></a>
 
 <div align="center">
 
+
+
+
   <br/>
 
-  <h3><b>WebPack Template</b></h3>
-  <p>This repo can be used for projects that use webpack bundling. Take a look at  file, have a look at  </p> <a href="https://youtu.be/IZGNcSuwBZs">this video to understand webpack </a>
+  <h3><b>Module 2 Capstone Pokemon</b></h3>
+  <p>In this project I will be using webpack to bundle my code, the project is about using multiple APIs to show and manipulate data. Styling is done with sass. Jest testing is used for the project. It will include mainly JS, HTML, Sass, and JSON</p>
+
+<div align="center">
+  <img src="assests/images/Personal-portfolio-with-play.gif"  alt="Personal portfolio video">
+  <br>
+   <a href="https://drive.google.com/file/d/1AN1Oph1s-dFzk4pkKvT0cJqSd7RgNPuf/view?usp=sharing">Watch full video </a>
+</div>
 
 </div>
+
 # 📗 Table of Contents
 
-- [WebPackTemplate](#webpacktemplate)
+- [Module 2 Capstone Pokemon](#Module2Capstone_Pokemon)
 - [📗 Table of Contents](#-table-of-contents)
-- [📖 WebPack Template ](#-webpack-template-)
-  - [Instructions](#instructions)
-  - [🛠 webpack installation webpack-installation](#-webpack-installation--webpack-installation)
+- [📖 Module 2 Capstone Pokemon< ](#Module2Capstone_Pokemon)
+- [🚀 Live Demo ](#-live-demo-)
+- [📖 Module 2 Capstone Pokemon< ](#Module2Capstone_Pokemon)
   - [🛠 Built With HTML, CSS and JavaScript](#-built-with-html-css-and-javascript)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
@@ -32,33 +42,16 @@
   - [❓ FAQ ](#-faq-)
   - [📝 License ](#-license-)
 
-# 📖 WebPack Template <a name="about-project"></a>
+# 📖 Module 2 Capstone Pokemon< <a name="about-project"></a>
 
-**WebPack Template**
-it can be used for projects that use webpack bundling.
+**Module 2 Capstone Pokemon<e**
+In this project I will be using webpack to bundle my code, the project is about using multiple APIs to show and manipulate data. Styling is done with sass. Jest testing is used for the project. It will include mainly JS, HTML, Sass, and JSON.
 
-## Instructions <a name="Instructions"></a>
+## 🚀 Live Demo <a name="live-demo"></a>
 
-You will need to install the node_modules so the package.json and webpack.config work.
-copy the following commands in sequence:
+- [Live Demo Link](https://geekyhacks.github.io/Module2Capstone_Pokemon/dist/.)
 
-- `npm i -D webpack webpack-cli`
-- `npm i -D webpack-dev-server` to install the local server
-- `npm i -D sass style-loader css-loader sass-loader` to install loaders for styling, sass, and css
-- `npm i -D html-webpack-plugin` this will istall the plugin that will make the index.html file in the dist, its based on the tmplate file in your src
-- `npm i -D babel-loader @babel/core @babel/preset-env` to install babel that will make your code run on browsers
-- `npm run build` to test if webpack is working and you will see dist folder is regenrated and you will run this command anytime you wanna add images or edit the template html file
--
-- `npm run build`
-- `npm run start` to display your dist in local server(browser just like the live server extention)
-- once webpack is working perfectly
-- (this is opitional) install the linters test packages according to Microverse requirements
-  - for eslint `npm install --save-dev eslint@7.x eslint-config-airbnb-base@14.x eslint-plugin-import@2.x babel-eslint@10.x`
-  - for stylelint`npm install --save-dev stylelint@13.x stylelint-scss@3.x stylelint-config-standard@21.x stylelint-csstree-validator@1.x`
-  - for webhint `npm install --save-dev hint@7.x`
-- after that you should be good to start your project
-
-## 🛠 webpack installation <a name="webpack-installation"> [webpack-installation](WebPackInstallation.md)</a>
+# 📖 Module 2 Capstone Pokemon <a name="live-demo"></a>
 
 ## 🛠 Built With <a name="built-with">HTML, CSS and JavaScript</a>
 
@@ -76,7 +69,10 @@ copy the following commands in sequence:
 
 </a>
 
-- Can be used to startup any project using webpack
+- API
+- Webpack
+- Jest
+- Sass
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -84,14 +80,11 @@ copy the following commands in sequence:
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-To use this template just [visit](https://github.com/GeekyHacks/WebPackTemplate)
-the repository and press on "use this template"
-
 To get a local copy up and running, follow these steps:
 
 - Open your Terminal in your VSCode.
 - Navigate to the desired directory[folder] to which you want to clone the repository to
-- [Copy & Paste] git clone you find in the code button https://github.com/GeekyHacks/WebPackTemplate.git
+- [Copy & Paste] git clone you find in the code button https://github.com/GeekyHacks/Module2Capstone_Pokemon.git
 
 ### Prerequisites
 
@@ -106,13 +99,13 @@ In order to run this project you need:
 
 Clone this repository to your desired folder:
 
-- git clone https://github.com/GeekyHacks/WebPackTemplate.git
+- git clone https://github.com/GeekyHacks/Module2Capstone_Pokemon.git
 
 Example commands:
 
 ```sh
   cd my-folder
-  git clone https://github.com/GeekyHacks/WebPackTemplate.git
+  git clone https://github.com/GeekyHacks/Module2Capstone_Pokemon.git
 
 ```
 
@@ -122,17 +115,18 @@ Example commands:
 
 Must-Install-Project-with-the-Following-Programmes:
 
-- Prettier Extention in VScode
-- Git
-- Node.js
-- npm install
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) Extention in VScode
+- [Git](https://git-scm.com/downloads)
+- [Node.js](https://nodejs.org/en/download)
+- [npm install](https://docs.npmjs.com/cli/v8/commands/npm-install)
+- [webpack](https://webpack.js.org/guides/installation/)
+- [Jest](https://jestjs.io/docs/getting-started)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 👥 Authors <a name="authors"></a>
 
 👤 **GeekyHacks**
-**Bhekisile Jozi**
 
 - GitHub: [Geekyhacks](https://github.com/GeekyHacks)
 - Twitter: [Geekydart](https://twitter.com/GeekyDart)
@@ -148,7 +142,7 @@ Must-Install-Project-with-the-Following-Programmes:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/GeekyHacks/WebPackTemplate/issues).
+Feel free to check the [issues page](https://github.com/GeekyHacks/Module2Capstone_Pokemon/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -164,8 +158,10 @@ people.
 I would like to thank...
 
 - Microverse Review Team
-- My Coding Partners
+- My Coding Partner @firstpj
 - Microverse Community in Slack
+- my Mentor @Strangeal
+- [Pokemon API](https://pokeapi.co/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
